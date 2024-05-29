@@ -1,15 +1,15 @@
 name: 推广页
 story: partners
-dataProvider:
-  - inviteCode: p4yc
-  - inviteCode: p4yc3249
-  - inviteCode: p4yc8200
-  - inviteCode: p4yc9097
-  - inviteCode: p4yc3596
 beforeClass:
   name: 登录合伙人后台
   step:
-    - keyWord: 登录partners
+    - keyWord: 登录partnersadmin
+    - keyWord: 获取BD列表
+    - keyWord: 快捷注册
+    - keyWord: 获取用户信息
+    - keyWord: 新增合伙人
+    - keyWord: 登录partners-新合伙人
+    - keyWord: 获取合伙人邀请码
 testMethod:
   - name: 创建推广页
     dataProvider:

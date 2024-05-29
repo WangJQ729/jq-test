@@ -232,7 +232,7 @@ keyWord:
       method: POST
       body: |
         {
-          "inviteCode": "${inviteCode}",
+          "inviteCode": "${vipCode}",
           "url": "${url}",
           "shortLink": "${shortLink}"
         }

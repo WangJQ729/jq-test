@@ -42,10 +42,11 @@ keyWord:
         page: 1
         pageSize: 10
         side: 0
+    - name: 历史成交查询-平仓
+      keyWord: 历史成交查询
       extractor:
         - json:
-            openDealFee: $.data.records[?(@.orderId=='${orderId}')].dealFee
-          size: 100
+            closeQuoteAmount: $.data.records[?(@.orderId=='${closeOrderId}')].quoteAmount
     - name: U本位合约历史委托
       untilWait: 30
       url: /futures/futures/order/history

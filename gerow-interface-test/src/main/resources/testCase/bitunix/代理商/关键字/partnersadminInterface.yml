@@ -28,6 +28,12 @@ keyWord:
       extractor:
         - json:
             nickName: $.result.nickname
+    - keyWord: 获取用户信息
+      name: 获取用户信息和上级代理uid
+      extractor:
+        - json:
+            nickName: $.result.nickname
+            superiorPartnerUid: $.result.parentUid
     - name: 新增合伙人
       host: ${partnersadmin_host}
       url: /partner/root/add
@@ -138,15 +144,26 @@ keyWord:
             $.result.items[0].platformRevenue: ${bdPlatformRevenue}
             $.result.items[0].totalCommission: ${bdTotalCommission}
             $.result.items[0].totalFee: ${bdTotalFee}
-    - name: BD统计-用户交易
+    - name: BD统计-开仓
       keyWord: BD统计
       assertion:
         - json:
             $.result.items[0].totalTradeAmount: ${__BeanShell(${bdTradeAmount} +${makerTradeAmount})}
             $.result.items[0].totalTradeUsers: ${__BeanShell(${bdTotalTradeUsers} + 1)}
+            $.result.items[0].totalFee: ${__BeanShell(${bdTotalFee} + ${openDealFee})}
             $.result.items[0].platformRevenue: ${__BeanShell(${bdPlatformRevenue} + ${openDealFee} * 0.05)}
             $.result.items[0].totalCommission: ${__BeanShell(${bdTotalCommission} + ${openDealFee} * 0.95)}
-            $.result.items[0].totalFee: ${__BeanShell(${bdTotalFee} + ${openDealFee})}
+            $.result.items[0].totalPartners: ${bdTotalPartners}
+          assertionType: EIGHTDECIMALPLACES
+    - name: BD统计-平仓
+      keyWord: BD统计
+      assertion:
+        - json:
+            $.result.items[0].totalTradeAmount: ${__BeanShell(${bdTradeAmount} +${closeQuoteAmount})}
+            $.result.items[0].totalTradeUsers: ${__BeanShell(${bdTotalTradeUsers})}
+            $.result.items[0].totalFee: ${__BeanShell(${bdTotalFee} + ${closeDealFee})}
+            $.result.items[0].platformRevenue: ${__BeanShell(${bdPlatformRevenue} + ${closeDealFee} * 0.05)}
+            $.result.items[0].totalCommission: ${__BeanShell(${bdTotalCommission} + ${closeDealFee} * 0.95)}
             $.result.items[0].totalPartners: ${bdTotalPartners}
           assertionType: EIGHTDECIMALPLACES
     - name: 新建社区活动

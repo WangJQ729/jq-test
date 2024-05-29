@@ -1,13 +1,17 @@
 name: BD统计
 story: partners
 invocationCount: 1
-beforeMethod:
+beforeClass:
   name: 登录合伙人系统
   step:
     - keyWord: 登录partnersadmin
     - keyWord: 登录bdAdmin
 testMethod:
   - name: 更改BD
+    dataProvider:
+      - symbol: AVAXUSDT
+        amount: 2
+        side: ${__Random(1,2)}
     step:
       - keyWord: 获取BD列表
       - keyWord: BD统计
@@ -19,27 +23,14 @@ testMethod:
       - keyWord: 登录partners-新合伙人
       - keyWord: 获取合伙人信息
       - keyWord: 获取合伙人邀请码
-      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
-      - keyWord: BD统计-用户合伙人邀请码注册
-      - keyWord: 获取用户信息
-        extractor:
-          - json:
-              nickName: $.result.nickname
-              firstPartnerUid: $.result.parentUid
-      - keyWord: BD合伙人列表
-      - keyWord: 获取团队佣金
       - keyWord: 获取本月交易额
-      - keyWord: 新用户升级为合伙人-修改返佣比例
-      - keyWord: BD统计-团队人数不变
-      - keyWord: 登录partners-新合伙人
-      - keyWord: 获取合伙人邀请码
-      - keyWord: 代理商后台更新返佣统计
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: BD统计-用户合伙人邀请码注册
-      - keyWord: 获取用户信息
+      - keyWord: 获取用户信息和上级代理uid
+      - keyWord: BD合伙人列表
       - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
-      - keyWord: 市价开仓
+      - keyWord: 市价开仓-指定交易对
       - keyWord: 持有仓位信息
       - keyWord: U本位合约历史委托
       - keyWord: 代理商后台更新返佣统计
@@ -49,8 +40,9 @@ testMethod:
               $.result.items[0].makerFee: ${openDealFee}
               $.result.items[0].makerRebate: ${__BeanShell(${openDealFee} * ${futureSelfRatio} / 100)}
             assertionType: EIGHTDECIMALPLACES
+      - keyWord: 佣金发放明细
       - keyWord: 获取本月交易额-校验交易额
-      - keyWord: BD统计-用户交易
+      - keyWord: BD统计-开仓
       - keyWord: 获取团队佣金
         assertion:
           - json:
@@ -67,10 +59,11 @@ testMethod:
             assertionType: EIGHTDECIMALPLACES
       - keyWord: 佣金发放明细
       - keyWord: 获取本月交易额-校验交易额
+      - keyWord: 历史成交查询-平仓
       - keyWord: 获取团队佣金
         assertion:
           - json:
               $.result.items[0].totalCommission: ${__BeanShell(${totalCommission} + ${closeDealFee} * ${bdFutureRatio} / 100)}
             assertionType: EIGHTDECIMALPLACES
       - keyWord: 代理商后台更新返佣统计
-      - keyWord: BD统计-用户交易
+      - keyWord: BD统计-平仓

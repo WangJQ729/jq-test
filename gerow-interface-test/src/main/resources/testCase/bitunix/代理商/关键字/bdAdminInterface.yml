@@ -21,18 +21,18 @@ keyWord:
       variables:
         page: 1
         pageSize: 10
-        partnerInfo: ${firstPartnerUid}
+        partnerInfo: ${superiorPartnerUid}
         orderType: 0
         orderDirection: DESC
       assertion:
         - json:
-            $.result.items[?(@.uid==${firstPartnerUid})].totalCommission: ['0']
+            $.result.items[?(@.uid==${superiorPartnerUid})].totalCommission: ['0']
     - name: 获取团队佣金
       keyWord: 团队佣金
       extractor:
         - json:
-            totalCommission: $.result.items[?(@.uid==${firstPartnerUid})].totalCommission
-            totalTradeAmount: $.result.items[?(@.uid==${firstPartnerUid})].totalTradeAmount
+            totalCommission: $.result.items[?(@.uid==${superiorPartnerUid})].totalCommission
+            totalTradeAmount: $.result.items[?(@.uid==${superiorPartnerUid})].totalTradeAmount
     - name: BD合伙人列表
       host: ${bdadmin_host}
       url: /partner/bd/page
@@ -40,11 +40,11 @@ keyWord:
       headers:
         Token: ${bd_token}
       body: |
-        {"page":1,"pageSize":10,"uid":"${firstPartnerUid}","registerStart":"","registerEnd":"","pageIndex":1}
+        {"page":1,"pageSize":10,"uid":"${superiorPartnerUid}","registerStart":"","registerEnd":"","pageIndex":1}
       extractor:
         - json:
-            bdExchangeRatio: $.result.items[?(@.uid==${firstPartnerUid})].exchangeRatio
-            bdFutureRatio: $.result.items[?(@.uid==${firstPartnerUid})].futureRatio
+            bdExchangeRatio: $.result.items[?(@.uid==${superiorPartnerUid})].exchangeRatio
+            bdFutureRatio: $.result.items[?(@.uid==${superiorPartnerUid})].futureRatio
       assertion: [json: {$.code: '0'}]
     - name: 获取本月交易额
       host: ${bdadmin_host}
