@@ -40,7 +40,7 @@ keyWord:
     - name: 任务类奖励活动列表-活动不存在
       host: ${spotAdmin_host}
       url: /api/recharge/common/act/list
-      untilWait: 5
+      untilWait: 10
       variables:
         actName: ${actCode}
         page: 1

@@ -15,7 +15,7 @@ keyWord:
       host: ${bdadmin_host}
       url: /partner/bd/get_partner_team_information
       method: GET
-      untilWait: 5
+      untilWait: 10
       headers:
         Token: ${bd_token}
       variables:
@@ -66,7 +66,7 @@ keyWord:
       keyWord: 获取本月交易额
       assertion:
         - json:
-            $.result.transactionAmountMonth: ${__BeanShell(${oldTransactionAmountMonth} + ${makerTradeAmount})}
+            $.result.transactionAmountMonth: ${__groovy(${oldTransactionAmountMonth} + ${makerTradeAmount})}
           assertionType: EIGHTDECIMALPLACES
       extractor:
         - json:

@@ -14,8 +14,6 @@ dataProvider:
     actStartTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT-9H,zh_CN,)}
     actEndTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT-7H,zh_CN,)}
     actStatusType: in_progress
-    symbol: BTCUSDT
-    amount: 0.05
     side: ${__Random(1,2)}
 beforeClass:
   name: 创建活动

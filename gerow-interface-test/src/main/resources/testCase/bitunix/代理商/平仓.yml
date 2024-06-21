@@ -1,52 +1,28 @@
 name: 平仓
 story: partners
-enable: false
-invocationCount: 2
+invocationCount: 1
 testMethod:
   - name: 平仓
+    enable: false
     dataProvider:
-      - userId: 16273
-      - userId: 16274
-      - userId: 16275
-      - userId: 16276
-      - userId: 16277
-      - userId: 16278
-      - userId: 16280
-      - userId: 16281
-      - userId: 16282
-      - userId: 16283
-      - userId: 16284
-      - userId: 16285
-      - userId: 16286
-      - userId: 16287
-      - userId: 16288
-      - userId: 16289
-      - userId: 16290
-      - userId: 16291
-      - userId: 16292
-      - userId: 16275
-      - userId: 16280
-      - userId: 16281
-      - userId: 16282
-      - userId: 16283
-      - userId: 16285
-      - userId: 16286
-      - userId: 16069
-      - userId: 16083
-      - userId: 16084
-      - userId: 16085
-      - userId: 16086
-      - userId: 16088
-      - userId: 16089
-      - userId: 16090
-      - userId: 16091
-      - userId: 16093
-      - userId: 16095
-      - userId: 16096
-      - userId: 16097
-      - userId: 16098
-      - userId: 16281
+      - userId: 13664
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 持有仓位信息
       - keyWord: 市价平仓
+  - name: 取消带单
+    dataProvider:
+      - userId: 50881
+    step:
+      - keyWord: 通过uid获取用户token
+      - keyWord: 获取子账户Uid
+        headers:
+          Token: ${token}
+      - keyWord: 获取带单子账户token
+        iter:
+          subAccountUid: ${subAccountUids}
+        headers:
+          Token: ${token}
+      - keyWord: 取消带单
+        headers:
+          Token: ${token}

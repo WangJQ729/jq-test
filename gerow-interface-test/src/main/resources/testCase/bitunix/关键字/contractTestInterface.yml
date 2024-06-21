@@ -13,6 +13,7 @@ keyWord:
         - json:
             userId: $.data[0]
             token: $.token
+      assertion: [ json: { $.code: '0' } ]
     - name: 快捷注册
       url: /auth-v2/test/batch_register
       method: POST
@@ -27,11 +28,21 @@ keyWord:
       extractor:
         - json:
             userId: $.data[0]
+      assertion: [ json: { $.code: '0' } ]
     - name: 快捷注册-合伙人邀请码-随机邮箱
       keyWord: 快捷注册
       bodyEditor:
         json:
           $.invitedCode: ${vipCode}
+          $.emails:
+            - ${__RandomEmail(email)}
+    - keyWord: 快捷注册
+      name: 快捷注册-非默认邀请码
+      bodyEditor:
+        json:
+          $.invitedCode: ${not_default_vipCode}
+          $.emails:
+            - ${__RandomEmail(email)}
     - name: 增加合约账户资产
       url: /test/futuresproxy/inner/test/transfer
       method: POST
@@ -44,22 +55,51 @@ keyWord:
             "amount": 9999.99,
             "coin": "USDT"
         }
+      assertion: [ json: { $.code: '0' } ]
     - name: 增加合约账户资产-指定资产
       keyWord: 增加合约账户资产
       bodyEditor:
         json:
           $.amount: ${balance_amount}
     - name: 通过uid获取用户token
-      url: /web/test/login
+      url: /auth-v2/test/login
       method: GET
       responseType: DEFAULT
       variables:
         userId: ${userId}
       extractor:
-        - type: DEFAULT
-          name: token
+        - json:
+            token: $.data
+      assertion: [ json: { $.code: '0' } ]
+    - keyWord: 通过uid获取用户token
+      name: 通过uid获取带单主账户token
+      variables:
+        userId: ${traderParentUid}
+      extractor:
+        - json:
+            traderParentToken: $.data
+    - name: 获取带单子账户token
+      url: /auth-v2/api/v2/auth/token
+      method: POST
+      headers:
+        Token: ${traderParentToken}
+      body: |
+        {"uid": ${subAccountUid}}
+      extractor:
+        - json:
+            traderToken: $.data
+      assertion: [ json: { $.code: '0' } ]
+    - keyWord: 获取带单子账户token
+      name: 获取跟单子账户token
+      headers:
+        Token: ${token}
+      body: |
+        {"uid": ${followerUid}}
+      extractor:
+        - json:
+            followerToken: $.data
     - name: 持有仓位信息
-      untilWait: 5
+      untilWait: 10
       url: /test/futuresproxy/api/v1/position/pending
       headers:
         Type: query_by_uid
@@ -73,3 +113,24 @@ keyWord:
             amount: $.data[0].amount
             market: $.data[0].market
             side: $.data[0].side
+      assertion: [ json: { $.code: '0' } ]
+    - keyWord: 持有仓位信息
+      name: 带单子账户持有仓位信息
+      body: |
+        {"uid": ${subAccountUid}}
+      headers:
+        Token: ${traderToken}
+        Type: query_by_uid
+        Uid: ${subAccountUid}
+      extractor:
+        - json:
+            packing_position_id: $.data[0].position_id
+            packing_amount: $.data[0].amount
+            packing_market: $.data[0].market
+            packing_side: $.data[0].side
+    - keyWord: 市价平仓
+      name: 带单子账户平仓
+      headers:
+        Token: ${traderToken}
+      body: |
+        {"symbol":"${packing_market}","positionId":"${packing_position_id}"}

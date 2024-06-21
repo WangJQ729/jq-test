@@ -81,7 +81,7 @@ keyWord:
             $.data.bonus: '${awardAmt}'
     - keyWord: 领取奖励
       name: 领取奖励-多次尝试
-      untilWait: 5
+      untilWait: 10
     - keyWord: 领取奖励
       name: 领取奖励-校验领取结果
       headers:

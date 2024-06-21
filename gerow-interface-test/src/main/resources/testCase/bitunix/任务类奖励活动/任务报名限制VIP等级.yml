@@ -14,8 +14,6 @@ dataProvider:
     actStatusType: in_progress
     msgKey: vip.level.not.matching
     minBalance: 0
-    symbol: BTCUSDT
-    amount: 0.05
     side: ${__Random(1,2)}
 testMethod:
   - name: 报名-限制VIP等级-${vipLevel}

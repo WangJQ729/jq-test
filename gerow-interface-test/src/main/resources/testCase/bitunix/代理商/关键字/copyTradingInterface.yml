@@ -1,0 +1,63 @@
+keyWord:
+  step:
+    - name: 加入跟单
+      url: /copy/trading/v1/follower/follow
+      headers:
+        Token: ${token}
+      method: POST
+      body: |
+        {
+            "followType": 2,
+            "traderUid": "${subAccountUid}",
+            "margin": "",
+            "followAmount": 888,
+            "stopLossRation": "",
+            "positionMode": 1,
+            "positionModeConfig": 0,
+            "leverModeConfig": 0,
+            "leverage": 1,
+            "marginModeConfig": 0,
+            "marginMode": 0,
+            "positionRisk": ""
+        }
+      extractor:
+        - json:
+            followerUid: $.data
+      assertion: [json: {$.code: '0'}]
+    - name: 获取子账户Uid
+      url: /copy/trading/v1/trader/mySubAccounts
+      headers:
+        Token: ${traderParentToken}
+      method: GET
+      assertion: [json: {$.code: '0'}]
+      extractor:
+        - json:
+            subAccountUids: $.data[*].uid
+          size: 100
+          options: [ DEFAULT_PATH_LEAF_TO_NULL ]
+    - name: 取消带单
+      url: /copy/trading/v1/trader/cancel
+      headers:
+        Token: ${traderParentToken}
+      method: POST
+      body: |
+        {"uid": ${subAccountUid}}
+      assertion: [ json: { $.code: '0' } ]
+      iter:
+        subAccountUid: ${subAccountUids}
+    - name: 申请成为交易员
+      url: /copy/trading/v1/trader/apply
+      headers:
+        Token: ${traderParentToken}
+      method: POST
+      body: |
+        {
+            "amount": 888,
+            "briefInfo": "",
+            "header": "https://img.yzcdn.cn/upload_files/2016/05/20/60734a034c66361426f676914fc69e9c.png",
+            "nickname": "${__RandomString(8,zxcvbnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM1234567890,)}"
+        }
+      extractor:
+        - json:
+            subAccountUid: $.data
+      assertion: [ json: { $.code: '0' } ]

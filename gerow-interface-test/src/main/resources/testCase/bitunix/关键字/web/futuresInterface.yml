@@ -7,32 +7,41 @@ keyWord:
       headers:
         Token: ${token}
       body: |
-        {"amount":"0.5","side":"${__Random(1,2)}","symbol":"${__RandomEnum(BTCUSDT,)}","reductionOnly":false}
+        {"amount":"${amount}","side":"${__Random(1,2)}","symbol":"${symbol}","reductionOnly":false}
       extractor:
         - json:
             orderId: $.data.orderId
+    - keyWord: 市价开仓
+      name: 带单子账户市价开仓
+      headers:
+        Token: ${traderToken}
     - keyWord: 市价开仓
       name: 市价开仓-指定交易对
       bodyEditor:
         json:
           $.amount: '${amount}'
           $.side: '${side}'
-          $.symbol: ${symbol}
+          $.symbol: '${symbol}'
     - name: 市价平仓
+      url: /futures/futures/position/close/market/all
+      method: POST
+      headers:
+        Token: ${token}
+      body: |
+        {"symbol":"${market}","positionId":"${position_id}"}
+      extractor:
+        - json:
+            closeOrderId: $.data.orderId
+    - name: 市价平仓-平一半
       url: /futures/futures/position/close/market
       method: POST
       headers:
         Token: ${token}
       body: |
-        {"symbol":"${market}","side":${side},"amount":"${amount}","price":"","positionId":"${position_id}"}
+        {"symbol":"${market}","side":${side},"amount":"${__groovy(${amount}/2)}","price":"","positionId":"${position_id}"}
       extractor:
         - json:
             closeOrderId: $.data.orderId
-    - name: 市价平仓-平一半
-      keyWord: 市价平仓
-      bodyEditor:
-        json:
-          $.amount: ${__BeanShell(${amount}/2)}
     - name: 历史成交查询
       url: /futures/futures/order/deals/page
       method: GET
@@ -41,7 +50,6 @@ keyWord:
       variables:
         page: 1
         pageSize: 10
-        side: 0
     - name: 历史成交查询-平仓
       keyWord: 历史成交查询
       extractor:

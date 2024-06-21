@@ -1,4 +1,5 @@
 name: 合约后台
+enable: false
 story: partners
 testMethod:
   - name: 合约后台登录

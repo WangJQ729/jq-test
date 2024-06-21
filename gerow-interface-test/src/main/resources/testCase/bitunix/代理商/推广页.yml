@@ -32,7 +32,7 @@ testMethod:
           - url: ${web_host}/browser/activity/partner-trading?actCode=gerow1716546569255
     step:
       - keyWord: 创建推广页
-  - name: 页面名称已存在-${Accept-Language}
+  - name: 页面名称已存在
     dataProvider:
       - shortLink: gerow1
         url: ${web_host}/browser/activity/partner-trading?actCode=gerow1716546569258
@@ -54,7 +54,7 @@ testMethod:
           - json:
               $.msg: ${msg}
               $.code: ${code}
-  - name: 邀请码链接已存在-${Accept-Language}
+  - name: 邀请码链接已存在
     dataProvider:
       - shortLink: gerow${__time()}
         url: ${web_host}/register

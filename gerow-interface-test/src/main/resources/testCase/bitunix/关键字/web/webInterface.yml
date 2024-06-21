@@ -47,3 +47,15 @@ keyWord:
       assertion:
         - json:
             $.code: '0'
+    - keyWord: 社区活动报名
+      name: 社区活动报名-检验报名结果
+      headers:
+        Token: ${token}
+        Accept-Language: ${Accept-Language}
+      assertion:
+        - json:
+            $.code: '${code}'
+            $.msg: ${msg}
+        - json:
+            $.msg: ${msgKey}
+          assertionType: NOT

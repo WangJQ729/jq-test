@@ -24,6 +24,7 @@ beforeClass:
     - keyWord: 登录partners
     - keyWord: 获取合伙人邀请码
     - keyWord: 获取合伙人信息
+    - keyWord: 合伙人列表
     - keyWord: 创建任务类奖励活动
       bodyEditor:
         json:
@@ -76,9 +77,7 @@ testMethod:
             msg: Udział jest ograniczony do użytkowników, którzy zarejestrowali się za pomocą kodu zaproszenia z ${partner_name}.
   - name: KOL邀请用户注册
     dataProvider:
-      - symbol: BTCUSDT
-        amount: 0.05
-        side: ${__Random(1,2)}
+      - side: ${__Random(1,2)}
         code: 0
         dataProvider:
           - Accept-Language: en_US
@@ -98,9 +97,7 @@ testMethod:
       - keyWord: 奖励记录
   - name: KOL邀请用户的下级注册
     dataProvider:
-      - symbol: BTCUSDT
-        amount: 0.05
-        side: ${__Random(1,2)}
+      - side: ${__Random(1,2)}
         code: 0
         dataProvider:
           - Accept-Language: en_US
@@ -138,9 +135,7 @@ testMethod:
       - keyWord: 奖励记录
   - name: KOL邀请用户的下级合伙人
     dataProvider:
-      - symbol: BTCUSDT
-        amount: 0.05
-        side: ${__Random(1,2)}
+      - side: ${__Random(1,2)}
         code: 0
         dataProvider:
           - Accept-Language: en_US

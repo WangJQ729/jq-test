@@ -196,6 +196,9 @@ public class Extractor {
             }
         }).collect(Collectors.joining(separator));
         if (!Arrays.asList(options).contains(Option.DEFAULT_PATH_LEAF_TO_NULL)) {
+            if (ignore) {
+                return "0";
+            }
             Assertions.assertThat(value).as("参数未找到: " + this.value).isNotBlank();
         }
         return value;

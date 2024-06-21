@@ -19,7 +19,7 @@ public class RandomEmail extends AbstractFunction {
 
 
     public static String getChineseName() {
-        String[] domains = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", "bitunix.com", "126.com", "163.com", "qq.com"};
+        String[] domains = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", "bitunix.com", "bitunix.io", "126.com", "163.com", "qq.com", "gmail.com", "yahoo.com", "icloud.com", "mail.com", "zoho.com", "yandex.com", "protonmail.com", "gmx.com", "me.com", "live.com", "fastmail.com", "hushmail.com", "sina.com", "aliyun.com"};
         String username = "gerow" + System.currentTimeMillis(); // 生成8位长度的随机用户名
         String domain = domains[new Random().nextInt(domains.length)]; // 随机选择一个域名
         return username + "@" + domain;

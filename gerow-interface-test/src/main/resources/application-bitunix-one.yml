@@ -14,8 +14,12 @@ data:
     bd_name: gerow
     userName: gerow.wang@bitunix.io
     password: Aa123456
-    spotAdminGoogleCode: 6XYRQBKYF2NCLSCF
-    couponId: 248
+    spotAdminGoogleCode: HCOHDFF5JO2GUMAC
+    Accept-Language: zh_CN
+    couponId: 567
+    symbol: BTCUSDT
+    amount: 0.05
+    userId: 11989
 client:
   protocol: https
   timeOut: 30

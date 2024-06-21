@@ -1,0 +1,145 @@
+name: 社区活动_报名
+story: partners
+enable: true
+dataProvider:
+  - shortLink: gerow${__time()}
+    balance_amount: 888
+beforeClass:
+  name: 创建社区活动
+  step:
+    - keyWord: 登录partners
+    - keyWord: 获取合伙人信息
+    - keyWord: 登录partnersadmin
+    - keyWord: 获取合伙人邀请码
+    - keyWord: 合伙人列表
+    - keyWord: 新建社区活动
+    - keyWord: 社区活动列表
+beforeMethod:
+  name: 登录合伙人后台
+  step:
+    - keyWord: 登录partners
+    - keyWord: 获取合伙人信息
+    - keyWord: 获取合伙人邀请码
+testMethod:
+  - name: 报名-合伙人邀请码-报名成功
+    step:
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 增加合约账户资产-指定资产
+      - keyWord: 社区活动列表-报名中
+      - keyWord: 通过uid获取用户token
+      - keyWord: 社区活动报名
+  - name: 报名-合伙人下级邀请码-报名成功
+    step:
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 获取用户信息
+      - keyWord: 升级为合伙人-最高返佣
+      - keyWord: 登录partners-新合伙人
+      - keyWord: 获取合伙人邀请码
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 增加合约账户资产-指定资产
+      - keyWord: 社区活动列表-报名中
+      - keyWord: 通过uid获取用户token
+      - keyWord: 社区活动报名
+  - name: 报名-合伙人邀请码-非默认邀请码-报名成功
+    step:
+      - keyWord: 获取合伙人非默认邀请码
+      - keyWord: 快捷注册-非默认邀请码
+      - keyWord: 增加合约账户资产-指定资产
+      - keyWord: 社区活动列表-报名中
+      - keyWord: 通过uid获取用户token
+      - keyWord: 社区活动报名
+  - name: 报名-合伙人邀请码-资产不足-${Accept-Language}
+    dataProvider:
+      - balance_amount: 887.99
+        code: 90008
+        msgKey: partner.trade.match.user.balance.insufficient
+    step:
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 增加合约账户资产-指定资产
+      - keyWord: 社区活动列表-报名中
+      - keyWord: 通过uid获取用户token
+      - keyWord: 社区活动报名-检验报名结果
+        dataProvider:
+          - Accept-Language: en_US
+            msg: The user's futures account equity do not meet the requirements of the event
+          - Accept-Language: zh_CN
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: zh_TW
+            msg: 用戶合約權益不滿足活動要求
+          - Accept-Language: tr_TR
+            msg: Kullanıcının Vadeli İşlem Hesabı Eşitliği, etkinliğin gereksinimlerini karşılamıyor
+          - Accept-Language: fr_FR
+            msg: Le compte à terme de l'utilisateur ne répond pas aux exigences de l'événement
+          - Accept-Language: ru_RU
+            msg: Фьючерсная учетная запись пользователя не соответствует требованиям мероприятия
+          - Accept-Language: vi_VN
+            msg: Vốn chủ sở hữu tài khoản tương lai của người dùng không đáp ứng các yêu cầu của sự kiện
+          - Accept-Language: es_ES
+            msg: La equidad de la cuenta de futuros del usuario no cumple con los requisitos del evento
+          - Accept-Language: pt_PT
+            msg: La equidad de la cuenta de futuros del usuario no cumple con los requisitos del evento
+          - Accept-Language: pt_BR
+            msg: O patrimônio da conta futuros do usuário não atende aos requisitos do evento
+          - Accept-Language: it_IT
+            msg: L'equità dell'account futures dell'utente non soddisfa i requisiti dell'evento
+          - Accept-Language: de_DE
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: ja_JP
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: ko_KR
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: pl_PL
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: id_ID
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: th_TH
+            msg: 用户合约权益不满足活动要求
+          - Accept-Language: uk_UA
+            msg: 用户合约权益不满足活动要求
+  - name: 报名-合伙人邀请码-非合伙人下级-${Accept-Language}
+    dataProvider:
+      - code: 90004
+        msgKey: partner.not.kol.user
+    step:
+      - keyWord: 快捷注册
+      - keyWord: 增加合约账户资产-指定资产
+      - keyWord: 社区活动列表-报名中
+      - keyWord: 通过uid获取用户token
+      - keyWord: 社区活动报名-检验报名结果
+        dataProvider:
+          - Accept-Language: en_US
+            msg: Unable to enter as not a subordinate of the current event KOL
+          - Accept-Language: zh_CN
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: zh_TW
+            msg: 非當前活動KOL下級無法報名
+          - Accept-Language: tr_TR
+            msg: Mevcut etkinliğin bir alt kısmı olarak girilemiyor
+          - Accept-Language: fr_FR
+            msg: Impossible d'entrer comme pas un subordonné de l'événement actuel kol
+          - Accept-Language: ru_RU
+            msg: Невозможно войти как не подчиненное нынешнего события KOL
+          - Accept-Language: vi_VN
+            msg: Không thể nhập như không phải là cấp dưới của sự kiện hiện tại Kol
+          - Accept-Language: es_ES
+            msg: No se puede ingresar como un subordinado del evento actual Kol
+          - Accept-Language: pt_PT
+            msg: No se puede ingresar como un subordinado del evento actual Kol
+          - Accept-Language: pt_BR
+            msg: Incapaz de entrar como não um subordinado do evento atual KOL
+          - Accept-Language: it_IT
+            msg: Impossibile entrare come non subordinato dell'evento attuale Kol
+          - Accept-Language: de_DE
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: ja_JP
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: ko_KR
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: pl_PL
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: id_ID
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: th_TH
+            msg: 非当前活动KOL下级无法报名
+          - Accept-Language: uk_UA
+            msg: 非当前活动KOL下级无法报名

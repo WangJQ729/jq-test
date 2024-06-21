@@ -19,6 +19,9 @@ data:
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
     Accept-Language: zh_CN
     couponId: 934
+    symbol: BTCUSDT
+    amount: 0.05
+    userId: 16281
 client:
   protocol: http
   timeOut: 30
