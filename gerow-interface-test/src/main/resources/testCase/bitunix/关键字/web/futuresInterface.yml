@@ -32,6 +32,12 @@ keyWord:
       extractor:
         - json:
             closeOrderId: $.data.orderId
+    - keyWord: 市价平仓
+      name: 带单子账户平仓
+      headers:
+        Token: ${traderToken}
+      body: |
+        {"symbol":"${packing_market}","positionId":"${packing_position_id}"}
     - name: 市价平仓-平一半
       url: /futures/futures/position/close/market
       method: POST

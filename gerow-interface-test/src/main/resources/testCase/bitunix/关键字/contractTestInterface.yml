@@ -128,9 +128,3 @@ keyWord:
             packing_amount: $.data[0].amount
             packing_market: $.data[0].market
             packing_side: $.data[0].side
-    - keyWord: 市价平仓
-      name: 带单子账户平仓
-      headers:
-        Token: ${traderToken}
-      body: |
-        {"symbol":"${packing_market}","positionId":"${packing_position_id}"}

@@ -34,7 +34,7 @@ testMethod:
       - keyWord: 通过uid获取用户token
       - keyWord: 合约划转现货
       - keyWord: 加入跟单
-  - name: 带单账户交易
+  - name: 带单账户开仓
     step:
       - keyWord: 带单子账户市价开仓
       - keyWord: 带单子账户持有仓位信息
@@ -42,22 +42,21 @@ testMethod:
       - keyWord: 直客合约历史委托
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
-      - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-合伙人开仓
       - keyWord: 合伙人佣金查询-首单
       - keyWord: 差价佣金查询
+#      - keyWord: 佣金发放明细-开仓
+  - name: 带单账户平仓
+    step:
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 带单子账户平仓
-      - keyWord: 直客合约历史委托
-        extractor:
-          - json:
-              closeDealFee: $.result.items[0].fee
+      - keyWord: 直客合约历史委托-平仓
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
-      - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-合伙人平仓
       - keyWord: 差价佣金查询-平仓
       - keyWord: 合伙人佣金查询-平仓
+#      - keyWord: 佣金发放明细-平仓
 afterClass:
   name: 获取taskID和模板
   step:

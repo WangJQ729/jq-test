@@ -10,7 +10,7 @@
         
        example：
        
-       -Dspring.profiles.active=ipa-test -DtestDir=淘宝 -Dfeatures=催单 -Dplatform=融合版 -Dtest.severity=ALL -Denv=mini-test -DshopName=wanggerow_1990 -Dstory=下单未付款,已付款 -Dcomponent=任务开关,催单消息 -Dtest.name=  
+       -Dspring.profiles.active=ipa-test -DtestDir=淘宝 -Dfeatures=催单 -Dplatform=融合版 -Dtest.severity=ALL -Denv=mini-test -DshopName=wangjq_1990 -Dstory=下单未付款,已付款 -Dcomponent=任务开关,催单消息 -Dtest.name=  
 
        -Dspring.profiles.active=ipa-test 被测服务环境 ipa-test
        

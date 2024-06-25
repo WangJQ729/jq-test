@@ -54,7 +54,7 @@ keyWord:
             "amount": ${__Random(888,8888)},
             "briefInfo": "",
             "header": "https://img.yzcdn.cn/upload_files/2016/05/20/60734a034c66361426f676914fc69e9c.png",
-            "nickname": "GerowWang${__RandomString(8,zxcvbnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM1234567890,)}"
+            "nickname": "GerowWang${__RandomString(8,zxcvnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVNM1234567890,)}"
         }
       extractor:
         - json:

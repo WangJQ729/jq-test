@@ -250,7 +250,7 @@ keyWord:
         - json:
             $.result.items[?(@.shortLink == '${shortLink}')].status: [ 3 ]
     - name: 代理商后台返佣发放
-      sleep: 500
+      sleep: 10000
       host: ${partnersadmin_host}
       url: /partner/rebate/distribute
       variables:

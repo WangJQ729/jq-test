@@ -42,10 +42,7 @@ testMethod:
       - keyWord: 差价佣金查询
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 带单子账户平仓
-      - keyWord: 直客合约历史委托
-        extractor:
-          - json:
-              closeDealFee: $.result.items[0].fee
+      - keyWord: 直客合约历史委托-平仓
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
       - keyWord: 佣金发放明细
