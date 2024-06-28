@@ -1,0 +1,251 @@
+keyWord:
+  step:
+    - name: 直客佣金查询
+      host: ${partners_host}
+      url: /partner/rebate/userRebate/list
+      headers:
+        Token: ${partner_token}
+      untilWait: 10
+      variables:
+        page: 1
+        pageSize: 10
+        uid: ${userId}
+        showBelow: false
+        tradeType: futures
+      method: GET
+      extractor:
+        - json:
+            takerDiscountFee: $.result.items[0].takerDiscountFee
+            takerFee: $.result.items[0].takerFee
+            takerRealFee: $.result.items[0].takerRealFee
+            takerRebate: $.result.items[0].takerRebate
+            takerTradeAmount: $.result.items[0].takerTradeAmount
+          ignore: true
+    - name: 直客佣金查询-首单
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${openDealFee}
+            $.result.items[0].takerRebate: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 直客佣金查询-开仓体验金抵扣
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${openDealFee}
+            $.result.items[0].takerDiscountFee: ${openDealFee}
+            $.result.items[0].takerRebate: 0
+          assertionType: EIGHTDECIMALPLACES
+    - name: 直客佣金查询-平仓体验金抵扣
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${closeDealFee})}
+            $.result.items[0].takerDiscountFee: ${__groovy(${takerFee} + ${closeDealFee})}
+            $.result.items[0].takerRebate: 0
+          assertionType: EIGHTDECIMALPLACES
+    - name: 合伙人佣金查询-首单
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${openDealFee}
+            $.result.items[0].takerRebate: ${__groovy(${openDealFee} * ${futureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 合伙人佣金查询-平仓
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${closeDealFee})}
+            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${closeDealFee} * ${futureRatio}/ 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 直客佣金查询-开仓
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${openDealFee})}
+            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${openDealFee} *  (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 直客佣金查询-平仓
+      keyWord: 直客佣金查询
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${closeDealFee})}
+            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${closeDealFee} * (${totalFutureRatio} - ${futureRatio})/ 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 直客佣金查询-获取现货交易数据
+      keyWord: 直客佣金查询
+      variables:
+        coin: ${spotSymbol}
+        tradeType: exchange
+      extractor:
+        - json:
+            takerTradeAmount: $.result.items[0].takerTradeAmount
+            takerFee: $.result.items[0].takerFee
+            takerRealFee: $.result.items[0].takerRealFee
+            takerRebate: $.result.items[0].takerRebate
+          ignore: true
+    - name: 直客佣金查询-校验现货交易数据
+      keyWord: 直客佣金查询-获取现货交易数据
+      assertion:
+        - json:
+            $.result.items[0].coin: ${spotSymbol}
+        - json:
+            $.result.items[0].coin: ${spotSymbol}
+            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${webFee} * (${totalExchangeRatio} - ${exchangeRatio}) / 100)}
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${webFee})}
+            $.result.items[0].takerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
+            $.result.items[0].takerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
+          assertionType: EIGHTDECIMALPLACES
+          valueType: BIGDECIMAL
+    - name: 差价佣金查询
+      url: /partner/rebate/partnerSubRebate/list
+      untilWait: 10
+      host: ${partners_host}
+      headers:
+        Token: ${partner_token}
+      method: GET
+      variables:
+        showBelow: false
+        page: 1
+        pageSize: 10
+        rebateUid: ${userId}
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${openDealFee}
+            $.result.items[0].takerRealFee: ${openDealFee}
+            $.result.items[0].rebateRatio: ${__groovy((${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[0].takerRebate: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 差价佣金查询
+      name: 差价佣金查询-平仓
+      assertion:
+        - json:
+            $.result.items[0].takerFee: ${closeDealFee}
+            $.result.items[0].takerRealFee: ${closeDealFee}
+            $.result.items[0].rebateRatio: ${__groovy((${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[0].takerRebate: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 分后台佣金发放查询
+      untilWait: 30
+      host: ${partners_host}
+      url: /partner/rebate/statistics/list
+      headers:
+        Token: ${partner_token}
+      method: GET
+      variables:
+        showBelow: true
+        page: 1
+        pageSize: 10
+        tradeType: futures
+        symbol: ${symbol}
+      #        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+      #        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      assertion: [json: {$.code: '0'}]
+      extractor:
+        - json:
+            tradeAmount: $.result.items[0].tradeAmount
+            realFee: $.result.items[0].realFee
+            fee: $.result.items[0].fee
+            userRebate: $.result.items[0].userRebate
+            partnerRebate: $.result.items[0].partnerRebate
+            subPartnerRebate: $.result.items[0].subPartnerRebate
+            discountFee: $.result.items[0].discountFee
+          ignore: true
+    - name: 分后台佣金发放查询-直客开仓
+      keyWord: 分后台佣金发放查询
+      assertion:
+        - json:
+            $.result.items[0].userRebate: ${__groovy(${userRebate} + ${openDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 分后台佣金发放查询-直客开仓
+      name: 分后台佣金发放查询-体验金抵扣
+      assertion:
+        - json:
+            $.result.items[0].tradeAmount: ${__groovy(${tradeAmount} + ${open_val})}
+            $.result.items[0].fee: ${__groovy(${fee} + ${openDealFee})}
+            $.result.items[0].discountFee: ${__groovy(${discountFee} + ${openDealFee})}
+            $.result.items[0].realFee: ${realFee}
+            $.result.items[0].userRebate: ${userRebate}
+            $.result.items[0].partnerRebate: ${partnerRebate}
+            $.result.items[0].subPartnerRebate: ${subPartnerRebate}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 分后台佣金发放查询-直客平仓
+      keyWord: 分后台佣金发放查询
+      assertion:
+        - json:
+            $.result.items[0].userRebate: ${__groovy(${userRebate} + ${closeDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 分后台佣金发放查询-直客开仓
+      name: 分后台佣金发放查询-平仓体验金抵扣
+      assertion:
+        - json:
+            $.result.items[0].fee: ${__groovy(${fee} + ${closeDealFee})}
+            $.result.items[0].discountFee: ${__groovy(${discountFee} + ${closeDealFee})}
+            $.result.items[0].realFee: ${realFee}
+            $.result.items[0].userRebate: ${userRebate}
+            $.result.items[0].partnerRebate: ${partnerRebate}
+            $.result.items[0].subPartnerRebate: ${subPartnerRebate}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 分后台佣金发放查询-合伙人开仓
+      keyWord: 分后台佣金发放查询
+      assertion:
+        - json:
+            $.result.items[0].subPartnerRebate: ${__groovy(${subPartnerRebate} + ${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 分后台佣金发放查询-合伙人平仓
+      keyWord: 分后台佣金发放查询
+      assertion:
+        - json:
+            $.result.items[0].subPartnerRebate: ${__groovy(${subPartnerRebate} + ${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 佣金发放明细
+      host: ${partners_host}
+      url: /partner/rebate/detail/list
+      headers:
+        Token: ${partner_token}
+      method: GET
+      variables:
+        showBelow: true
+        page: 1
+        pageSize: 10
+        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      assertion: [json: {$.code: '0'}]
+    - keyWord: 佣金发放明细
+      name: 佣金发放明细-开仓
+      assertion:
+        - json:
+            $.code: '0'
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].fee[0]: ${openDealFee}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${openDealFee} * ${futureSelfRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 佣金发放明细
+      name: 佣金发放明细-平仓
+      assertion:
+        - json:
+            $.code: '0'
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].fee[0]: ${closeDealFee}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${closeDealFee} * ${futureSelfRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 佣金发放明细
+      name: 佣金发放明细-开仓差价佣金
+      assertion:
+        - json:
+            $.code: '0'
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${openDealFee}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${openDealFee} * ${futureRatio} / 100)}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].rebatePayable[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].subPartnerRebate[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 佣金发放明细
+      name: 佣金发放明细-平仓差价佣金
+      assertion:
+        - json:
+            $.code: '0'
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${closeDealFee}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${closeDealFee} * ${futureRatio} / 100)}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].rebatePayable[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].subPartnerRebate[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES

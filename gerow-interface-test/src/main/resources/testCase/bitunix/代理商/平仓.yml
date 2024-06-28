@@ -3,7 +3,6 @@ story: partners
 invocationCount: 1
 testMethod:
   - name: 平仓
-    enable: false
     dataProvider:
       - userId: 13664
     step:
@@ -26,3 +25,6 @@ testMethod:
       - keyWord: 取消带单
         headers:
           Token: ${token}
+  - name: 代理商后台返佣发放
+    step:
+      - keyWord: 代理商后台返佣发放

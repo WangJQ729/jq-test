@@ -10,7 +10,7 @@ keyWord:
             "followType": 2,
             "traderUid": "${subAccountUid}",
             "margin": "",
-            "followAmount": ${__Random(888,8888)},
+            "followAmount": ${__Random(1888,8888)},
             "stopLossRation": "",
             "positionMode": 1,
             "positionModeConfig": 0,

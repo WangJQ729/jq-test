@@ -110,6 +110,7 @@ keyWord:
       extractor:
         - json:
             position_id: $.data[0].position_id
+            open_val: $.data[0].open_val
             amount: $.data[0].amount
             market: $.data[0].market
             side: $.data[0].side

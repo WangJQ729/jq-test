@@ -1,6 +1,6 @@
 name: 社区活动
 story: partners
-#enable: false
+enable: false
 dataProvider:
   - shortLink: gerow${__time()}
     #      partner_email: gerow1717582020848@bitunix.com

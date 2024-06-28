@@ -10,7 +10,7 @@ beforeClass:
     - keyWord: 获取合伙人邀请码
     - keyWord: 合伙人列表
 testMethod:
-  - name: 用户带单交易
+  - name: 用户申请成为交易员
     step:
       - keyWord: 代理商后台返佣发放
       - keyWord: 佣金发放明细
@@ -26,18 +26,22 @@ testMethod:
       - keyWord: 获取带单子账户token
         headers:
           Token: ${token}
+  - name: 用户带单开仓
+    step:
       - keyWord: 带单子账户市价开仓
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 直客合约历史委托
       - keyWord: 代理商后台返佣发放
-      - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-直客开仓
+      - keyWord: 佣金发放明细-开仓
       - keyWord: 直客佣金查询-首单
+  - name: 用户带单平仓
+    step:
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 带单子账户平仓
       - keyWord: 直客合约历史委托-平仓
       - keyWord: 代理商后台返佣发放
-      - keyWord: 佣金发放明细
+      - keyWord: 佣金发放明细-平仓
       - keyWord: 分后台佣金发放查询-直客平仓
       - keyWord: 直客佣金查询-平仓
 afterClass:

@@ -36,8 +36,8 @@ testMethod:
       - keyWord: 直客佣金查询-首单
         assertion:
           - json:
-              $.result.items[0].makerFee: ${openDealFee}
-              $.result.items[0].makerRebate: ${__groovy(${openDealFee} * ${futureSelfRatio} / 100)}
+              $.result.items[0].takerFee: ${openDealFee}
+              $.result.items[0].takerRebate: ${__groovy(${openDealFee} * ${futureSelfRatio} / 100)}
             assertionType: EIGHTDECIMALPLACES
       - keyWord: 佣金发放明细
       - keyWord: 获取本月交易额-校验交易额
@@ -53,8 +53,8 @@ testMethod:
       - keyWord: 直客佣金查询-平仓
         assertion:
           - json:
-              $.result.items[0].makerFee: ${__groovy(${makerFee} + ${closeDealFee})}
-              $.result.items[0].makerRebate: ${__groovy(${makerRebate} + ${closeDealFee} * ${futureSelfRatio} / 100)}
+              $.result.items[0].takerFee: ${__groovy(${takerFee} + ${closeDealFee})}
+              $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${closeDealFee} * ${futureSelfRatio} / 100)}
             assertionType: EIGHTDECIMALPLACES
       - keyWord: 佣金发放明细
       - keyWord: 获取本月交易额-校验交易额

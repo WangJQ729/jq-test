@@ -44,9 +44,7 @@ keyWord:
       method: POST
       body: |
         {"actId":${actId}}
-      assertion:
-        - json:
-            $.code: '0'
+      assertion: [json: {$.code: '0'}]
     - keyWord: 社区活动报名
       name: 社区活动报名-检验报名结果
       headers:
@@ -59,3 +57,25 @@ keyWord:
         - json:
             $.msg: ${msgKey}
           assertionType: NOT
+
+    - name: 合约体验金券列表
+      url: /welfare/welfare_coupon/page
+      headers:
+        Token: ${token}
+      method: GET
+      variables:
+        current: 1
+        size: 10
+        couponType: experience
+      assertion: [ json: { $.code: '0' } ]
+      extractor:
+        - json:
+            coupon_id: $.data.records[0].id
+    - name: 激活体验金券
+      url: /welfare/welfare_coupon/activate_coupon
+      headers:
+        Token: ${token}
+      method: POST
+      body: |
+        {"couponId":${coupon_id}}
+      assertion: [json: {$.code: '0'}]

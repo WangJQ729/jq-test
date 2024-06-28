@@ -29,6 +29,9 @@ testMethod:
       - keyWord: 通过uid获取用户token
       - keyWord: 合约划转现货
       - keyWord: 加入跟单
+      - keyWord: 市价开仓
+      - keyWord: 持有仓位信息
+      - keyWord: 市价平仓
   - name: 带单账户开仓
     step:
       - keyWord: 带单子账户市价开仓

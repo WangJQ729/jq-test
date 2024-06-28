@@ -40,9 +40,7 @@ testMethod:
       - keyWord: U本位合约历史委托
       - keyWord: 直客佣金查询-开仓
       - keyWord: 代理商后台返佣发放
-        sleep: 2000
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
       - keyWord: 直客佣金查询-平仓
       - keyWord: 代理商后台返佣发放
-        sleep: 2000

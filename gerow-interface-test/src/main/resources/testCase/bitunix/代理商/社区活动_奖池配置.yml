@@ -1,5 +1,6 @@
 name: 社区活动_奖池配置
 story: partners
+enable: false
 dataProvider:
   - balance_amount: 888
     symbol: BTCUSDT
