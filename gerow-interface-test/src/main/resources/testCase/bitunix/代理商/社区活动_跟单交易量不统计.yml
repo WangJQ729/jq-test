@@ -1,0 +1,101 @@
+name: 社区活动_跟单交易量不统计
+story: partners
+dataProvider:
+  - balance_amount: 99999
+#    symbol: BTCUSDT
+    #    partner_email: gerow1717588617780@163.com
+    #    actId: 35
+    #    shortLink: gerow1718589671507
+    shortLink: gerow${__time()}
+beforeClass:
+  name: 创建社区活动
+  step:
+    - keyWord: 登录partners
+    - keyWord: 获取合伙人信息
+    - keyWord: 登录partnersadmin
+    - keyWord: 获取合伙人邀请码
+    - keyWord: 合伙人列表
+    - keyWord: 新建社区活动-配置奖池
+    - keyWord: 社区活动列表
+
+    - keyWord: 通过uid获取带单主账户token
+    - keyWord: 获取子账户Uid
+    - keyWord: 取消带单
+    - keyWord: 申请成为交易员
+    - keyWord: 获取带单子账户token
+    - keyWord: 代理商后台返佣发放
+    - keyWord: 佣金发放明细
+    - keyWord: 分后台佣金发放查询
+testMethod:
+  - name: 仅报名
+    dataProvider:
+      - userId: 50948
+      - userId: 50945
+      - userId: 50943
+      - userId: 50941
+      - userId: 50938
+      - userId: 50936
+      - userId: 50934
+      - userId: 50931
+      - userId: 50929
+      - userId: 50927
+    step:
+      #      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 社区活动列表-报名中
+      - keyWord: 通过uid获取用户token
+      - keyWord: 社区活动报名
+      - keyWord: 增加合约账户资产-指定资产
+      - keyWord: 合约划转现货
+      - keyWord: 加入跟单
+  - name: 社区活动列表-活动中
+    step:
+      - keyWord: 社区活动列表-活动中
+  - name: 带单账户开仓
+    step:
+      - keyWord: 带单子账户市价开仓
+      - keyWord: 带单子账户持有仓位信息
+      - keyWord: 获取跟单子账户token
+      - keyWord: 直客合约历史委托
+      - keyWord: 代理商后台返佣发放
+      - keyWord: 佣金发放明细-开仓
+      - keyWord: 分后台佣金发放查询-直客开仓
+      - keyWord: 直客佣金查询-首单
+  - name: 带单账户平仓
+    step:
+      - keyWord: 带单子账户持有仓位信息
+      - keyWord: 带单子账户平仓
+      - keyWord: 直客合约历史委托-平仓
+      - keyWord: 代理商后台返佣发放
+      - keyWord: 佣金发放明细-平仓
+      - keyWord: 分后台佣金发放查询-直客平仓
+      - keyWord: 直客佣金查询-平仓
+  - name: 数据统计
+    step:
+      - keyWord: 社区交易大赛交易量统计
+        bodyEditor:
+          json:
+            $.uidList:
+              - 50948
+              - 50945
+              - 50943
+              - 50941
+              - 50938
+              - 50936
+              - 50934
+              - 50931
+              - 50929
+              - 50927
+      - keyWord: 社区交易大赛收益统计
+        bodyEditor:
+          json:
+            $.uidList:
+              - 50948
+              - 50945
+              - 50943
+              - 50941
+              - 50938
+              - 50936
+              - 50934
+              - 50931
+              - 50929
+              - 50927

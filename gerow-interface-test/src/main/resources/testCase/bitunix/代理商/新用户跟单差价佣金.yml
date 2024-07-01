@@ -30,8 +30,8 @@ testMethod:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 升级为合伙人
       - keyWord: 分后台获取用户信息
-      - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
+      - keyWord: 增加合约账户资产
       - keyWord: 合约划转现货
       - keyWord: 加入跟单
   - name: 带单账户开仓

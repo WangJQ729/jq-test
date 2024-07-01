@@ -34,19 +34,23 @@ keyWord:
         - json:
             $.result.items[0].userRebate: ${__groovy(${userRebate} + ${closeDealFee} * ${totalFutureRatio} / 100)}
           assertionType: EIGHTDECIMALPLACES
-    - name: 代理商后台返佣发放
-      sleep: 10000
+    - name: 总后台佣金总计
       host: ${partnersadmin_host}
-      url: /partner/rebate/distribute
-      variables:
-        startTime: ${__groovy(${__time()} - 24 * 60 * 60 * 1000)}
-        endTime: ${__time()}
+      url: /partner/root/rebate/statistics
       method: GET
-      assertion: [ json: { $.code: '0' } ]
-    - name: 代理商后台差价佣金统计
-      host: ${partnersadmin_host}
-      url: /partner/rebate/partnerSubStatistic
       headers:
-        Token: ${partner_token}
-      method: GET
-      assertion: [ json: { $.code: '0' } ]
+        Token: ${partnersadmin_token}
+      variables:
+        showBelow: true
+        symbol: ${symbol}
+        tradeType: futures
+        partnerInfo: ${partner_uid}
+        page: 1
+        pageSize: 10
+        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      extractor:
+        - json:
+            statisticsTotalRebate: $.result.totalRebate
+            statisticsTakerRebate: $.result.takerRebate
+            statisticsMakerRebate: $.result.makerRebate

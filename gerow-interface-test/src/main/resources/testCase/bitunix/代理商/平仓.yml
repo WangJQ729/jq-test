@@ -4,27 +4,48 @@ invocationCount: 1
 testMethod:
   - name: 平仓
     dataProvider:
-      - userId: 13664
+#      - userId: 50936
+      - userId: 50934
+#      - userId: 50931
+#      - userId: 50929
+#      - userId: 50927
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 持有仓位信息
       - keyWord: 市价平仓
   - name: 取消带单
     dataProvider:
-      - userId: 50881
+      - userId: 56264
+      - userId: 56278
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 获取子账户Uid
         headers:
           Token: ${token}
+        extractor:
+          - json:
+              subAccountUid: $.data[*].uid
+          - json:
+              subAccountUids: $.data[*].uid
+            size: 100
+            options: [ DEFAULT_PATH_LEAF_TO_NULL ]
       - keyWord: 获取带单子账户token
         iter:
           subAccountUid: ${subAccountUids}
         headers:
           Token: ${token}
+#      - keyWord: 带单子账户持有仓位信息
+#      - keyWord: 带单子账户平仓
       - keyWord: 取消带单
         headers:
           Token: ${token}
   - name: 代理商后台返佣发放
     step:
       - keyWord: 代理商后台返佣发放
+  - name: 增加现货账户资产
+    dataProvider:
+      - userId: 57144
+        coin: USDT
+        amount: 88888888
+    step:
+      - keyWord: 增加现货账户资产

@@ -90,7 +90,6 @@ keyWord:
         - json:
             $.result.items[0].coin: ${spotSymbol}
         - json:
-            $.result.items[0].coin: ${spotSymbol}
             $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${webFee} * (${totalExchangeRatio} - ${exchangeRatio}) / 100)}
             $.result.items[0].takerFee: ${__groovy(${takerFee} + ${webFee})}
             $.result.items[0].takerRealFee: ${__groovy(${takerRealFee} + ${webFee})}

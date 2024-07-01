@@ -56,6 +56,15 @@ keyWord:
             "coin": "USDT"
         }
       assertion: [ json: { $.code: '0' } ]
+    - name: 增加现货账户资产
+      url: /web/test/asset/adjust
+      method: GET
+      variables:
+        userId: ${userId}
+        coin: ${coin}
+        assetType: U_NORMAL
+        amount: ${amount}
+      assertion: [ json: { $.code: '0' } ]
     - name: 增加合约账户资产-指定资产
       keyWord: 增加合约账户资产
       bodyEditor:
