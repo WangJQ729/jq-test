@@ -15,8 +15,7 @@ testMethod:
       - keyWord: 市价平仓
   - name: 取消带单
     dataProvider:
-      - userId: 56264
-      - userId: 56278
+      - userId: 60538
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 获取子账户Uid
@@ -34,8 +33,8 @@ testMethod:
           subAccountUid: ${subAccountUids}
         headers:
           Token: ${token}
-#      - keyWord: 带单子账户持有仓位信息
-#      - keyWord: 带单子账户平仓
+      - keyWord: 带单子账户持有仓位信息
+      - keyWord: 带单子账户平仓
       - keyWord: 取消带单
         headers:
           Token: ${token}

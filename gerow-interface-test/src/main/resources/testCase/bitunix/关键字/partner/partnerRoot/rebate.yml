@@ -54,3 +54,16 @@ keyWord:
             statisticsTotalRebate: $.result.totalRebate
             statisticsTakerRebate: $.result.takerRebate
             statisticsMakerRebate: $.result.makerRebate
+      assertion: [json: {$.code: '0'}]
+    - name: 总后台佣金总计-开仓
+      keyWord: 总后台佣金总计
+      assertion:
+        - json:
+            $.result.totalRebate: ${__groovy(${statisticsTotalRebate} + ${openDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台佣金总计-平仓
+      keyWord: 总后台佣金总计
+      assertion:
+        - json:
+            $.result.totalRebate: ${__groovy(${statisticsTotalRebate} + ${closeDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES

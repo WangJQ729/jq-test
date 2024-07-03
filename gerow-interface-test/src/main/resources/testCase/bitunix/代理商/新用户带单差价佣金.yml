@@ -19,6 +19,10 @@ testMethod:
       - keyWord: 代理商后台差价佣金统计
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询
+      - keyWord: 总后台佣金总计
+      - keyWord: 总后台平台收益
+      - keyWord: 总后台交易额
+      - keyWord: 总后台手续费
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 升级为合伙人
       - keyWord: 分后台获取用户信息
@@ -42,6 +46,10 @@ testMethod:
       - keyWord: 合伙人佣金查询-首单
       - keyWord: 差价佣金查询
       - keyWord: 佣金发放明细-开仓差价佣金
+      - keyWord: 总后台佣金总计-开仓
+      - keyWord: 总后台平台收益-开仓
+      - keyWord: 总后台手续费-开仓
+      - keyWord: 总后台交易额-开仓
   - name: 带单账户平仓
     step:
       - keyWord: 带单子账户持有仓位信息
@@ -53,6 +61,10 @@ testMethod:
       - keyWord: 差价佣金查询-平仓
       - keyWord: 合伙人佣金查询-平仓
       - keyWord: 佣金发放明细-平仓差价佣金
+      - keyWord: 总后台佣金总计-平仓
+      - keyWord: 总后台平台收益-平仓
+      - keyWord: 总后台手续费-平仓
+      - keyWord: 总后台交易额-平仓
 afterClass:
   name: 获取taskID和模板
   step:
