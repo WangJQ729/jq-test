@@ -1,0 +1,110 @@
+keyWord:
+  step:
+    - name: 登录partners
+      host: ${partners_host}
+      url: /partner/login
+      method: POST
+      body: |
+        {"password":"${__digest(MD5,${password})}","account":"${partner_email}"}
+      extractor:
+        - json:
+            partner_token: $.result.token
+          site: TESTSUITE
+    - name: 登录partners-新合伙人
+      keyWord: 登录partners
+      body: |
+        {"password":"${__digest(MD5,${password})}","account":"${email}"}
+    - name: 获取合伙人信息
+      host: ${partners_host}
+      url: /partner/getUserInfo
+      headers:
+        Token: ${partner_token}
+      method: GET
+      extractor:
+        - json:
+            partner_uid: $.result.uid
+            partner_name: $.result.username
+          site: TESTSUITE
+    - name: 获取合伙人邀请码
+      host: ${partners_host}
+      url: /partner/statistics/myInvitation
+      headers:
+        Token: ${partner_token}
+      method: GET
+      extractor:
+        - json:
+            vipCode: $.result.vipCode
+            exchangeSubRatio: $.result.exchangeSubRatio
+            exchangeSelfRatio: $.result.exchangeSelfRatio
+            futureSelfRatio: $.result.futureSelfRatio
+            futureSubRatio: $.result.futureSubRatio
+    - name: 升级为合伙人
+      host: ${partners_host}
+      url: /partner/add
+      headers:
+        Token: ${partner_token}
+      method: POST
+      body: |
+        {"uid":${userId},"nickName":"${email}","futureRatio":${futureRatio},"exchangeRatio":${exchangeRatio}}
+      assertion: [json: {$.code: '0'}]
+    - name: 升级为合伙人-最高返佣
+      keyWord: 升级为合伙人
+      body: |
+        {"uid":${userId},"nickName":"${email}","futureRatio":${totalFutureRatio},"exchangeRatio":${totalExchangeRatio}}
+    - name: 新用户升级为合伙人
+      keyWord: 升级为合伙人
+      bodyEditor:
+        json:
+          $.futureRatio: ${futureRatio}
+          $.exchangeRatio: ${exchangeRatio}
+          $.nickName: ${email}
+    - name: 新用户升级为合伙人-修改返佣比例
+      keyWord: 升级为合伙人
+      body: |
+        {"uid":${userId},"nickName":"${email}","futureRatio":${__groovy(${futureSelfRatio} - 10)},"exchangeRatio":${__groovy(${exchangeSelfRatio} - 10)}}
+    - name: 分后台获取用户信息
+      host: ${partners_host}
+      url: /partner/user/page
+      headers:
+        Token: ${partner_token}
+      method: POST
+      body: |
+        {"page":1,"pageSize":10,"subShow":true,"uid":"${userId}","registerStart":"","registerEnd":""}
+      extractor:
+        - json:
+            exchangeRatio: $.result.items[0].exchangeRatio
+            futureRatio: $.result.items[0].futureRatio
+            parentUid: $.result.items[0].parentUid
+    - name: 代理商更新合伙人返佣比例
+      host: ${partners_host}
+      url: /partner/rebate/updatePartnerRatio
+      headers:
+        Token: ${partner_token}
+      method: GET
+      assertion: [json: {$.code: '0'}]
+    - name: 获取合伙人非默认邀请码
+      host: ${partners_host}
+      url: /partner/invite/page
+      headers:
+        Token: ${partner_token}
+      method: POST
+      body: |
+        {"page":1,"pageSize":10}
+      assertion: [json: {$.code: '0'}]
+      extractor:
+        - json:
+            not_default_vipCode: $.result.items[?(@.isDefault == false)].vipCode
+    - name: 创建推广页
+      host: ${partners_host}
+      url: /partner/promotional/create
+      headers:
+        Token: ${partner_token}
+        Accept-Language: ${Accept-Language}
+      method: POST
+      body: |
+        {
+          "inviteCode": "${vipCode}",
+          "url": "${url}",
+          "shortLink": "${shortLink}"
+        }
+      assertion: [json: {$.code: '0'}]

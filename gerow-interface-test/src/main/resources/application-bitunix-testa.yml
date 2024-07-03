@@ -20,7 +20,8 @@ data:
     Accept-Language: zh_CN
     couponId: 3
     symbol: 1000SHIBUSDT
-    amount: 888
+    spotSymbol: BTC
+    amount: ${__Random(1888,3888)}
     userId: 49650
     traderParentUid: 50686
 client:

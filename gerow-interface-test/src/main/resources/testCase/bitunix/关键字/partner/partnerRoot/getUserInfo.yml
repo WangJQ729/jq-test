@@ -1,0 +1,17 @@
+keyWord:
+  step:
+    - name: 获取用户信息
+      host: ${partnersadmin_host}
+      url: /partner/root/getUserInfoByUid/${userId}
+      headers:
+        Token: ${partnersadmin_token}
+      method: GET
+      extractor:
+        - json:
+            nickName: $.result.nickname
+    - keyWord: 获取用户信息
+      name: 获取用户信息和上级代理uid
+      extractor:
+        - json:
+            nickName: $.result.nickname
+            superiorPartnerUid: $.result.parentUid

@@ -166,3 +166,12 @@ keyWord:
         "uid": ${userId}
         }
       assertion: [ json: { $.code: '0' } ]
+    - name: 发放体验金优惠券
+      host: ${spotAdmin_host}
+      url: /api/welfare/coupon/grant/manual
+      headers:
+        Token: ${spotAdminUserId}
+      method: POST
+      body: |
+        {"configId":${couponId},"uidStr":"${__uidIdToShowId(${userId})}"}
+      assertion: [ json: { $.code: '0' } ]

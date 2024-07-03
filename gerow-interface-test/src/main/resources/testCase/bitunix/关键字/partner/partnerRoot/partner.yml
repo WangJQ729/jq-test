@@ -1,0 +1,40 @@
+keyWord:
+  step:
+    - name: 社区交易大赛交易量统计
+      host: ${partnersadmin_host}
+      url: /partner/partner_trade_amount_statistics
+      method: POST
+      body: |
+        {
+            "startTime":"${activityStartTime}",
+            "endTime":"${activityEndTime}",
+            "uidList":[]
+        }
+      assertion: [ json: { $.code: '0' } ]
+    - name: 社区交易大赛收益统计
+      host: ${partnersadmin_host}
+      url: /partner/partner_profit_statistics
+      method: POST
+      body: |
+        {
+            "startTime":"${activityStartTime}",
+            "endTime":"${activityEndTime}",
+            "uidList":[]
+        }
+      assertion: [ json: { $.code: '0' } ]
+    - name: 代理商后台返佣发放
+      sleep: 5000
+      host: ${partnersadmin_host}
+      url: /partner/rebate/distribute
+      variables:
+        startTime: ${__groovy(${__time()} - 24 * 60 * 60 * 1000)}
+        endTime: ${__time()}
+      method: GET
+      assertion: [ json: { $.code: '0' } ]
+    - name: 代理商后台差价佣金统计
+      host: ${partnersadmin_host}
+      url: /partner/rebate/partnerSubStatistic
+      headers:
+        Token: ${partner_token}
+      method: GET
+      assertion: [ json: { $.code: '0' } ]

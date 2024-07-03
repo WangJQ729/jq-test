@@ -1,0 +1,135 @@
+keyWord:
+  step:
+    - name: 登录partnersadmin
+      host: ${partnersadmin_host}
+      url: /partner/root/login
+      method: POST
+      body: |
+        {"password":"${__digest(MD5,${partnersadmin_password})}","account":"${partnersadmin_account}"}
+      extractor:
+        - json:
+            partnersadmin_token: $.result.token
+          site: TESTSUITE
+    - name: 获取BD列表
+      host: ${partnersadmin_host}
+      url: /partner/root/bdList
+      headers:
+        Token: ${partnersadmin_token}
+      method: GET
+      extractor:
+        - json:
+            bd_uid: $.result[?(@.nickName=='${bd_name}')].uid
+    - name: 新增合伙人
+      host: ${partnersadmin_host}
+      url: /partner/root/add
+      headers:
+        Token: ${partnersadmin_token}
+      method: POST
+      body: |
+        {"uid":${userId},"futureRatio":95,"exchangeRatio":95,"nickName":"${email}","bdUid":${bd_uid}}
+    - name: 合伙人列表
+      host: ${partnersadmin_host}
+      url: /partner/root/page
+      headers:
+        Token: ${partnersadmin_token}
+      method: POST
+      body: |
+        {"page":1,"pageSize":10,"uid":"${partner_uid}","registerStart":"","registerEnd":"","pageIndex":1}
+      extractor:
+        - json:
+            totalExchangeRatio: $.result.items[0].exchangeRatio
+            totalFutureRatio: $.result.items[0].futureRatio
+          site: TESTSUITE
+    - name: 变更BD
+      host: ${partnersadmin_host}
+      url: /partner/root/change_bd
+      headers:
+        Token: ${partnersadmin_token}
+      method: POST
+      body: |
+        {"bdUid":1,"uid":${partner_uid}}
+      assertion: [ json: { $.code: '0' } ]
+    - name: BD统计
+      untilWait: 10
+      host: ${partnersadmin_host}
+      url: /partner/root/get_bd_team_information
+      method: GET
+      headers:
+        Token: ${partnersadmin_token}
+      variables:
+        page: 1
+        pageSize: 10
+        partnerInfo: ${bd_name}
+        startTime: ${__PlusDay(yyyy-MM-dd,0,)}T00:00:00.000Z
+        endTime: ${__PlusDay(yyyy-MM-dd,0,)}T23:59:59.999Z
+        orderType: 4
+        orderDirection: DESC
+      extractor:
+        - json:
+            bdTotalPartners: $.result.items[0].totalPartners
+            bdTeamSize: $.result.items[0].teamSize
+            #新增用户
+            bdNewUser: $.result.items[0].newUser
+            #总交易额
+            bdTradeAmount: $.result.items[0].totalTradeAmount
+            #交易人数
+            bdTotalTradeUsers: $.result.items[0].totalTradeUsers
+            # 平台收益
+            bdPlatformRevenue: $.result.items[0].platformRevenue
+            # 佣金总计
+            bdTotalCommission: $.result.items[0].totalCommission
+            # 总手续费
+            bdTotalFee: $.result.items[0].totalFee
+    - keyWord: BD统计
+      name: BD统计-校验新增合伙人
+      assertion:
+        - json:
+            $.result.items[0].teamSize: ${__groovy(${bdTeamSize} + 1)}
+            $.result.items[0].totalPartners: ${__groovy(${bdTotalPartners} + 1)}
+            $.result.items[0].totalTradeAmount: ${bdTradeAmount}
+            $.result.items[0].newUser: ${__groovy(${bdNewUser} + 1)}
+    - keyWord: BD统计
+      name: BD统计-用户合伙人邀请码注册
+      assertion:
+        - json:
+            $.result.items[0].newUser: ${__groovy(${bdNewUser} + 1)}
+            $.result.items[0].teamSize: ${__groovy(${bdTeamSize} + 1)}
+            $.result.items[0].totalTradeAmount: ${bdTradeAmount}
+            $.result.items[0].totalTradeUsers: ${bdTotalTradeUsers}
+            $.result.items[0].platformRevenue: ${bdPlatformRevenue}
+            $.result.items[0].totalCommission: ${bdTotalCommission}
+            $.result.items[0].totalFee: ${bdTotalFee}
+            $.result.items[0].totalPartners: ${bdTotalPartners}
+    - name: BD统计-团队人数不变
+      keyWord: BD统计
+      assertion:
+        - json:
+            $.result.items[0].teamSize: ${bdTeamSize}
+            $.result.items[0].totalPartners: ${bdTotalPartners}
+            $.result.items[0].totalTradeAmount: ${bdTradeAmount}
+            $.result.items[0].newUser: ${bdNewUser}
+            $.result.items[0].platformRevenue: ${bdPlatformRevenue}
+            $.result.items[0].totalCommission: ${bdTotalCommission}
+            $.result.items[0].totalFee: ${bdTotalFee}
+    - name: BD统计-开仓
+      keyWord: BD统计
+      assertion:
+        - json:
+            $.result.items[0].totalTradeAmount: ${__groovy(${bdTradeAmount} +${takerTradeAmount})}
+            $.result.items[0].totalTradeUsers: ${__groovy(${bdTotalTradeUsers} + 1)}
+            $.result.items[0].totalFee: ${__groovy(${bdTotalFee} + ${openDealFee})}
+            $.result.items[0].platformRevenue: ${__groovy(${bdPlatformRevenue} + ${openDealFee} * (100 - ${bdExchangeRatio}) / 100)}
+            $.result.items[0].totalCommission: ${__groovy(${bdTotalCommission} + ${openDealFee} * ${bdExchangeRatio} / 100)}
+            $.result.items[0].totalPartners: ${bdTotalPartners}
+          assertionType: EIGHTDECIMALPLACES
+    - name: BD统计-平仓
+      keyWord: BD统计
+      assertion:
+        - json:
+            $.result.items[0].totalTradeAmount: ${__groovy(${bdTradeAmount} +${closeQuoteAmount})}
+            $.result.items[0].totalTradeUsers: ${__groovy(${bdTotalTradeUsers})}
+            $.result.items[0].totalFee: ${__groovy(${bdTotalFee} + ${closeDealFee})}
+            $.result.items[0].platformRevenue: ${__groovy(${bdPlatformRevenue} + ${closeDealFee} * (100 - ${bdExchangeRatio}) / 100)}
+            $.result.items[0].totalCommission: ${__groovy(${bdTotalCommission} + ${closeDealFee} * ${bdExchangeRatio} / 100)}
+            $.result.items[0].totalPartners: ${bdTotalPartners}
+          assertionType: EIGHTDECIMALPLACES

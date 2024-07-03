@@ -32,6 +32,12 @@ keyWord:
       extractor:
         - json:
             closeOrderId: $.data.orderId
+    - keyWord: 市价平仓
+      name: 带单子账户平仓
+      headers:
+        Token: ${traderToken}
+      body: |
+        {"symbol":"${packing_market}","positionId":"${packing_position_id}"}
     - name: 市价平仓-平一半
       url: /futures/futures/position/close/market
       method: POST
@@ -69,16 +75,20 @@ keyWord:
       extractor:
         - json:
             openDealFee: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].dealFee
+            openAvgPrice: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].averagePrice
+            openAmount: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].amount
     - keyWord: U本位合约历史委托
       name: U本位合约历史委托-平仓
       extractor:
         - json:
             closeDealFee: $.data.records[?(@.orderId=='${closeOrderId}')].dealFee
+            closeAvgPrice: $.data.records[?(@.orderId=='${closeOrderId}')].averagePrice
+            closeAmount: $.data.records[?(@.orderId=='${closeOrderId}')].amount
     - name: 合约划转现货
       url: /futures/futures/assets/futures2spot
       method: POST
       headers:
         Token: ${token}
       body: |
-        {"symbol":"USDT","amount":"999"}
+        {"symbol":"USDT","amount":"9999"}
       assertion: [ json: { $.code: 0 } ]

@@ -59,14 +59,12 @@ keyWord:
         - json:
             transactionAmountMonth: $.result.transactionAmountMonth
             oldTransactionAmountMonth: $.result.transactionAmountMonth
-      assertion:
-        - json:
-            $.code: '0'
+      assertion: [json: {$.code: '0'}]
     - name: 获取本月交易额-校验交易额
       keyWord: 获取本月交易额
       assertion:
         - json:
-            $.result.transactionAmountMonth: ${__groovy(${oldTransactionAmountMonth} + ${makerTradeAmount})}
+            $.result.transactionAmountMonth: ${__groovy(${oldTransactionAmountMonth} + ${takerTradeAmount})}
           assertionType: EIGHTDECIMALPLACES
       extractor:
         - json:

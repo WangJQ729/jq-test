@@ -10,7 +10,7 @@ beforeClass:
     - keyWord: 获取合伙人邀请码
     - keyWord: 合伙人列表
 testMethod:
-  - name: 用户带单交易
+  - name: 用户申请成为交易员
     dataProvider:
       - futureRatio: 20
         exchangeRatio: 30
@@ -19,15 +19,22 @@ testMethod:
       - keyWord: 代理商后台差价佣金统计
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询
+      - keyWord: 总后台佣金总计
+      - keyWord: 总后台平台收益
+      - keyWord: 总后台交易额
+      - keyWord: 总后台手续费
+      - keyWord: 团队统计
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 升级为合伙人
       - keyWord: 分后台获取用户信息
-      - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
+      - keyWord: 增加合约账户资产
       - keyWord: 合约划转现货
       - keyWord: 申请成为交易员
         headers:
           Token: ${token}
+  - name: 用户带单开仓
+    step:
       - keyWord: 获取带单子账户token
         headers:
           Token: ${token}
@@ -36,28 +43,31 @@ testMethod:
       - keyWord: 直客合约历史委托
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
-      - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-合伙人开仓
+      - keyWord: 合伙人佣金查询-首单
       - keyWord: 差价佣金查询
+      - keyWord: 佣金发放明细-开仓差价佣金
+      - keyWord: 总后台佣金总计-开仓
+      - keyWord: 总后台平台收益-开仓
+      - keyWord: 总后台手续费-开仓
+      - keyWord: 总后台交易额-开仓
+      - keyWord: 团队统计-开仓
+  - name: 带单账户平仓
+    step:
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 带单子账户平仓
-      - keyWord: 直客合约历史委托
-        extractor:
-          - json:
-              closeDealFee: $.result.items[0].fee
+      - keyWord: 直客合约历史委托-平仓
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
-      - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-合伙人平仓
-      - keyWord: 差价佣金查询
-        assertion:
-          - json:
-              $.result.items[0].makerFee: ${openDealFee}
-              $.result.items[0].makerRealFee: ${openDealFee}
-              $.result.items[0].rebateRatio: ${__groovy((${totalFutureRatio} - ${futureRatio}) / 100)}
-              $.result.items[0].makerRebate: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
-            assertionType: EIGHTDECIMALPLACES
+      - keyWord: 差价佣金查询-平仓
       - keyWord: 合伙人佣金查询-平仓
+      - keyWord: 佣金发放明细-平仓差价佣金
+      - keyWord: 总后台佣金总计-平仓
+      - keyWord: 总后台平台收益-平仓
+      - keyWord: 总后台手续费-平仓
+      - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓
 afterClass:
   name: 获取taskID和模板
   step:

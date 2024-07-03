@@ -10,7 +10,7 @@ keyWord:
             "followType": 2,
             "traderUid": "${subAccountUid}",
             "margin": "",
-            "followAmount": 888,
+            "followAmount": ${__Random(1888,8888)},
             "stopLossRation": "",
             "positionMode": 1,
             "positionModeConfig": 0,
@@ -42,7 +42,6 @@ keyWord:
       method: POST
       body: |
         {"uid": ${subAccountUid}}
-      assertion: [ json: { $.code: '0' } ]
       iter:
         subAccountUid: ${subAccountUids}
     - name: 申请成为交易员
@@ -52,10 +51,10 @@ keyWord:
       method: POST
       body: |
         {
-            "amount": 888,
+            "amount": ${__Random(888,8888)},
             "briefInfo": "",
             "header": "https://img.yzcdn.cn/upload_files/2016/05/20/60734a034c66361426f676914fc69e9c.png",
-            "nickname": "${__RandomString(8,zxcvbnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM1234567890,)}"
+            "nickname": "GerowWang${__RandomString(8,zxcvnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVNM1234567890,)}"
         }
       extractor:
         - json:

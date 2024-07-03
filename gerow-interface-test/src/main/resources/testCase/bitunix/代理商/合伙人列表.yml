@@ -1,0 +1,23 @@
+name: 合伙人列表
+enable: false
+story: partners
+dataProvider:
+  - partner_email: gerow1719546269035@aol.com
+beforeClass:
+  name: 登录合伙人后台
+  step:
+    - keyWord: 登录partners
+    - keyWord: 获取合伙人信息
+    - keyWord: 登录partnersadmin
+    - keyWord: 获取合伙人邀请码
+    - keyWord: 合伙人列表
+testMethod:
+  - name: 快捷注册
+    invocationCount: 50
+    dataProvider:
+      - futureRatio: ${__Random(0,45)}
+        exchangeRatio: ${__Random(0,68)}
+    step:
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+#      - keyWord: 通过uid获取用户token
+      - keyWord: 升级为合伙人

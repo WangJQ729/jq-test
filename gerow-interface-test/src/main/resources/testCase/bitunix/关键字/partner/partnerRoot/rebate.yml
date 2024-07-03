@@ -1,0 +1,69 @@
+keyWord:
+  step:
+    - name: 总后台佣金发放查询
+      host: ${partnersadmin_host}
+      url: /partner/root/rebate/statistics/list
+      method: GET
+      headers:
+        Token: ${partnersadmin_token}
+      variables:
+        showBelow: true
+        symbol: ${symbol}
+        tradeType: futures
+        partnerInfo: ${partner_uid}
+        page: 1
+        pageSize: 10
+        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      extractor:
+        - json:
+            tradeAmount: $.result.items[?(@.symbol=='${symbol}' && @.tradeType=='futures')].tradeAmount
+            realFee: $.result.items[?(@.symbol=='${symbol}' && @.tradeType=='futures')].realFee
+            fee: $.result.items[?(@.symbol=='${symbol}' && @.tradeType=='futures')].fee
+            userRebate: $.result.items[?(@.symbol=='${symbol}' && @.tradeType=='futures')].userRebate
+            partnerRebate: $.result.items[?(@.symbol=='${symbol}' && @.tradeType=='futures')].partnerRebate
+    - name: 总后台佣金发放查询-开仓
+      keyWord: 总后台佣金发放查询
+      assertion:
+        - json:
+            $.result.items[0].userRebate: ${__groovy(${userRebate} + ${openDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台佣金发放查询-平仓
+      keyWord: 总后台佣金发放查询
+      assertion:
+        - json:
+            $.result.items[0].userRebate: ${__groovy(${userRebate} + ${closeDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台佣金总计
+      host: ${partnersadmin_host}
+      url: /partner/root/rebate/statistics
+      method: GET
+      headers:
+        Token: ${partnersadmin_token}
+      variables:
+        showBelow: true
+        symbol: ${symbol}
+        tradeType: futures
+        partnerInfo: ${partner_uid}
+        page: 1
+        pageSize: 10
+        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      extractor:
+        - json:
+            statisticsTotalRebate: $.result.totalRebate
+            statisticsTakerRebate: $.result.takerRebate
+            statisticsMakerRebate: $.result.makerRebate
+      assertion: [json: {$.code: '0'}]
+    - name: 总后台佣金总计-开仓
+      keyWord: 总后台佣金总计
+      assertion:
+        - json:
+            $.result.totalRebate: ${__groovy(${statisticsTotalRebate} + ${openDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台佣金总计-平仓
+      keyWord: 总后台佣金总计
+      assertion:
+        - json:
+            $.result.totalRebate: ${__groovy(${statisticsTotalRebate} + ${closeDealFee} * ${totalFutureRatio} / 100)}
+          assertionType: EIGHTDECIMALPLACES

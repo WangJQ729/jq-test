@@ -58,9 +58,7 @@ keyWord:
         - json:
             ruleId: $.data.realValue[0].ruleId
             realValue: $.data.realValue[0].realValue
-      assertion:
-        - json:
-            $.code: '0'
+      assertion: [json: {$.code: '0'}]
     - name: 领取记录-进度为零
       keyWord: 获取记录
       assertion:

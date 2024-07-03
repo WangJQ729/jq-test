@@ -6,7 +6,7 @@ keyWord:
         Token: ${token}
       method: POST
       body: |
-        {"side":"2","price":0,"volume":"99","base":"${spotSymbols}","quote":"USDT","type":"2"}
+        {"side":"2","price":0,"volume":"99","base":"${spotSymbol}","quote":"USDT","type":"2"}
       assertion: [json: {$.code: '0'}]
     - name: web现货历史委托
       url: /web/api/v1/order/history/page
@@ -19,7 +19,7 @@ keyWord:
             "page": 1,
             "pageSize": 10,
             "side": null,
-            "base": "${spotSymbols}",
+            "base": "${spotSymbol}",
             "quote": null,
             "type": null,
             "status": null,
@@ -44,9 +44,7 @@ keyWord:
       method: POST
       body: |
         {"actId":${actId}}
-      assertion:
-        - json:
-            $.code: '0'
+      assertion: [json: {$.code: '0'}]
     - keyWord: 社区活动报名
       name: 社区活动报名-检验报名结果
       headers:
@@ -59,3 +57,33 @@ keyWord:
         - json:
             $.msg: ${msgKey}
           assertionType: NOT
+
+    - name: 合约体验金券列表
+      url: /welfare/welfare_coupon/page
+      headers:
+        Token: ${token}
+      method: GET
+      variables:
+        current: 1
+        size: 10
+        couponType: experience
+      assertion: [ json: { $.code: '0' } ]
+      extractor:
+        - json:
+            coupon_id: $.data.records[0].id
+    - name: 激活体验金券
+      url: /welfare/welfare_coupon/activate_coupon
+      headers:
+        Token: ${token}
+      method: POST
+      body: |
+        {"couponId":${coupon_id}}
+      assertion: [json: {$.code: '0'}]
+    - name: 获取汇率
+      url: /web/api/v1/common/rate/list
+      method: GET
+      extractor:
+        - json:
+            rate: $.data[?(@.baseSymbol=='BTC' && @.quoteSymbol=='USDT')].rate
+          site: TESTSUITE
+      assertion: [ json: { $.code: '0' } ]

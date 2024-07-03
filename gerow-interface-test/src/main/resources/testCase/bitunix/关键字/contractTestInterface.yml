@@ -52,9 +52,18 @@ keyWord:
       body: |
         {
             "uid": ${userId},
-            "amount": 9999.99,
+            "amount": 99999.99,
             "coin": "USDT"
         }
+      assertion: [ json: { $.code: '0' } ]
+    - name: 增加现货账户资产
+      url: /web/test/asset/adjust
+      method: GET
+      variables:
+        userId: ${userId}
+        coin: ${coin}
+        assetType: U_NORMAL
+        amount: ${amount}
       assertion: [ json: { $.code: '0' } ]
     - name: 增加合约账户资产-指定资产
       keyWord: 增加合约账户资产
@@ -110,6 +119,7 @@ keyWord:
       extractor:
         - json:
             position_id: $.data[0].position_id
+            open_val: $.data[0].open_val
             amount: $.data[0].amount
             market: $.data[0].market
             side: $.data[0].side
@@ -128,9 +138,3 @@ keyWord:
             packing_amount: $.data[0].amount
             packing_market: $.data[0].market
             packing_side: $.data[0].side
-    - keyWord: 市价平仓
-      name: 带单子账户平仓
-      headers:
-        Token: ${traderToken}
-      body: |
-        {"symbol":"${packing_market}","positionId":"${packing_position_id}"}
