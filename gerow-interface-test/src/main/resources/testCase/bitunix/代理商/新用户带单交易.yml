@@ -19,6 +19,7 @@ testMethod:
       - keyWord: 总后台平台收益
       - keyWord: 总后台交易额
       - keyWord: 总后台手续费
+      - keyWord: 团队统计
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 分后台获取用户信息
       - keyWord: 通过uid获取用户token
@@ -43,6 +44,7 @@ testMethod:
       - keyWord: 总后台平台收益-开仓
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
+      - keyWord: 团队统计-开仓
   - name: 用户带单平仓
     step:
       - keyWord: 带单子账户持有仓位信息
@@ -56,6 +58,7 @@ testMethod:
       - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓
 
 afterClass:
   name: 获取taskID和模板

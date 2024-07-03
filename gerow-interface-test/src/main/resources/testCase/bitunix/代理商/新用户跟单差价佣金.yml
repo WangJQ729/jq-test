@@ -1,8 +1,6 @@
 name: 新用户跟单差价佣金
 story: partners
 invocationCount: 1
-dataProvider:
-  - partner_email: gerow1718961189004@aliyun.com
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -24,6 +22,7 @@ beforeClass:
     - keyWord: 总后台平台收益
     - keyWord: 总后台交易额
     - keyWord: 总后台手续费
+    - keyWord: 团队统计
 testMethod:
   - name: 用户加入跟单交易
     invocationCount: 1
@@ -54,6 +53,7 @@ testMethod:
       - keyWord: 总后台平台收益-开仓
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
+      - keyWord: 团队统计-开仓
   - name: 带单账户平仓
     step:
       - keyWord: 带单子账户持有仓位信息
@@ -69,6 +69,7 @@ testMethod:
       - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓
 afterClass:
   name: 获取taskID和模板
   step:
