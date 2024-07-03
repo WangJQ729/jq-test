@@ -88,9 +88,49 @@ keyWord:
         pageSize: 10
         startTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
         endTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+        partnerInfo: ${partner_uid}
         orderType: 0
         orderDirection: DESC
-
       extractor:
         - json:
-            statisticsTotalFee: $.result.totalFee
+            # 总交易额
+            teamTotalTradeAmount: $.result.items[?(@.uid==${partner_uid})].totalTradeAmount
+            # 平台收益
+            teamPlatformRevenue: $.result.items[?(@.uid==${partner_uid})].platformRevenue
+            # 佣金总计
+            teamTotalCommission: $.result.items[?(@.uid==${partner_uid})].totalCommission
+            # 总手续费
+            teamTotalFee: $.result.items[?(@.uid==${partner_uid})].totalFee
+            # 体验金抵扣
+            teamDeductAmount: $.result.items[?(@.uid==${partner_uid})].deductAmount
+      assertion: [ json: { $.code: '0' } ]
+    - name: 团队统计-现货
+      keyWord: 团队统计
+      assertion:
+        - json:
+            $.result.items[0].totalTradeAmount: ${__groovy(${dealAmount} + ${teamTotalTradeAmount})}
+            $.result.items[0].platformRevenue: ${__groovy(${webFee} * ${rate} * (100 - ${totalExchangeRatio})/100 + ${teamPlatformRevenue})}
+            $.result.items[0].totalCommission: ${__groovy(${webFee} * ${rate} * ${totalExchangeRatio}/100 + ${teamTotalCommission})}
+            $.result.items[0].totalFee: ${__groovy(${webFee} * ${rate} + ${teamTotalFee})}
+            $.result.items[0].deductAmount: ${__groovy(${teamDeductAmount})}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 团队统计-开仓
+      keyWord: 团队统计
+      assertion:
+        - json:
+            $.result.items[0].totalTradeAmount: ${__groovy(${openAvgPrice} * ${openAmount} + ${teamTotalTradeAmount})}
+            $.result.items[0].platformRevenue: ${__groovy(${openDealFee} * (100 - ${totalFutureRatio})/100 + ${teamPlatformRevenue})}
+            $.result.items[0].totalCommission: ${__groovy(${openDealFee} * ${totalFutureRatio}/100 + ${teamTotalCommission})}
+            $.result.items[0].totalFee: ${__groovy(${openDealFee} + ${teamTotalFee})}
+            $.result.items[0].deductAmount: ${__groovy(${teamDeductAmount})}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 团队统计-平仓
+      keyWord: 团队统计
+      assertion:
+        - json:
+            $.result.items[0].totalTradeAmount: ${__groovy(${closeAvgPrice} * ${closeAmount} + ${teamTotalTradeAmount})}
+            $.result.items[0].platformRevenue: ${__groovy(${closeDealFee} * (100 - ${totalFutureRatio})/100 + ${teamPlatformRevenue})}
+            $.result.items[0].totalCommission: ${__groovy(${closeDealFee} * ${totalFutureRatio}/100 + ${teamTotalCommission})}
+            $.result.items[0].totalFee: ${__groovy(${closeDealFee} + ${teamTotalFee})}
+            $.result.items[0].deductAmount: ${__groovy(${teamDeductAmount})}
+          assertionType: EIGHTDECIMALPLACES

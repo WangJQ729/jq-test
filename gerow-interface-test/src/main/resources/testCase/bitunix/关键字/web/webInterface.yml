@@ -79,3 +79,11 @@ keyWord:
       body: |
         {"couponId":${coupon_id}}
       assertion: [json: {$.code: '0'}]
+    - name: 获取汇率
+      url: /web/api/v1/common/rate/list
+      method: GET
+      extractor:
+        - json:
+            rate: $.data[?(@.baseSymbol=='BTC' && @.quoteSymbol=='USDT')].rate
+          site: TESTSUITE
+      assertion: [ json: { $.code: '0' } ]

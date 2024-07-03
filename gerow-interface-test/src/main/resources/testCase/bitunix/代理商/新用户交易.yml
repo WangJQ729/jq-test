@@ -17,7 +17,14 @@ testMethod:
       - keyWord: 分后台获取用户信息
       - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
+
+      - keyWord: 分后台佣金发放查询-现货
+      - keyWord: 总后台平台收益
+      - keyWord: 总后台交易额
+      - keyWord: 总后台手续费
+      - keyWord: 团队统计
       - keyWord: 直客佣金查询-获取现货交易数据
+
       - keyWord: 代理商现货历史委托
       - keyWord: 增加合约账户资产
       - keyWord: 合约划转现货
@@ -25,6 +32,13 @@ testMethod:
       - keyWord: web现货历史委托
       - keyWord: 代理商现货历史委托
       - keyWord: 直客佣金查询-校验现货交易数据
+
+      - keyWord: 分后台佣金发放查询-现货
+      - keyWord: 总后台佣金总计
+      - keyWord: 总后台平台收益
+      - keyWord: 总后台交易额-现货
+      - keyWord: 总后台手续费
+      - keyWord: 团队统计-现货
   - name: 新用户成为合伙人现货交易
     dataProvider:
       - futureRatio: 20
@@ -52,6 +66,7 @@ testMethod:
       - keyWord: 总后台平台收益
       - keyWord: 总后台交易额
       - keyWord: 总后台手续费
+      - keyWord: 团队统计
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
@@ -69,6 +84,7 @@ testMethod:
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
       - keyWord: 直客佣金查询-首单
+      - keyWord: 团队统计-开仓
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
       - keyWord: 代理商后台返佣发放
@@ -79,6 +95,7 @@ testMethod:
       - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓
   - name: 用户成为合伙人市价开仓
     dataProvider:
       - futureRatio: 20
@@ -88,6 +105,7 @@ testMethod:
       - keyWord: 代理商后台差价佣金统计
       - keyWord: 分后台佣金发放查询
       - keyWord: 总后台佣金总计
+      - keyWord: 团队统计
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
@@ -104,6 +122,7 @@ testMethod:
       - keyWord: 总后台平台收益-开仓
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
+      - keyWord: 团队统计-开仓
       - keyWord: 差价佣金查询
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
@@ -117,6 +136,7 @@ testMethod:
       - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓
   - name: 用户体验金抵扣
     step:
       - keyWord: 代理商后台返佣发放

@@ -6,3 +6,4 @@ beforeSuite:
     - keyWord: 现货后台获取登录信息
     - keyWord: 现货后台获取googleKey
     - keyWord: 登录现货后台
+    - keyWord: 获取汇率
