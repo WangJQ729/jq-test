@@ -21,12 +21,8 @@
     1、在根目录下运行命令：mvn clean install -DskipTests将代码编译到本地的maven仓库
     
     2、进入gerow-interface-test直接运行
-    融合版参数：
-    -Dspring.profiles.active=ipa-test -DtestDir=淘宝 -Dplatform=融合版 -Dfeatures=催单 -Dtest.severity=ALL -Denv=mini-test -DshopName=wangjq_1990 -Dstory= -Dcomponent= -Dtest.name=
-    老淘宝参数：
-    -Dspring.profiles.active=tb-test -Dplatform=淘宝 -Dfeatures=催单 -Dtest.severity= -Denv=test-znkf -DshopName=wangjq_1990 -Dstory= -Dcomponent= -Dtest.name=
-    淘动力参数：
-    -Dspring.profiles.active=tdl -DtestDir=淘宝 -Dplatform=淘动力 -Dfeatures=催单 -Denv=test-znkf -DshopName= -Dstory= -Dcomponent= -Dtest.name=
+    
+       -Dspring.profiles.active=bitunix-testa -DtestDir=bitunix -Dfeatures= -Denv= -Dstory=partners -Dcomponent=用户交易,新用户交易 -Dtest.name=
     
 ## 可选参数
     
@@ -38,21 +34,21 @@
 
 ### 2、单独用例执行
     
-    1、根据催单场景选择  -Dstory=xxx,xxx
+    1、根据场景选择  -Dstory=xxx,xxx
     
-        example:    -Dstory=下单未付款,已付款
+        example:    -Dstory=partners
     
     2、根据组件选择     -Dcomponent=xxx,xxx
     
-        example:    -Dcomponent=任务开关,催单消息
+        example:    -Dcomponent=用户交易,新用户交易
                 
 ### example
        
-    执行催单场景“下单未付款”、“已付款”场景下“任务开关”和“催单消息”组件
+    执行partners场景“用户交易”、“新用户交易”
     
-    -ea -Dspring.profiles.active=ipa-test -DtestDir=淘宝 -Dplatform=融合版 -Dfeatures=催单 -Dtest.severity=ALL -Denv=mini-test -DshopName=wanggerow_1990 -Dstory=下单未付款,已付款 -Dcomponent=任务开关,催单消息 -Dtest.name=
+    -Dspring.profiles.active=bitunix-testa -DtestDir=bitunix -Dfeatures= -Denv= -Dstory=partners -Dcomponent=用户交易,新用户交易 -Dtest.name=
                 
-    执行完成后会在ipa-interface-test\target\allure-results生成allure测试结果
+    执行完成后会在gerow-interface-test\target\allure-results生成allure测试结果
     
     注：powershell会将“.”拆分，用cmd执行，在powershell先执行命令cmd即可。
 
@@ -69,41 +65,72 @@
     3、在测试用例中可调用的参数格式为data.test.xxxx，在测试中调用格式为：${xxxx}
     
 ### example 
-
+       - name: 总后台平台收益
+      host: ${partnersadmin_host}
+      url: /partner/root/statistics/rebate
+      method: GET
+      headers:
+        Token: ${partnersadmin_token}
+      variables:
+        startTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+        endTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      extractor:
+        - json:
+            totalRebate: $.result.totalRebate
+      assertion: [ json: { $.code: '0' } ]
+    - name: 总后台平台收益-开仓
+      keyWord: 总后台平台收益
+      assertion:
+        - json:
+            $.result.totalRebate: ${__groovy(${totalRebate} + ${openDealFee} * (100 - ${futureSelfRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台平台收益-平仓
+      keyWord: 总后台平台收益
+      assertion:
+        - json:
+            $.result.totalRebate: ${__groovy(${totalRebate} + ${closeDealFee} * (100 - ${futureSelfRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台交易额
+      host: ${partnersadmin_host}
+      url: /partner/root/statistics/tradeAmount
+      method: GET
+      headers:
+        Token: ${partnersadmin_token}
+      variables:
+        startTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
+        endTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
+      extractor:
+        - json:
+            statisticsTradeAmount: $.result.totalAmount
+      assertion: [ json: { $.code: '0' } ]
+    - name: 总后台交易额-开仓
+      keyWord: 总后台交易额
+      assertion:
+        - json:
+            $.result.totalAmount: ${__groovy(${statisticsTradeAmount} + ${openAvgPrice} * ${openAmount})}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台交易额-平仓
+      keyWord: 总后台交易额
+      assertion:
+        - json:
+            $.result.totalAmount: ${__groovy(${statisticsTradeAmount} + ${closeAvgPrice} * ${closeAmount})}
+          assertionType: EIGHTDECIMALPLACES
+    - name: 总后台交易额-现货
+      keyWord: 总后台交易额
+      assertion:
+        - json:
+            $.result.totalAmount: ${__groovy(${statisticsTradeAmount} + ${dealAmount})}
+          assertionType: EIGHTDECIMALPLACES
 ####  参数配置
     
     data:
       test:
-        shopName: "xxxxxx" -------------------全局变量通过${shopName}调用
+        amount: "xxxxxx" -------------------全局变量通过${amount}调用
     
 #####    调用格式
 
 ######      example1：
-    - name: 获取MP后台地址
-      url: /api/auth/mp_switcher
-      variables:
-        subnick: ${shopName}
-      method: GET
-      assertion:
-        - json:
-            $.code: 0
-      extractor:
-        - json:
-            auth_url: $.url
-    - name: 进入主页
-      host: ""
-      url: ${auth_url}
-      method: GET
-      responseType: DEFAULT
-    - name: 获取shop_id
-      url: /api/admin/user/logined
-      method: GET
-      extractor:
-        - json:
-            shop_id: $.user.shop_id
-            shop_category_id: $.default_shop.category_id
-          site: TESTSUIT
-      assertion: [json: {$.code: 0}]
+      
 # 六、JMeter Functions支持
 
 ### 1、function调用
@@ -123,7 +150,6 @@
 ### 2、自定义function
         
         Module：gerow-test-utils
-        
         package：com.gerow.test.jmeter.functions
 
     

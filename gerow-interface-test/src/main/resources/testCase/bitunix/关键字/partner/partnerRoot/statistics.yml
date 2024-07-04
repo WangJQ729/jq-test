@@ -43,16 +43,19 @@ keyWord:
       assertion:
         - json:
             $.result.totalAmount: ${__groovy(${statisticsTradeAmount} + ${openAvgPrice} * ${openAmount})}
+          assertionType: EIGHTDECIMALPLACES
     - name: 总后台交易额-平仓
       keyWord: 总后台交易额
       assertion:
         - json:
             $.result.totalAmount: ${__groovy(${statisticsTradeAmount} + ${closeAvgPrice} * ${closeAmount})}
+          assertionType: EIGHTDECIMALPLACES
     - name: 总后台交易额-现货
       keyWord: 总后台交易额
       assertion:
         - json:
             $.result.totalAmount: ${__groovy(${statisticsTradeAmount} + ${dealAmount})}
+          assertionType: EIGHTDECIMALPLACES
     - name: 总后台手续费
       host: ${partnersadmin_host}
       url: /partner/root/statistics/fee
