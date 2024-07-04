@@ -79,10 +79,10 @@ keyWord:
         tradeType: exchange
       extractor:
         - json:
-            takerTradeAmount: $.result.items[0].makerTradeAmount
-            takerFee: $.result.items[0].makerFee
-            takerRealFee: $.result.items[0].makerRealFee
-            takerRebate: $.result.items[0].makerRebate
+            takerTradeAmount: $.result.items[0].takerTradeAmount
+            takerFee: $.result.items[0].takerFee
+            takerRealFee: $.result.items[0].takerRealFee
+            takerRebate: $.result.items[0].takerRebate
           ignore: true
     - name: 直客佣金查询-校验现货交易数据
       keyWord: 直客佣金查询-获取现货交易数据
@@ -90,10 +90,10 @@ keyWord:
         - json:
             $.result.items[0].coin: ${spotSymbol}
         - json:
-            $.result.items[0].makerRebate: ${__groovy(${takerRebate} + ${webFee} * (${totalExchangeRatio} - ${exchangeRatio}) / 100)}
-            $.result.items[0].makerFee: ${__groovy(${takerFee} + ${webFee})}
-            $.result.items[0].makerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
-            $.result.items[0].makerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
+            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${webFee} * (${totalExchangeRatio} - ${exchangeRatio}) / 100)}
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${webFee})}
+            $.result.items[0].takerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
+            $.result.items[0].takerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
           assertionType: EIGHTDECIMALPLACES
           valueType: BIGDECIMAL
     - name: 直客佣金查询-校验合伙人现货交易数据
@@ -102,10 +102,10 @@ keyWord:
         - json:
             $.result.items[0].coin: ${spotSymbol}
         - json:
-            $.result.items[0].makerRebate: ${__groovy(${takerRebate} + ${webFee} * ${exchangeRatio} / 100)}
-            $.result.items[0].makerFee: ${__groovy(${takerFee} + ${webFee})}
-            $.result.items[0].makerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
-            $.result.items[0].makerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
+            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${webFee} * ${exchangeRatio} / 100)}
+            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${webFee})}
+            $.result.items[0].takerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
+            $.result.items[0].takerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
           assertionType: EIGHTDECIMALPLACES
           valueType: BIGDECIMAL
     - name: 差价佣金查询
