@@ -30,6 +30,10 @@ public enum AssertionType {
      */
     EIGHTDECIMALPLACES,
     /**
+     * 保留8位小数比较大小
+     */
+    TWODECIMALPLACES,
+    /**
      * 所有结果大于
      */
     ALLGREATEROREQUALTO,

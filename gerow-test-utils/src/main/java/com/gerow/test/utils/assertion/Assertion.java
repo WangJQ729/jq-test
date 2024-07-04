@@ -345,8 +345,14 @@ public class Assertion {
             case EIGHTDECIMALPLACES:
                 // 2次四舍五入数据相加，有可能有1个精度误差
                 Assertions.assertThat(new BigDecimal(actual.toString()).setScale(8, RoundingMode.HALF_UP))
-                        .isGreaterThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("-0.00000001")).setScale(8, RoundingMode.HALF_UP))
-                        .isLessThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("0.00000001")).setScale(8, RoundingMode.HALF_UP));
+                        .isGreaterThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("-0.0000001")).setScale(8, RoundingMode.HALF_UP))
+                        .isLessThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("0.0000001")).setScale(8, RoundingMode.HALF_UP));
+                break;
+            case TWODECIMALPLACES:
+                // 2次四舍五入数据相加，有可能有1个精度误差
+                Assertions.assertThat(new BigDecimal(actual.toString()).setScale(2, RoundingMode.HALF_UP))
+                        .isGreaterThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("-0.01")).setScale(2, RoundingMode.HALF_UP))
+                        .isLessThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("0.01")).setScale(2, RoundingMode.HALF_UP));
                 break;
             case LESSTHANOREQUALTO:
                 Assertions.assertThat(new BigDecimal(actual.toString())).isLessThanOrEqualTo(new BigDecimal(value.toString()));
