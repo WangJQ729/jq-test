@@ -1,5 +1,6 @@
 data:
   test:
+    Accept-Language: zh_CN
     platform: bitunix
     host: api.testa.searchalpha.xyz
     partners_host: http://partners.testa.searchalpha.xyz
@@ -14,15 +15,15 @@ data:
     bd_email: gerow@bitunix.io
     bd_name: gerow
     # BD下任意一级合伙人账户
-    partner_email: gerow1718700135294@aol.com
+    partner_email: gerow@126.com
     # 用户交易使用的uid 任意一个partner_email 的直客
     userId: 64629
     # 合约/现货后台的登录账户
     userName: gerow.wang@bitunix.io
+    # bd后台、现货、合约后台的密码
     password: Aa123456
     spotAdminGoogleCode: GGMNJZXCIFVBO6F5
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
-    Accept-Language: zh_CN
     # 体验金ID
     couponId: 3
     # 合约交易对、开仓数量
@@ -30,7 +31,7 @@ data:
     amount: ${__Random(1888,3888)}
     # 现货币种
     spotSymbol: BTC
-    # 带单主账户UID
+    # 带单主账户UID ,需要使用非合伙人体系下的uid
     traderParentUid: 50686
 client:
   protocol: http

@@ -18,20 +18,20 @@ public class RandomEmail extends AbstractFunction {
     private static final String KEY = "__RandomEmail";
 
 
-    public static String getChineseName() {
+    public static String buildEmail() {
         String[] domains = {"gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com", "bitunix.com", "bitunix.io", "126.com", "163.com", "qq.com", "gmail.com", "yahoo.com", "icloud.com", "mail.com", "zoho.com", "yandex.com", "protonmail.com", "gmx.com", "me.com", "live.com", "fastmail.com", "hushmail.com", "sina.com", "aliyun.com"};
-        String username = "gerow" + System.currentTimeMillis(); // 生成8位长度的随机用户名
+        String username = "gerow" + System.currentTimeMillis(); // gerow+毫秒时间戳
         String domain = domains[new Random().nextInt(domains.length)]; // 随机选择一个域名
         return username + "@" + domain;
     }
 
     @Override
     public String execute(SampleResult previousResult, Sampler currentSampler) {
-        String chineseName = getChineseName();
+        String email = buildEmail();
         if (vars != null) {
-            TestUtils.saveVariables(vars, chineseName);
+            TestUtils.saveVariables(vars, email);
         }
-        return chineseName;
+        return email;
     }
 
 
