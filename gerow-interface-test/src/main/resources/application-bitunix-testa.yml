@@ -10,19 +10,27 @@ data:
     web_host: http://www.testa.searchalpha.xyz
     partnersadmin_account: admin
     partnersadmin_password: admin
-    partner_email: gerow@126.com
+    # BD账户
     bd_email: gerow@bitunix.io
     bd_name: gerow
+    # BD下任意一级合伙人账户
+    partner_email: gerow1718700135294@aol.com
+    # 用户交易使用的uid 任意一个partner_email 的直客
+    userId: 64629
+    # 合约/现货后台的登录账户
     userName: gerow.wang@bitunix.io
     password: Aa123456
     spotAdminGoogleCode: GGMNJZXCIFVBO6F5
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
     Accept-Language: zh_CN
+    # 体验金ID
     couponId: 3
+    # 合约交易对、开仓数量
     symbol: 1000SHIBUSDT
-    spotSymbol: BTC
     amount: ${__Random(1888,3888)}
-    userId: 49650
+    # 现货币种
+    spotSymbol: BTC
+    # 带单主账户UID
     traderParentUid: 50686
 client:
   protocol: http
