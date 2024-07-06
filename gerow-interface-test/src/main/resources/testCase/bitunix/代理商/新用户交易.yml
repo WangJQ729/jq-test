@@ -7,8 +7,9 @@ beforeClass:
     - keyWord: 登录partners
     - keyWord: 获取合伙人信息
     - keyWord: 登录partnersadmin
-    - keyWord: 获取合伙人邀请码
     - keyWord: 合伙人列表
+    - keyWord: 创建邀请码
+    - keyWord: 获取合伙人邀请码
 testMethod:
   - name: 新用户现货交易
     step:
@@ -41,8 +42,8 @@ testMethod:
       - keyWord: 团队统计-现货
   - name: 新用户成为合伙人现货交易
     dataProvider:
-      - futureRatio: 20
-        exchangeRatio: 30
+      - futureRatio: ${__Random(0,${totalFutureRatio})}
+        exchangeRatio: ${__Random(0,${totalFutureRatio})}
     step:
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
@@ -98,8 +99,8 @@ testMethod:
       - keyWord: 团队统计-平仓
   - name: 用户成为合伙人市价开仓
     dataProvider:
-      - futureRatio: 20
-        exchangeRatio: 30
+      - futureRatio: ${__Random(0,${totalFutureRatio})}
+        exchangeRatio: ${__Random(0,${totalFutureRatio})}
     step:
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
