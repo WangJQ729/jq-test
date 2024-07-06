@@ -17,13 +17,13 @@ keyWord:
       keyWord: 总后台平台收益
       assertion:
         - json:
-            $.result.totalRebate: ${__groovy(${totalRebate} + ${openDealFee} * (100 - ${futureSelfRatio}) / 100)}
+            $.result.totalRebate: ${__groovy(${totalRebate} + ${openDealFee} * (100 - ${futureSelfRatio} - ${futureSubRatio}) / 100)}
           assertionType: EIGHTDECIMALPLACES
     - name: 总后台平台收益-平仓
       keyWord: 总后台平台收益
       assertion:
         - json:
-            $.result.totalRebate: ${__groovy(${totalRebate} + ${closeDealFee} * (100 - ${futureSelfRatio}) / 100)}
+            $.result.totalRebate: ${__groovy(${totalRebate} + ${closeDealFee} * (100 - ${futureSelfRatio} - ${futureSubRatio}) / 100)}
           assertionType: EIGHTDECIMALPLACES
     - name: 总后台交易额
       host: ${partnersadmin_host}
