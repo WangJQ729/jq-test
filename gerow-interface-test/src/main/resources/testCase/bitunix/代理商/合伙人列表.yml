@@ -1,8 +1,6 @@
 name: 合伙人列表
 enable: false
 story: partners
-dataProvider:
-  - partner_email: gerow1719546269035@aol.com
 beforeClass:
   name: 登录合伙人后台
   step:

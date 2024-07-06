@@ -27,8 +27,8 @@ testMethod:
   - name: 用户加入跟单交易
     invocationCount: 1
     dataProvider:
-      - futureRatio: 20
-        exchangeRatio: 30
+      - futureRatio: ${__Random(0,${totalFutureRatio})}
+        exchangeRatio: ${__Random(0,${totalFutureRatio})}
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 升级为合伙人

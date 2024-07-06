@@ -122,6 +122,8 @@ keyWord:
       assertion:
         - json:
             $.result.items[0].totalTradeAmount: ${__groovy(${openAvgPrice} * ${openAmount} + ${teamTotalTradeAmount})}
+          assertionType: TWODECIMALPLACES
+        - json:
             $.result.items[0].platformRevenue: ${__groovy(${openDealFee} * (100 - ${totalFutureRatio})/100 + ${teamPlatformRevenue})}
             $.result.items[0].totalCommission: ${__groovy(${openDealFee} * ${totalFutureRatio}/100 + ${teamTotalCommission})}
             $.result.items[0].totalFee: ${__groovy(${openDealFee} + ${teamTotalFee})}
@@ -132,6 +134,8 @@ keyWord:
       assertion:
         - json:
             $.result.items[0].totalTradeAmount: ${__groovy(${closeAvgPrice} * ${closeAmount} + ${teamTotalTradeAmount})}
+          assertionType: TWODECIMALPLACES
+        - json:
             $.result.items[0].platformRevenue: ${__groovy(${closeDealFee} * (100 - ${totalFutureRatio})/100 + ${teamPlatformRevenue})}
             $.result.items[0].totalCommission: ${__groovy(${closeDealFee} * ${totalFutureRatio}/100 + ${teamTotalCommission})}
             $.result.items[0].totalFee: ${__groovy(${closeDealFee} + ${teamTotalFee})}

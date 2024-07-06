@@ -108,3 +108,19 @@ keyWord:
           "shortLink": "${shortLink}"
         }
       assertion: [json: {$.code: '0'}]
+    - name: 创建邀请码
+      host: ${partners_host}
+      url: /partner/invite/add
+      headers:
+        Token: ${partner_token}
+        Accept-Language: ${Accept-Language}
+      method: POST
+      body: |
+        {"default":true}
+      bodyEditor:
+        json:
+          $.exchangeSelfRatio: ${__Random(0,${totalExchangeRatio},exchangeSelfRatio)}
+          $.futureSelfRatio: ${__Random(0,${totalFutureRatio},futureSelfRatio)}
+          $.exchangeSubRatio: ${__groovy(${totalExchangeRatio} - ${exchangeSelfRatio})}
+          $.futureSubRatio: ${__groovy(${totalFutureRatio} - ${futureSelfRatio})}
+      assertion: [json: {$.code: '0'}]
