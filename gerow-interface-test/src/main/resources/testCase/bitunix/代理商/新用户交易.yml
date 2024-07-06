@@ -138,6 +138,7 @@ testMethod:
       - keyWord: 总后台交易额-平仓
       - keyWord: 团队统计-平仓
   - name: 用户体验金抵扣
+    invocationCount: 1
     step:
       - keyWord: 代理商后台返佣发放
       - keyWord: 佣金发放明细
