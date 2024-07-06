@@ -133,3 +133,22 @@ keyWord:
             $.result.items[0].totalCommission: ${__groovy(${bdTotalCommission} + ${closeDealFee} * ${bdExchangeRatio} / 100)}
             $.result.items[0].totalPartners: ${bdTotalPartners}
           assertionType: EIGHTDECIMALPLACES
+    - name: 修改返佣发放系数
+      host: ${partnersadmin_host}
+      headers:
+        Token: ${partnersadmin_token}
+      url: /partner/root/update/coefficient
+      method: POST
+      body: |
+        {"uid":${partner_uid},"remark":"${__RandomString(8,zxcvbnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVBNM1234567890,)}","coefficient":${__Random(5,95,coefficient)}}
+      assertion: [ json: { $.code: '0' } ]
+    - name: 获取合伙人返佣发放系数
+      host: ${partnersadmin_host}
+      headers:
+        Token: ${partnersadmin_token}
+      url: /partner/root/info/${partner_uid}
+      method: GET
+      extractor:
+        - json:
+            coefficient: $.result.rebateCoefficient
+      assertion: [ json: { $.code: '0' } ]

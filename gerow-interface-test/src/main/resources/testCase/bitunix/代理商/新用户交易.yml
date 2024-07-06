@@ -19,7 +19,7 @@ testMethod:
       - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
 
-      - keyWord: 分后台佣金发放查询-现货
+      - keyWord: 直客佣金查询-获取现货交易数据
       - keyWord: 总后台平台收益
       - keyWord: 总后台交易额
       - keyWord: 总后台手续费
