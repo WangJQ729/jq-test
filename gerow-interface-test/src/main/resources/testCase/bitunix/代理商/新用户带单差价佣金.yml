@@ -13,7 +13,7 @@ testMethod:
   - name: 用户申请成为交易员
     dataProvider:
       - futureRatio: ${__Random(0,${totalFutureRatio})}
-        exchangeRatio: ${__Random(0,${totalFutureRatio})}
+        exchangeRatio: ${__Random(0,${totalExchangeRatio})}
     step:
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
