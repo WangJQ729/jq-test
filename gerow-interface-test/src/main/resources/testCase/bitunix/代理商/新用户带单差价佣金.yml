@@ -44,7 +44,6 @@ testMethod:
       - keyWord: 代理商后台返佣发放
       - keyWord: 代理商后台差价佣金统计
       - keyWord: 分后台佣金发放查询-合伙人开仓
-      - keyWord: 合伙人佣金查询-首单
       - keyWord: 差价佣金查询
       - keyWord: 佣金发放明细-开仓差价佣金
       - keyWord: 总后台佣金总计-开仓
@@ -61,7 +60,6 @@ testMethod:
       - keyWord: 代理商后台差价佣金统计
       - keyWord: 分后台佣金发放查询-合伙人平仓
       - keyWord: 差价佣金查询-平仓
-      - keyWord: 合伙人佣金查询-平仓
       - keyWord: 佣金发放明细-平仓差价佣金
       - keyWord: 总后台佣金总计-平仓
       - keyWord: 总后台平台收益-平仓

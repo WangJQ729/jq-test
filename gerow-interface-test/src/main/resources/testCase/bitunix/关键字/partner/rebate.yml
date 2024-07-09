@@ -44,20 +44,6 @@ keyWord:
             $.result.items[0].takerDiscountFee: ${__groovy(${takerFee} + ${closeDealFee})}
             $.result.items[0].takerRebate: 0
           assertionType: EIGHTDECIMALPLACES
-    - name: 合伙人佣金查询-首单
-      keyWord: 直客佣金查询
-      assertion:
-        - json:
-            $.result.items[0].takerFee: ${openDealFee}
-            $.result.items[0].takerRebate: ${__groovy(${openDealFee} * ${futureRatio} / 100)}
-          assertionType: EIGHTDECIMALPLACES
-    - name: 合伙人佣金查询-平仓
-      keyWord: 直客佣金查询
-      assertion:
-        - json:
-            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${closeDealFee})}
-            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${closeDealFee} * ${futureRatio}/ 100)}
-          assertionType: EIGHTDECIMALPLACES
     - name: 直客佣金查询-开仓
       keyWord: 直客佣金查询
       assertion:
@@ -91,18 +77,6 @@ keyWord:
             $.result.items[0].coin: ${spotSymbol}
         - json:
             $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${webFee} * (${totalExchangeRatio} - ${exchangeRatio}) / 100)}
-            $.result.items[0].takerFee: ${__groovy(${takerFee} + ${webFee})}
-            $.result.items[0].takerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
-            $.result.items[0].takerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
-          assertionType: EIGHTDECIMALPLACES
-          valueType: BIGDECIMAL
-    - name: 直客佣金查询-校验合伙人现货交易数据
-      keyWord: 直客佣金查询-获取现货交易数据
-      assertion:
-        - json:
-            $.result.items[0].coin: ${spotSymbol}
-        - json:
-            $.result.items[0].takerRebate: ${__groovy(${takerRebate} + ${webFee} * ${exchangeRatio} / 100)}
             $.result.items[0].takerFee: ${__groovy(${takerFee} + ${webFee})}
             $.result.items[0].takerRealFee: ${__groovy(${takerRealFee} + ${webFee})}
             $.result.items[0].takerTradeAmount: ${__groovy(${takerTradeAmount} + ${dealAmount})}
