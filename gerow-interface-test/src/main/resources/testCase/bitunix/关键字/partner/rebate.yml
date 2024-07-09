@@ -96,6 +96,9 @@ keyWord:
         rebateUid: ${userId}
       assertion:
         - json:
+            $.result.items[0].takerTradeAmount: ${__groovy(${openAvgPrice} * ${openAmount})}
+          assertionType: TWODECIMALPLACES
+        - json:
             $.result.items[0].takerFee: ${openDealFee}
             $.result.items[0].takerRealFee: ${openDealFee}
             $.result.items[0].rebateRatio: ${__groovy((${totalFutureRatio} - ${futureRatio}) / 100)}
@@ -104,6 +107,9 @@ keyWord:
     - keyWord: 差价佣金查询
       name: 差价佣金查询-平仓
       assertion:
+        - json:
+            $.result.items[0].takerTradeAmount: ${__groovy(${closeAvgPrice} * ${closeAmount})}
+          assertionType: TWODECIMALPLACES
         - json:
             $.result.items[0].takerFee: ${closeDealFee}
             $.result.items[0].takerRealFee: ${closeDealFee}
