@@ -66,3 +66,5 @@ testMethod:
             assertionType: EIGHTDECIMALPLACES
       - keyWord: 代理商后台返佣发放
       - keyWord: BD统计-平仓
+#      - keyWord: 变更BD
+#      - keyWord: BD统计
