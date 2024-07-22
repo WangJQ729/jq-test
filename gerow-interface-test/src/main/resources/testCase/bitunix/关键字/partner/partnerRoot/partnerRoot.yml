@@ -34,7 +34,7 @@ keyWord:
         Token: ${partnersadmin_token}
       method: POST
       body: |
-        {"page":1,"pageSize":10,"uid":"${partner_uid}","registerStart":"","registerEnd":"","pageIndex":1}
+        {"page":1,"pageSize":10,"partnerInfo":"${partner_uid}","parentUid":null}
       extractor:
         - json:
             totalExchangeRatio: $.result.items[0].exchangeRatio
