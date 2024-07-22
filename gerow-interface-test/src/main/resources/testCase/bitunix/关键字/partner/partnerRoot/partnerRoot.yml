@@ -34,7 +34,7 @@ keyWord:
         Token: ${partnersadmin_token}
       method: POST
       body: |
-        {"page":1,"pageSize":10,"uid":"${partner_uid}","registerStart":"","registerEnd":"","pageIndex":1}
+        {"page":1,"pageSize":10,"partnerInfo":"${partner_uid}","parentUid":null}
       extractor:
         - json:
             totalExchangeRatio: $.result.items[0].exchangeRatio
@@ -47,7 +47,7 @@ keyWord:
         Token: ${partnersadmin_token}
       method: POST
       body: |
-        {"bdUid":1,"uid":${partner_uid}}
+        {"bdUid":7,"uid":${partner_uid}}
       assertion: [ json: { $.code: '0' } ]
     - name: BD统计
       untilWait: 10
@@ -60,8 +60,8 @@ keyWord:
         page: 1
         pageSize: 10
         partnerInfo: ${bd_name}
-        startTime: ${__PlusDay(yyyy-MM-dd,0,)}T00:00:00.000Z
-        endTime: ${__PlusDay(yyyy-MM-dd,0,)}T23:59:59.999Z
+        startTime: ${__PlusDay(yyyy-MM-dd,-1,)}T16:00:00.000Z
+        endTime: ${__PlusDay(yyyy-MM-dd,0,)}T16:00:00.000Z
         orderType: 4
         orderDirection: DESC
       extractor:
