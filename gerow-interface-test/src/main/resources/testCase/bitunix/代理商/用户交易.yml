@@ -9,7 +9,7 @@ beforeClass:
     - keyWord: 获取合伙人信息
     - keyWord: 分后台获取用户信息
     - keyWord: 获取合伙人邀请码
-    - keyWord: 合伙人列表
+    - keyWord: 获取合伙人返佣比例
     - keyWord: 通过uid获取用户token
 testMethod:
   - name: 现货

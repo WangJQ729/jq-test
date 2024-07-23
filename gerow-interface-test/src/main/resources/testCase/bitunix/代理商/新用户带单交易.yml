@@ -8,7 +8,7 @@ beforeClass:
     - keyWord: 获取合伙人信息
     - keyWord: 登录partnersadmin
     - keyWord: 获取合伙人邀请码
-    - keyWord: 合伙人列表
+    - keyWord: 获取合伙人返佣比例
 testMethod:
   - name: 用户申请成为交易员
     step:

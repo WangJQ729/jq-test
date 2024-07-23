@@ -44,11 +44,11 @@ keyWord:
             openDealFee: $.result.items[0].fee
             openOrderId: $.result.items[0].orderId
             openAvgPrice: $.result.items[0].avgPrice
-            openAmount: $.result.items[0].amount
+            openAmount: $.result.items[0].dealAmount
     - name: 直客合约历史委托-平仓
       keyWord: 直客合约历史委托
       extractor:
         - json:
             closeDealFee: $.result.items[?(@.orderId != '${openOrderId}')].fee
             closeAvgPrice: $.result.items[?(@.orderId != '${openOrderId}')].avgPrice
-            closeAmount: $.result.items[?(@.orderId != '${openOrderId}')].amount
+            closeAmount: $.result.items[?(@.orderId != '${openOrderId}')].dealAmount

@@ -11,7 +11,7 @@ beforeClass:
     - keyWord: 获取合伙人信息
     - keyWord: 登录partnersadmin
     - keyWord: 获取合伙人邀请码
-    - keyWord: 合伙人列表
+    - keyWord: 获取合伙人返佣比例
     - keyWord: 新建社区活动
     - keyWord: 社区活动列表
 beforeMethod:

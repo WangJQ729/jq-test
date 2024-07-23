@@ -76,14 +76,14 @@ keyWord:
         - json:
             openDealFee: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].dealFee
             openAvgPrice: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].averagePrice
-            openAmount: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].amount
+            openAmount: $.data.records[?(@.orderId=='${orderId}' && @.side==${side})].dealAmount
     - keyWord: U本位合约历史委托
       name: U本位合约历史委托-平仓
       extractor:
         - json:
             closeDealFee: $.data.records[?(@.orderId=='${closeOrderId}')].dealFee
             closeAvgPrice: $.data.records[?(@.orderId=='${closeOrderId}')].averagePrice
-            closeAmount: $.data.records[?(@.orderId=='${closeOrderId}')].amount
+            closeAmount: $.data.records[?(@.orderId=='${closeOrderId}')].dealVolume
     - name: 合约划转现货
       url: /futures/futures/assets/futures2spot
       method: POST
