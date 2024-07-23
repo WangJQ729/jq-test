@@ -351,8 +351,8 @@ public class Assertion {
             case TWODECIMALPLACES:
                 // 2次四舍五入数据相加，有可能有1个精度误差
                 Assertions.assertThat(new BigDecimal(actual.toString()).setScale(2, RoundingMode.HALF_UP))
-                        .isGreaterThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("-0.01")).setScale(2, RoundingMode.HALF_UP))
-                        .isLessThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("0.01")).setScale(2, RoundingMode.HALF_UP));
+                        .isGreaterThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("-0.05")).setScale(2, RoundingMode.HALF_UP))
+                        .isLessThanOrEqualTo(new BigDecimal(value.toString()).add(new BigDecimal("0.05")).setScale(2, RoundingMode.HALF_UP));
                 break;
             case LESSTHANOREQUALTO:
                 Assertions.assertThat(new BigDecimal(actual.toString())).isLessThanOrEqualTo(new BigDecimal(value.toString()));

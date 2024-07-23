@@ -25,6 +25,17 @@ keyWord:
             partner_uid: $.result.uid
             partner_name: $.result.username
           site: TESTSUITE
+    - name: 获取合伙人返佣比例
+      host: ${partners_host}
+      url: /partner/info/${partner_uid}
+      headers:
+        Token: ${partner_token}
+      method: GET
+      extractor:
+        - json:
+            totalExchangeRatio: $.result.exchangeRatio
+            totalFutureRatio: $.result.futureRatio
+          site: TESTSUITE
     - name: 获取合伙人邀请码
       host: ${partners_host}
       url: /partner/statistics/myInvitation

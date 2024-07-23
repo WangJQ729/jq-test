@@ -7,7 +7,7 @@ beforeMethod:
     - keyWord: 登录partnersadmin
     - keyWord: 登录partners
     - keyWord: 获取合伙人信息
-    - keyWord: 合伙人列表
+    - keyWord: 获取合伙人返佣比例
 testMethod:
   - name: 邀请合伙人
     step:
