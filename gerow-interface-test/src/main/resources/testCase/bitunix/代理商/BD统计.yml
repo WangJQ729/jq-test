@@ -5,6 +5,7 @@ beforeClass:
   name: 登录合伙人系统
   step:
     - keyWord: 登录partnersadmin
+    - keyWord: 登录partnersadminGA验证
     - keyWord: 登录bdAdmin
 testMethod:
   - name: 更改BD
