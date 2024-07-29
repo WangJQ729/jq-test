@@ -10,6 +10,16 @@ keyWord:
         - json:
             partnersadmin_token: $.result.token
           site: TESTSUITE
+    - name: 登录partnersadminGA验证
+      host: ${partnersadmin_host}
+      url: /partner/root/confirm_login
+      method: POST
+      body: |
+        {"verificationCode":"${__GoogleAuthenticator(${partnersAdminGoogleCode})}","token":"${partnersadmin_token}"}
+      extractor:
+        - json:
+            partnersadmin_token: $.result
+          site: TESTSUITE
     - name: 获取BD列表
       host: ${partnersadmin_host}
       url: /partner/root/bdList
