@@ -28,7 +28,7 @@ data:
     # 体验金ID
     couponId: 5
     # 合约交易对、开仓数量
-    symbol: DOGEUSDT
+    symbol: ${__RandomEnum(1000SHIBUSDT|DOGEUSDT)}
     amount: ${__Random(888,3888)}
     # 现货币种
     spotSymbol: BTC

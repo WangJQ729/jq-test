@@ -4,11 +4,46 @@ invocationCount: 1
 testMethod:
   - name: 平仓
     dataProvider:
-#      - userId: 50936
-      - userId: 50934
-#      - userId: 50931
-#      - userId: 50929
-#      - userId: 50927
+      - userId: 23697
+      - userId: 23696
+      - userId: 23695
+      - userId: 23694
+      - userId: 23693
+      - userId: 23692
+      - userId: 23691
+      - userId: 23690
+      - userId: 23689
+      - userId: 23688
+      - userId: 23687
+      - userId: 23686
+      - userId: 23685
+      - userId: 23684
+      - userId: 23683
+      - userId: 23682
+      - userId: 23681
+      - userId: 23680
+      - userId: 23679
+      - userId: 23678
+      - userId: 23677
+      - userId: 23676
+      - userId: 23675
+      - userId: 23674
+      - userId: 23673
+      - userId: 23672
+      - userId: 23671
+      - userId: 23670
+      - userId: 23669
+      - userId: 23668
+      - userId: 23667
+      - userId: 23666
+      - userId: 23665
+      - userId: 23664
+      - userId: 23663
+      - userId: 23662
+      - userId: 23661
+      - userId: 23660
+      - userId: 23659
+      - userId: 23658
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 持有仓位信息

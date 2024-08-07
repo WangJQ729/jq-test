@@ -19,8 +19,8 @@ data:
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
     Accept-Language: zh_CN
     couponId: 934
-    symbol: BTCUSDT
-    amount: 0.05
+    symbol: 1000SHIBUSDT
+    amount: ${__Random(999,99999)}
     userId: 16281
 client:
   protocol: http
