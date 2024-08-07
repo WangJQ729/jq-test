@@ -17,9 +17,12 @@ data:
     spotAdminGoogleCode: HCOHDFF5JO2GUMAC
     Accept-Language: zh_CN
     couponId: 567
-    symbol: BTCUSDT
+    # 合约交易对、开仓数量
+    symbol: ${__RandomEnum(DOGEUSDT|1000SHIBUSDT)}
+    amount: ${__Random(888,38888)}
+    # 现货币种
     spotSymbol: BTC
-    amount: 0.05
+    # 带单主账户UID ,需要使用非合伙人体系下的uid
     userId: 11989
 client:
   protocol: https
