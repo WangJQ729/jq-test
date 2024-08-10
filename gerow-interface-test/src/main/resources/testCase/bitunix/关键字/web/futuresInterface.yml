@@ -7,7 +7,7 @@ keyWord:
       headers:
         Token: ${token}
       body: |
-        {"amount":"${amount}","side":"${__Random(1,2)}","symbol":"${symbol}","reductionOnly":false}
+        {"amount":"${__Random(${amount_min},${amount_max})}","side":"${__Random(1,2)}","symbol":"${__RandomEnum(1000SHIBUSDT|DOGEUSDT,symbol)}","reductionOnly":false}
       extractor:
         - json:
             orderId: $.data.orderId
@@ -15,13 +15,6 @@ keyWord:
       name: 带单子账户市价开仓
       headers:
         Token: ${traderToken}
-    - keyWord: 市价开仓
-      name: 市价开仓-指定交易对
-      bodyEditor:
-        json:
-          $.amount: '${amount}'
-          $.side: '${side}'
-          $.symbol: '${symbol}'
     - name: 市价平仓
       url: /futures/futures/position/close/market/all
       method: POST

@@ -29,7 +29,7 @@ testMethod:
       - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
       - keyWord: 活动报名
-      - keyWord: 市价开仓-指定交易对
+      - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: 市价平仓
       - keyWord: 统计活动数据
@@ -55,7 +55,7 @@ testMethod:
       - keyWord: 快捷注册
       - keyWord: 增加合约账户资产-指定资产
       - keyWord: 通过uid获取用户token
-      - keyWord: 市价开仓-指定交易对
+      - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: 市价平仓
       - keyWord: 统计活动数据
