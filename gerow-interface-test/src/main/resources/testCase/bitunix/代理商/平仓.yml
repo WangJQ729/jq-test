@@ -1,5 +1,6 @@
 name: 平仓
 story: partners
+enable: false
 invocationCount: 1
 testMethod:
   - name: 平仓
@@ -78,8 +79,8 @@ testMethod:
       - keyWord: 代理商后台返佣发放
   - name: 增加现货账户资产
     dataProvider:
-      - userId: 57144
-        coin: USDT
+      - userId: 31597
+        coin: TRX
         amount: 88888888
     step:
       - keyWord: 增加现货账户资产

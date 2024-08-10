@@ -17,10 +17,16 @@ data:
     password: Aa123456
     spotAdminGoogleCode: OQNW3ZHMS7UIVO2F
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
+    partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
     Accept-Language: zh_CN
     couponId: 934
-    symbol: 1000SHIBUSDT
-    amount: ${__Random(999,99999)}
+    # 合约交易对、开仓数量
+    symbol: ${__RandomEnum(1000SHIBUSDT|DOGEUSDT)}
+    amount_min: 888
+    amount_max: 3888
+    # 现货币种
+    spotSymbol: BTC
+    # 带单主账户UID ,需要使用非合伙人体系下的uid
     userId: 16281
 client:
   protocol: http
