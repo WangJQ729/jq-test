@@ -34,7 +34,5 @@ keyWord:
     - name: 代理商后台差价佣金统计
       host: ${partnersadmin_host}
       url: /partner/rebate/partnerSubStatistic
-      headers:
-        Token: ${partner_token}
       method: GET
       assertion: [ json: { $.code: '0' } ]

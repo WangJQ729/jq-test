@@ -1,119 +1,29 @@
 name: 新用户合约交易
 story: partners
-enable: false
-invocationCount: 888
-dataProvider:
-  - partner_email: gerow1720607529943@live.com
-#beforeClass:
-#  name: 登录合伙人后台
-#  step:
-#    - keyWord: 登录partners
-#    - keyWord: 获取合伙人信息
-#    - keyWord: 登录partnersadmin
-#    - keyWord: 登录partnersadminGA验证
-#    - keyWord: 获取合伙人返佣比例
-#    - keyWord: 获取合伙人邀请码
+invocationCount: 1
+beforeClass:
+  name: 登录合伙人后台
+  step:
+    - keyWord: 登录partners
+    - keyWord: 获取合伙人信息
+    - keyWord: 登录partnersadmin
+    - keyWord: 登录partnersadminGA验证
+    - keyWord: 获取合伙人返佣比例
+    - keyWord: 获取合伙人邀请码
 beforeMethod:
   name: 测试前获取初始信息
   step:
     - keyWord: 代理商后台返佣发放
 testMethod:
   - name: 用户市价开仓
-    dataProvider:
-      - userId: 77247
-      - userId: 77248
-      - userId: 77300
-      - userId: 77301
-      - userId: 77302
-      - userId: 77303
-      - userId: 77310
-      - userId: 77311
-      - userId: 77319
-      - userId: 77322
-      - userId: 77331
-      - userId: 77708
-      - userId: 77709
-      - userId: 77710
-      - userId: 77711
-      - userId: 77712
-      - userId: 77713
-      - userId: 77715
-      - userId: 77718
-      - userId: 77721
-      - userId: 91069
-      - userId: 157705
-      - userId: 157706
-      - userId: 157713
-      - userId: 157720
-      - userId: 157721
-      - userId: 157722
-      - userId: 157723
-      - userId: 157724
-      - userId: 157725
-      - userId: 157738
-      - userId: 157739
-      - userId: 157740
-      - userId: 157741
-      - userId: 157748
-      - userId: 157749
-      - userId: 157756
-      - userId: 157757
-      - userId: 157758
-      - userId: 157765
-      - userId: 157766
-      - userId: 157773
-      - userId: 157774
-      - userId: 157775
-      - userId: 157782
-      - userId: 157783
-      - userId: 157784
-      - userId: 157785
-      - userId: 157786
-      - userId: 157787
-      - userId: 157788
-      - userId: 157789
-      - userId: 157796
-      - userId: 157797
-      - userId: 157798
-      - userId: 157799
-      - userId: 157800
-      - userId: 157807
-      - userId: 157808
-      - userId: 157809
-      - userId: 157810
-      - userId: 157811
-      - userId: 157818
-      - userId: 157819
-      - userId: 157820
-      - userId: 157821
-      - userId: 157822
-      - userId: 157823
-      - userId: 157824
-      - userId: 157831
-      - userId: 157832
-      - userId: 157833
-      - userId: 157834
-      - userId: 157835
-      - userId: 157842
-      - userId: 157843
-      - userId: 157844
-      - userId: 157845
-      - userId: 157852
-      - userId: 157853
-      - userId: 157854
-      - userId: 157855
-      - userId: 157856
-      - userId: 157857
-      - userId: 157858
     step:
-      #      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
-      #      - keyWord: 分后台获取用户信息
-      #      - keyWord: 增加合约账户资产
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 分后台获取用户信息
+      - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: 市价平仓
-        sleep: 60000
   - name: 用户成为合伙人市价开仓
     dataProvider:
       - futureRatio: ${__Random(0,${totalFutureRatio})}
@@ -121,7 +31,6 @@ testMethod:
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产
-        sleep: 20000
       - keyWord: 通过uid获取用户token
       - keyWord: 升级为合伙人
       - keyWord: 市价开仓
@@ -131,7 +40,6 @@ testMethod:
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产
-        sleep: 20000
       - keyWord: 通过uid获取用户token
       - keyWord: 发放体验金优惠券
       - keyWord: 合约体验金券列表
