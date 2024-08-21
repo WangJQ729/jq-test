@@ -7,7 +7,7 @@ keyWord:
       headers:
         Token: ${token}
       body: |
-        {"amount":"${__Random(${amount_min},${amount_max})}","side":"${__Random(1,2)}","symbol":"${__RandomEnum(1000SHIBUSDT|DOGEUSDT,symbol)}","reductionOnly":false}
+        {"amount":"${__Random(${amount_min},${amount_max})}","side":"${__Random(1,2)}","symbol":"${symbol}","reductionOnly":false}
       extractor:
         - json:
             orderId: $.data.orderId

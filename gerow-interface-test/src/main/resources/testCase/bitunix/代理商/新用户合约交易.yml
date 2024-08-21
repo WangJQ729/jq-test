@@ -1,6 +1,18 @@
 name: 新用户合约交易
 story: partners
 invocationCount: 1
+dataProvider:
+  - partner_email: gerow1723704873881@126.com
+  - partner_email: gerow1724049669534@sina.com
+  - partner_email: gerow1724049445706@icloud.com
+  - partner_email: gerow1724049220190@aliyun.com
+  - partner_email: gerow1724048996352@me.com
+  - partner_email: gerow1724048769465@163.com
+  - partner_email: gerow1723714420532@gmail.com
+  - partner_email: gerow1723714417501@yahoo.com
+  - partner_email: gerow1723714414230@yahoo.com
+  - partner_email: gerow1723714411113@bitunix.com
+  - partner_email: gerow1723714407606@126.com
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -9,22 +21,24 @@ beforeClass:
     - keyWord: 登录partnersadmin
     - keyWord: 登录partnersadminGA验证
     - keyWord: 获取合伙人返佣比例
+    - keyWord: 创建邀请码
     - keyWord: 获取合伙人邀请码
-beforeMethod:
-  name: 测试前获取初始信息
-  step:
-    - keyWord: 代理商后台返佣发放
+#    - keyWord: 代理商后台返佣发放
+#    - keyWord: 代理商后台差价佣金发放
 testMethod:
   - name: 用户市价开仓
+    invocationCount: 10
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
-      - keyWord: 分后台获取用户信息
+      #      - keyWord: 分后台获取用户信息
       - keyWord: 增加合约账户资产
       - keyWord: 通过uid获取用户token
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
+        sleep: 15000
       - keyWord: 市价平仓
   - name: 用户成为合伙人市价开仓
+    invocationCount: 1
     dataProvider:
       - futureRatio: ${__Random(0,${totalFutureRatio})}
         exchangeRatio: ${__Random(0,${totalExchangeRatio})}
@@ -35,8 +49,10 @@ testMethod:
       - keyWord: 升级为合伙人
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
+        sleep: 15000
       - keyWord: 市价平仓
   - name: 用户体验金抵扣
+    invocationCount: 2
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产
@@ -46,4 +62,5 @@ testMethod:
       - keyWord: 激活体验金券
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
+        sleep: 15000
       - keyWord: 市价平仓

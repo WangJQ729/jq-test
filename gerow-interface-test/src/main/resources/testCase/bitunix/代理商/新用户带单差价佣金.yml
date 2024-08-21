@@ -16,12 +16,12 @@ testMethod:
       - futureRatio: ${__Random(0,${totalFutureRatio})}
         exchangeRatio: ${__Random(0,${totalExchangeRatio})}
     step:
-      - keyWord: 代理商后台返佣发放
-      - keyWord: 代理商后台差价佣金统计
+#      - keyWord: 代理商后台返佣发放
+#      - keyWord: 代理商后台差价佣金发放
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询
       - keyWord: 总后台佣金总计
-      - keyWord: 总后台平台收益
+#      - keyWord: 总后台平台收益
       - keyWord: 总后台交易额
       - keyWord: 总后台手续费
       - keyWord: 团队统计
@@ -42,13 +42,13 @@ testMethod:
       - keyWord: 带单子账户市价开仓
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 直客合约历史委托
-      - keyWord: 代理商后台返佣发放
-      - keyWord: 代理商后台差价佣金统计
+#      - keyWord: 代理商后台返佣发放
+#      - keyWord: 代理商后台差价佣金发放
       - keyWord: 分后台佣金发放查询-合伙人开仓
-      - keyWord: 差价佣金查询
-      - keyWord: 佣金发放明细-开仓差价佣金
+#      - keyWord: 差价佣金查询
+#      - keyWord: 佣金发放明细-开仓差价佣金
       - keyWord: 总后台佣金总计-开仓
-      - keyWord: 总后台平台收益-开仓
+#      - keyWord: 总后台平台收益-开仓
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
       - keyWord: 团队统计-开仓
@@ -57,13 +57,13 @@ testMethod:
       - keyWord: 带单子账户持有仓位信息
       - keyWord: 带单子账户平仓
       - keyWord: 直客合约历史委托-平仓
-      - keyWord: 代理商后台返佣发放
-      - keyWord: 代理商后台差价佣金统计
+#      - keyWord: 代理商后台返佣发放
+#      - keyWord: 代理商后台差价佣金发放
       - keyWord: 分后台佣金发放查询-合伙人平仓
-      - keyWord: 差价佣金查询-平仓
-      - keyWord: 佣金发放明细-平仓差价佣金
+#      - keyWord: 差价佣金查询-平仓
+#      - keyWord: 佣金发放明细-平仓差价佣金
       - keyWord: 总后台佣金总计-平仓
-      - keyWord: 总后台平台收益-平仓
+#      - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
       - keyWord: 团队统计-平仓

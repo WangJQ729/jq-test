@@ -35,18 +35,18 @@ testMethod:
       - keyWord: 创建推广页
   - name: 页面名称已存在
     dataProvider:
-      - shortLink: gerow1
+      - shortLink: ${vipCode}
         url: ${web_host}/browser/activity/partner-trading?actCode=gerow1716546569258
         code: '30041'
     step:
       - keyWord: 创建推广页
         dataProvider:
           - Accept-Language: en_US
-            msg: Short link already existed, please enter again.
+            msg: Short link already existed, please enter again..
           - Accept-Language: zh_CN
-            msg: 页面名称已存在，请重新输入
+            msg: 短链名称已存在，请重新输入
           - Accept-Language: zh_TW
-            msg: 頁面名稱已存在，請重新輸入
+            msg: 短鏈名稱已存在，請重新輸入
           - Accept-Language: ru-RU
             msg: Короткая ссылка уже существовала, пожалуйста, введите еще раз.
           - Accept-Language: tr-TR
