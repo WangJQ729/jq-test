@@ -9,15 +9,15 @@ beforeClass:
     - keyWord: 登录partnersadmin
     - keyWord: 登录partnersadminGA验证
     - keyWord: 获取合伙人返佣比例
-#    - keyWord: 创建邀请码
+    #    - keyWord: 创建邀请码
     - keyWord: 获取合伙人邀请码
 beforeMethod:
   name: 测试前获取初始信息
   step:
-    - keyWord: 代理商后台返佣发放
-    - keyWord: 代理商后台差价佣金统计
+#    - keyWord: 代理商后台返佣发放
+#    - keyWord: 代理商后台差价佣金发放
     - keyWord: 总后台佣金总计
-    - keyWord: 总后台平台收益
+#    - keyWord: 总后台平台收益
     - keyWord: 总后台交易额
     - keyWord: 总后台手续费
     - keyWord: 分后台佣金发放查询
@@ -30,7 +30,7 @@ testMethod:
       - keyWord: 分后台获取用户信息
       - keyWord: 通过uid获取用户token
       - keyWord: 直客佣金查询-获取现货交易数据
-      - keyWord: 总后台平台收益
+#      - keyWord: 总后台平台收益
       - keyWord: 总后台交易额
       - keyWord: 总后台手续费
       - keyWord: 团队统计
@@ -44,7 +44,7 @@ testMethod:
       - keyWord: 直客佣金查询-校验现货交易数据
       - keyWord: 分后台佣金发放查询-现货
       - keyWord: 总后台佣金总计
-      - keyWord: 总后台平台收益
+#      - keyWord: 总后台平台收益
       - keyWord: 总后台交易额-现货
       - keyWord: 总后台手续费
       - keyWord: 团队统计-现货
@@ -65,6 +65,7 @@ testMethod:
       - keyWord: 现货市价买入
       - keyWord: web现货历史委托
       - keyWord: 代理商现货历史委托
+      - keyWord: 佣金发放明细-下级合伙人现货交易
   - name: 用户市价开仓
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
@@ -74,23 +75,21 @@ testMethod:
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: U本位合约历史委托
-      - keyWord: 代理商后台返佣发放
-      - keyWord: 佣金发放明细
+      - keyWord: 直客佣金查询-首单
       - keyWord: 分后台佣金发放查询-直客开仓
       - keyWord: 总后台佣金总计-开仓
-      - keyWord: 总后台平台收益-开仓
+#      - keyWord: 总后台平台收益-开仓
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
       - keyWord: 直客佣金查询-首单
       - keyWord: 团队统计-开仓
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
-      - keyWord: 代理商后台返佣发放
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-直客平仓
       - keyWord: 直客佣金查询-平仓
       - keyWord: 总后台佣金总计-平仓
-      - keyWord: 总后台平台收益-平仓
+#      - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
       - keyWord: 团队统计-平仓
@@ -106,25 +105,25 @@ testMethod:
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: U本位合约历史委托
-      - keyWord: 代理商后台返佣发放
-      - keyWord: 代理商后台差价佣金统计
+#      - keyWord: 代理商后台返佣发放
+#      - keyWord: 代理商后台差价佣金发放
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-合伙人开仓
       - keyWord: 总后台佣金总计-开仓
-      - keyWord: 总后台平台收益-开仓
+#      - keyWord: 总后台平台收益-开仓
       - keyWord: 总后台手续费-开仓
       - keyWord: 总后台交易额-开仓
       - keyWord: 团队统计-开仓
-      - keyWord: 差价佣金查询
+#      - keyWord: 差价佣金查询
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
-      - keyWord: 代理商后台返佣发放
-      - keyWord: 代理商后台差价佣金统计
+#      - keyWord: 代理商后台返佣发放
+#      - keyWord: 代理商后台差价佣金发放
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-合伙人平仓
-      - keyWord: 差价佣金查询-平仓
+#      - keyWord: 差价佣金查询-平仓
       - keyWord: 总后台佣金总计-平仓
-      - keyWord: 总后台平台收益-平仓
+#      - keyWord: 总后台平台收益-平仓
       - keyWord: 总后台手续费-平仓
       - keyWord: 总后台交易额-平仓
       - keyWord: 团队统计-平仓
@@ -141,13 +140,11 @@ testMethod:
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: U本位合约历史委托
-      - keyWord: 代理商后台返佣发放
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-体验金抵扣
       - keyWord: 直客佣金查询-开仓体验金抵扣
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
-      - keyWord: 代理商后台返佣发放
       - keyWord: 佣金发放明细
       - keyWord: 分后台佣金发放查询-平仓体验金抵扣
       - keyWord: 直客佣金查询-平仓体验金抵扣

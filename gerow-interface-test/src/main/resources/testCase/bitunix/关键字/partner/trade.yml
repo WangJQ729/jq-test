@@ -13,7 +13,7 @@ keyWord:
       method: GET
       extractor:
         - json:
-            partnerFee: $.result.fee
+            spotFee: $.result.fee
     - name: 合约当前持仓
       host: ${partners_host}
       url: /partner/trade/position/pending

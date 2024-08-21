@@ -129,9 +129,7 @@ keyWord:
         pageSize: 10
         tradeType: futures
         symbol: ${symbol}
-      #        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
-      #        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
-      assertion: [json: {$.code: '0'}]
+      assertion: [ json: { $.code: '0' } ]
       extractor:
         - json:
             tradeAmount: $.result.items[0].tradeAmount
@@ -200,6 +198,7 @@ keyWord:
     - name: 佣金发放明细
       host: ${partners_host}
       url: /partner/rebate/detail/list
+      untilWait: 5
       headers:
         Token: ${partner_token}
       method: GET
@@ -207,44 +206,65 @@ keyWord:
         showBelow: true
         page: 1
         pageSize: 10
-        minSentTime: ${__timeShift(yyyy-MM-dd,,P-1D,zh_CN,)}T16:00:00.000Z
-        maxSentTime: ${__timeShift(yyyy-MM-dd,,,zh_CN,)}T16:00:00.000Z
-      assertion: [json: {$.code: '0'}]
+        tradeType: futures
+        symbol: ${symbol}
+        partnerInfo: ${partner_uid}
+      assertion: [ json: { $.code: '0' } ]
     - keyWord: 佣金发放明细
       name: 佣金发放明细-开仓
       assertion:
         - json:
             $.code: '0'
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].fee[0]: ${openDealFee}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${openDealFee} * ${futureSelfRatio} / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].fee[0]: ${openDealFee}
+            $.result.items[?(@.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${openDealFee} * ${futureSelfRatio} / 100)}
           assertionType: EIGHTDECIMALPLACES
     - keyWord: 佣金发放明细
       name: 佣金发放明细-平仓
       assertion:
         - json:
             $.code: '0'
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].fee[0]: ${closeDealFee}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${closeDealFee} * ${futureSelfRatio} / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].fee[0]: ${closeDealFee}
+            $.result.items[?(@.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${closeDealFee} * ${futureSelfRatio} / 100)}
           assertionType: EIGHTDECIMALPLACES
     - keyWord: 佣金发放明细
       name: 佣金发放明细-开仓差价佣金
       assertion:
         - json:
             $.code: '0'
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${openDealFee}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${openDealFee} * ${futureRatio} / 100)}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].rebatePayable[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].subPartnerRebate[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${openDealFee}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${openDealFee} * ${futureRatio} / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].rebatePayable[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].subPartnerRebate[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${openDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
           assertionType: EIGHTDECIMALPLACES
     - keyWord: 佣金发放明细
       name: 佣金发放明细-平仓差价佣金
       assertion:
         - json:
             $.code: '0'
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${closeDealFee}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${closeDealFee} * ${futureRatio} / 100)}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].rebatePayable[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].subPartnerRebate[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
-            $.result.items[?(@.amountSendStatus=='sent' && @.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${closeDealFee}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${closeDealFee} * ${futureRatio} / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].rebatePayable[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].subPartnerRebate[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+            $.result.items[?(@.partnerId==${partner_uid})].partnerRebate[0]: ${__groovy(${closeDealFee} * (${totalFutureRatio} - ${futureRatio}) / 100)}
+          assertionType: EIGHTDECIMALPLACES
+    - keyWord: 佣金发放明细
+      name: 佣金发放明细-下级合伙人现货交易
+      variables:
+        showBelow: true
+        tradeType: exchange
+        partnerInfo: ${userId}
+        symbol: ${spotSymbol}USDT
+        page: 1
+        pageSize: 10
+      assertion:
+        - json:
+            $.code: '0'
+        - json:
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].fee[0]: ${webFee}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].realFee[0]: ${webFee}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].subPartnerRebate[0]: 0
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].tradeAmount[0]: ${dealAmount}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].partnerRebate[0]: ${__groovy(${webFee} * ${exchangeRatio} / 100)}
+            $.result.items[?(@.partnerId==${__uidIdToShowId(${userId})})].userRebate[0]: ${__groovy(${webFee} * ${exchangeRatio} / 100)}
           assertionType: EIGHTDECIMALPLACES

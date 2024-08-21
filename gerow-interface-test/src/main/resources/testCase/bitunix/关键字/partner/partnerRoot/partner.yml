@@ -31,7 +31,7 @@ keyWord:
         endTime: ${__time()}
       method: GET
       assertion: [ json: { $.code: '0' } ]
-    - name: 代理商后台差价佣金统计
+    - name: 代理商后台差价佣金发放
       host: ${partnersadmin_host}
       url: /partner/rebate/partnerSubStatistic
       method: GET
