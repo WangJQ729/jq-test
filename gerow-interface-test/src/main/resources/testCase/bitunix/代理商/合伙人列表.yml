@@ -1,73 +1,5 @@
 name: 合伙人列表
-enable: false
 story: partners
-dataProvider:
-  - partner_email: gerow1722943914640@hotmail.com
-  - partner_email: gerow1722943914425@126.com
-  - partner_email: gerow1722943914217@zoho.com
-  - partner_email: gerow1722943914004@sina.com
-  - partner_email: gerow1722943913803@hotmail.com
-  - partner_email: gerow1722943913180@mail.com
-  - partner_email: gerow1722943912768@yahoo.com
-  - partner_email: gerow1722943912969@fastmail.com
-  - partner_email: gerow1722943913398@aliyun.com
-  - partner_email: gerow1722943913602@126.com
-  - partner_email: gerow1722943912534@fastmail.com
-  - partner_email: gerow1722943912322@zoho.com
-  - partner_email: gerow1722943912120@qq.com
-  - partner_email: gerow1722943911916@me.com
-  - partner_email: gerow1722943911483@gmail.com
-  - partner_email: gerow1722943910848@163.com
-  - partner_email: gerow1722943911063@hotmail.com
-  - partner_email: gerow1722943911273@aol.com
-  - partner_email: gerow1722943911696@qq.com
-  - partner_email: gerow1722943910636@gmx.com
-  - partner_email: gerow1722943910425@bitunix.com
-  - partner_email: gerow1722943910208@qq.com
-  - partner_email: gerow1722943909997@hotmail.com
-  - partner_email: gerow1722943909788@126.com
-  - partner_email: gerow1722943909577@mail.com
-  - partner_email: gerow1722943909360@outlook.com
-  - partner_email: gerow1722943909140@gmail.com
-  - partner_email: gerow1722943908918@gmx.com
-  - partner_email: gerow1722943907851@icloud.com
-  - partner_email: gerow1722943908708@gmail.com
-  - partner_email: gerow1722943908499@qq.com
-  - partner_email: gerow1722943908293@126.com
-  - partner_email: gerow1722943908065@mail.com
-  - partner_email: gerow1722943907634@zoho.com
-  - partner_email: gerow1722943907422@live.com
-  - partner_email: gerow1722943907211@yandex.com
-  - partner_email: gerow1722943906994@gmail.com
-  - partner_email: gerow1722943906779@yahoo.com
-  - partner_email: gerow1722943906553@hotmail.com
-  - partner_email: gerow1722943906339@126.com
-  - partner_email: gerow1722943906128@zoho.com
-  - partner_email: gerow1722943905900@gmail.com
-  - partner_email: gerow1722943905685@gmail.com
-  - partner_email: gerow1722943905466@gmx.com
-  - partner_email: gerow1722943905249@sina.com
-  - partner_email: gerow1722943905034@hushmail.com
-  - partner_email: gerow1722943904813@aol.com
-  - partner_email: gerow1722943904139@zoho.com
-  - partner_email: gerow1722943903928@hotmail.com
-  - partner_email: gerow1722943904374@yahoo.com
-  - partner_email: gerow1722943903715@bitunix.io
-  - partner_email: gerow1722943903501@fastmail.com
-  - partner_email: gerow1722943903284@gmail.com
-  - partner_email: gerow1722943903069@sina.com
-  - partner_email: gerow1722943902853@qq.com
-  - partner_email: gerow1722943902426@protonmail.com
-  - partner_email: gerow1722943901770@yahoo.com
-  - partner_email: gerow1722943901994@me.com
-  - partner_email: gerow1722943902211@protonmail.com
-  - partner_email: gerow1722943902643@bitunix.io
-  - partner_email: gerow1722943901553@bitunix.io
-  - partner_email: gerow1722943901339@live.com
-  - partner_email: gerow1722943901127@live.com
-  - partner_email: gerow1722943900908@aol.com
-  - partner_email: gerow1722943900687@yahoo.com
-  - partner_email: gerow1722939782565@aol.com
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -79,14 +11,16 @@ beforeClass:
     - keyWord: 获取合伙人返佣比例
 testMethod:
   - name: 快捷注册
-    invocationCount: 20
-    step:
-      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
-  - name: 快捷注册-升级合伙人
     enable: false
-    invocationCount: 10
+    invocationCount: 99
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 增加合约账户资产
+  - name: 快捷注册-升级合伙人
+    invocationCount: 2
+    step:
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 增加合约账户资产
       - keyWord: 升级为合伙人
         dataProvider:
           - futureRatio: ${__Random(0,${totalFutureRatio})}

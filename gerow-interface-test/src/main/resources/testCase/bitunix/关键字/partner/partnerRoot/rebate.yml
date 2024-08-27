@@ -36,6 +36,7 @@ keyWord:
       host: ${partnersadmin_host}
       url: /partner/root/rebate/statistics
       method: GET
+      sleep: 10
       headers:
         Token: ${partnersadmin_token}
       variables:

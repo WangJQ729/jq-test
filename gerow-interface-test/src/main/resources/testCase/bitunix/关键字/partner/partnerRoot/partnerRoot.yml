@@ -162,3 +162,42 @@ keyWord:
         - json:
             coefficient: $.result.rebateCoefficient
       assertion: [ json: { $.code: '0' } ]
+    - name: 新增BD
+      host: ${partnersadmin_host}
+      headers:
+        Token: ${partnersadmin_token}
+      url: /partner/root/add_bd
+      method: POST
+      body: |
+        {"email":"${email}","nickName":"${nickName}","password":"afdd0b4ad2ec172c586e2150770fbf9e","status":true}
+      assertion: [ json: { $.code: '0' } ]
+    - name: 设置GA
+      host: ${partnersadmin_host}
+      headers:
+        Token: ${partnersadmin_token}
+      url: /partner/root/set_google
+      method: POST
+      body: |
+        {"uid":${bd_uid},"langKey":"zh_CN"}
+      assertion: [ json: { $.code: '0' } ]
+    - name: 关闭GA
+      host: ${partnersadmin_host}
+      headers:
+        Token: ${partnersadmin_token}
+      url: /partner/root/close_google
+      method: POST
+      body: |
+        {"uid":${bd_uid}}
+      assertion: [ json: { $.code: '0' } ]
+    - name: BD列表
+      host: ${partnersadmin_host}
+      headers:
+        Token: ${partnersadmin_token}
+      url: /partner/root/list
+      method: POST
+      body: |
+        {"page":1,"pageSize":100,"startTime":"","endTime":"","subShow":false}
+      assertion: [ json: { $.code: '0' } ]
+      extractor:
+        - json:
+            bd_uid: $.result.items[?(@.email=='${email}')].id

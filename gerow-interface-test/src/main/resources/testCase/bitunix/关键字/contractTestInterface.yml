@@ -57,7 +57,7 @@ keyWord:
         }
       assertion: [ json: { $.code: '0' } ]
     - name: 增加现货账户资产
-      url: /web/test/asset/adjust
+      url: /shadow/test/asset/adjust
       method: GET
       variables:
         userId: ${userId}

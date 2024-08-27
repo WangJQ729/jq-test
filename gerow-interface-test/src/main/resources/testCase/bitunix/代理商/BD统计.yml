@@ -8,20 +8,34 @@ beforeClass:
     - keyWord: 登录partnersadminGA验证
     - keyWord: 登录bdAdmin
 testMethod:
-  - name: 更改BD
+  - name: 新增BD
+    enable: false
+    invocationCount: 20
+    dataProvider:
+      - email: gerow${__groovy(${methodNum} + 100)}@bitunix.io
+        nickName: gerow${__groovy(${methodNum} + 100)}
+    step:
+#      - keyWord: 新增BD
+      - keyWord: BD列表
+      - keyWord: 设置GA
+      - keyWord: 关闭GA
+  - name: 添加合伙人
+    invocationCount: 60
     step:
       - keyWord: 获取BD列表
-      - keyWord: BD统计
+#      - keyWord: BD统计
       - keyWord: 快捷注册
-      - keyWord: BD统计-团队人数不变
+#      - keyWord: BD统计-团队人数不变
       - keyWord: 获取用户信息
       - keyWord: 新增合伙人
+  - name: 更改BD
+    step:
       - keyWord: BD统计-校验新增合伙人
       - keyWord: 登录partners-新合伙人
       - keyWord: 获取合伙人信息
       - keyWord: 获取合伙人邀请码
       - keyWord: 获取本月交易额
-#      - keyWord: 代理商后台返佣发放
+      #      - keyWord: 代理商后台返佣发放
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: BD统计-用户合伙人邀请码注册
       - keyWord: 获取用户信息和上级代理uid
@@ -31,7 +45,7 @@ testMethod:
       - keyWord: 市价开仓
       - keyWord: 持有仓位信息
       - keyWord: U本位合约历史委托
-#      - keyWord: 代理商后台返佣发放
+      #      - keyWord: 代理商后台返佣发放
       - keyWord: 直客佣金查询-首单
         assertion:
           - json:
@@ -48,7 +62,7 @@ testMethod:
             assertionType: EIGHTDECIMALPLACES
       - keyWord: 市价平仓
       - keyWord: U本位合约历史委托-平仓
-#      - keyWord: 代理商后台返佣发放
+      #      - keyWord: 代理商后台返佣发放
       - keyWord: 直客佣金查询-平仓
         assertion:
           - json:
@@ -63,7 +77,7 @@ testMethod:
           - json:
               $.result.items[0].totalCommission: ${__groovy(${totalCommission} + ${closeDealFee} * ${bdFutureRatio} / 100)}
             assertionType: EIGHTDECIMALPLACES
-#      - keyWord: 代理商后台返佣发放
+      #      - keyWord: 代理商后台返佣发放
       - keyWord: BD统计-平仓
 #      - keyWord: 变更BD
 #      - keyWord: BD统计

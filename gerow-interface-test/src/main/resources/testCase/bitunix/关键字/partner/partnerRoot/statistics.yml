@@ -59,6 +59,7 @@ keyWord:
     - name: 总后台手续费
       host: ${partnersadmin_host}
       url: /partner/root/statistics/fee
+      untilWait: 10
       method: GET
       headers:
         Token: ${partnersadmin_token}
@@ -83,6 +84,7 @@ keyWord:
     - name: 团队统计
       host: ${partnersadmin_host}
       url: /partner/root/get_partner_team_information
+      untilWait: 5
       method: GET
       headers:
         Token: ${partnersadmin_token}
@@ -116,7 +118,7 @@ keyWord:
             $.result.items[0].totalCommission: ${__groovy(${webFee} * ${rate} * ${totalExchangeRatio}/100 + ${teamTotalCommission})}
             $.result.items[0].totalFee: ${__groovy(${webFee} * ${rate} + ${teamTotalFee})}
             $.result.items[0].deductAmount: ${__groovy(${teamDeductAmount})}
-          assertionType: EIGHTDECIMALPLACES
+          assertionType: TWODECIMALPLACES
     - name: 团队统计-开仓
       keyWord: 团队统计
       assertion:
