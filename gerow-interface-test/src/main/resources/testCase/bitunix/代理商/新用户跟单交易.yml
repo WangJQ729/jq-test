@@ -16,9 +16,9 @@ beforeClass:
     - keyWord: 申请成为交易员
     - keyWord: 获取带单子账户token
 #    - keyWord: 代理商后台返佣发放
+    - keyWord: 总后台佣金总计
     - keyWord: 佣金发放明细
     - keyWord: 分后台佣金发放查询
-    - keyWord: 总后台佣金总计
 #    - keyWord: 总后台平台收益
     - keyWord: 总后台交易额
     - keyWord: 总后台手续费

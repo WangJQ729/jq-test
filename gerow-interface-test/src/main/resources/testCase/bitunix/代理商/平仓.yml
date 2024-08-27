@@ -35,7 +35,7 @@ testMethod:
           Token: ${token}
   - name: 增加现货账户资产
     dataProvider:
-      - userId: 31597
+      - userId: 12044
         coin: TRX
         amount: 88888888
     step:
