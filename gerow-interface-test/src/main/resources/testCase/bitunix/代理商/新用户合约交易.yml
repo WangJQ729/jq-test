@@ -6,8 +6,6 @@ beforeClass:
   step:
     - keyWord: 登录partners
     - keyWord: 获取合伙人信息
-    - keyWord: 登录partnersadmin
-    - keyWord: 登录partnersadminGA验证
     - keyWord: 获取合伙人返佣比例
     - keyWord: 创建邀请码
     - keyWord: 获取合伙人邀请码

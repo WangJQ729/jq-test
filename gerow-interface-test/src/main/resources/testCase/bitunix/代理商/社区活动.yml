@@ -11,8 +11,6 @@ beforeClass:
   step:
     - keyWord: 登录partners
     - keyWord: 获取合伙人信息
-    - keyWord: 登录partnersadmin
-    - keyWord: 登录partnersadminGA验证
     - keyWord: 获取合伙人邀请码
     - keyWord: 获取合伙人返佣比例
     - keyWord: 新建社区活动-配置奖池
@@ -20,16 +18,16 @@ beforeClass:
 testMethod:
   - name: 仅报名
     dataProvider:
-      - userId: 86039
-      - userId: 86038
-      - userId: 86037
-      - userId: 86036
-      - userId: 86035
-      - userId: 86034
-      - userId: 86033
-      - userId: 65880
-      - userId: 65841
-      - userId: 65820
+      - userId: 547796
+      - userId: 546713
+      - userId: 552625
+      - userId: 546192
+      - userId: 550249
+      - userId: 555161
+      - userId: 559276
+      - userId: 545593
+      - userId: 553333
+      - userId: 560049
     step:
       #      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产-指定资产
@@ -38,16 +36,16 @@ testMethod:
       - keyWord: 社区活动报名
   - name: 开仓后报名
     dataProvider:
-      - userId: 65711
-      - userId: 65707
-      - userId: 65705
-      - userId: 65486
-      - userId: 65437
-      - userId: 65410
-      - userId: 63805
-      - userId: 63803
-      - userId: 63800
-      - userId: 63798
+      - userId: 559047
+      - userId: 558858
+      - userId: 557113
+      - userId: 558056
+      - userId: 544629
+      - userId: 559397
+      - userId: 558918
+      - userId: 562044
+      - userId: 545939
+      - userId: 554808
     step:
       #      - keyWord: 社区活动列表-报名中
       - keyWord: 增加合约账户资产
@@ -60,11 +58,11 @@ testMethod:
         sleep: 180000
   - name: 活动开始后平仓
     dataProvider:
-      - userId: 65711
-      - userId: 65707
-      - userId: 65705
-      - userId: 65486
-      - userId: 65437
+      - userId: 547796
+      - userId: 546713
+      - userId: 552625
+      - userId: 546192
+      - userId: 550249
     step:
       - keyWord: 社区活动列表-活动中
       - keyWord: 通过uid获取用户token
@@ -73,11 +71,11 @@ testMethod:
   - name: 活动开始后平仓开仓
     invocationCount: 1
     dataProvider:
-      - userId: 65410
-      - userId: 63805
-      - userId: 63803
-      - userId: 63800
-      - userId: 63798
+      - userId: 555161
+      - userId: 559276
+      - userId: 545593
+      - userId: 553333
+      - userId: 560049
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 持有仓位信息
@@ -85,11 +83,11 @@ testMethod:
       - keyWord: 市价开仓
   - name: 活动开始后开仓
     dataProvider:
-      - userId: 86039
-      - userId: 86038
-      - userId: 86037
-      - userId: 86036
-      - userId: 86035
+      - userId: 559047
+      - userId: 558858
+      - userId: 557113
+      - userId: 558056
+      - userId: 544629
 
     step:
       - keyWord: 社区活动列表-活动中
@@ -98,11 +96,11 @@ testMethod:
       - keyWord: 持有仓位信息
   - name: 活动开始后开仓平仓
     dataProvider:
-      - userId: 86034
-      - userId: 86033
-      - userId: 65880
-      - userId: 65841
-      - userId: 65820
+      - userId: 559397
+      - userId: 558918
+      - userId: 562044
+      - userId: 545939
+      - userId: 554808
     step:
       - keyWord: 社区活动列表-活动中
       - keyWord: 通过uid获取用户token
@@ -111,16 +109,16 @@ testMethod:
       - keyWord: 市价平仓
   - name: 活动开始后开仓-报名
     dataProvider:
-      - userId: 86032
-      - userId: 70490
-      - userId: 70036
-      - userId: 69855
-      - userId: 69802
-      - userId: 69705
-      - userId: 69366
-      - userId: 67991
-      - userId: 67890
-      - userId: 65870
+      - userId: 546621
+      - userId: 544577
+      - userId: 548704
+      - userId: 545436
+      - userId: 555438
+      - userId: 562002
+      - userId: 558629
+      - userId: 547125
+      - userId: 557879
+      - userId: 556030
     step:
       - keyWord: 社区活动列表-活动中
       - keyWord: 通过uid获取用户token
@@ -131,16 +129,16 @@ testMethod:
       - keyWord: 社区活动报名
   - name: 活动开始后报名
     dataProvider:
-      - userId: 65856
-      - userId: 65826
-      - userId: 65807
-      - userId: 65709
-      - userId: 65708
-      - userId: 65706
-      - userId: 65704
-      - userId: 65476
-      - userId: 65455
-      - userId: 65420
+      - userId: 562115
+      - userId: 546105
+      - userId: 562211
+      - userId: 562075
+      - userId: 556763
+      - userId: 546350
+      - userId: 556750
+      - userId: 558678
+      - userId: 561219
+      - userId: 547680
     step:
       - keyWord: 社区活动列表-活动中
       - keyWord: 通过uid获取用户token
@@ -152,16 +150,16 @@ testMethod:
         sleep: 180000
   - name: 报名后开仓平仓
     dataProvider:
-      - userId: 86032
-      - userId: 70490
-      - userId: 70036
-      - userId: 69855
-      - userId: 69802
-      - userId: 69705
-      - userId: 69366
-      - userId: 67991
-      - userId: 67890
-      - userId: 65870
+      - userId: 562115
+      - userId: 546105
+      - userId: 562211
+      - userId: 562075
+      - userId: 556763
+      - userId: 546350
+      - userId: 556750
+      - userId: 558678
+      - userId: 561219
+      - userId: 547680
     step:
       - keyWord: 通过uid获取用户token
       - keyWord: 市价开仓

@@ -2,6 +2,7 @@ keyWord:
   step:
     - name: 现货市价买入
       url: /web/api/v1/order/place_order
+      sleep: 2000
       headers:
         Token: ${token}
       method: POST

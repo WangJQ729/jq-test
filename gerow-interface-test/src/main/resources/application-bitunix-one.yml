@@ -9,24 +9,24 @@ data:
     web_host: https://www.bitunix.one
     partnersadmin_account: admin
     partnersadmin_password: admin
-    partner_email: gerow@126.com
-    bd_email: gerow@bitunix.io
-    bd_name: gerow
+    partner_email: gerow.wang@gmail.com
+    bd_email: gerow100@bitunix.io
+    bd_name: gerow100
     userName: gerow.wang@bitunix.io
     password: Aa123456
     spotAdminGoogleCode: GDKKV42BO2JHIHJZ
     partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
     Accept-Language: zh_CN
-    userId: 148002
+    userId: 1000029
     couponId: 567
     # 合约交易对、开仓数量
     symbol: 1000SHIBUSDT
-    amount_min: 1088
-    amount_max: 1888
+    amount_min: 10888
+    amount_max: 188888
     # 现货币种
     spotSymbol: BTC
     # 带单主账户UID ,需要使用非合伙人体系下的uid
-    traderParentUid: 65750
+    traderParentUid: 1001508
 client:
   protocol: https
   timeOut: 30
