@@ -10,8 +10,8 @@ data:
     partnersadmin_account: admin
     partnersadmin_password: admin
     partner_email: gerow.wang@gmail.com
-    bd_email: gerow100@bitunix.io
-    bd_name: gerow100
+    bd_email: gerow@bitunix.io
+    bd_name: gerow
     userName: gerow.wang@bitunix.io
     password: Aa123456
     spotAdminGoogleCode: GDKKV42BO2JHIHJZ
