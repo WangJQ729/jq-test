@@ -3,8 +3,6 @@ story: partners
 beforeClass:
   name: 登录合伙人后台
   step:
-    - keyWord: 登录partnersadmin
-    - keyWord: 登录partnersadminGA验证
     - keyWord: 获取BD列表
     - keyWord: 快捷注册
     - keyWord: 获取用户信息

@@ -3,6 +3,9 @@ story: partners
 #enable: false
 invocationCount: 1
 testMethod:
+  - name: 代理商后台返佣发放
+    step:
+      - keyWord: 代理商后台返佣发放
   - name: 平仓
     step:
       - keyWord: 通过uid获取用户token

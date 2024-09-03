@@ -59,7 +59,7 @@ keyWord:
     - name: 总后台手续费
       host: ${partnersadmin_host}
       url: /partner/root/statistics/fee
-      untilWait: 10
+      untilWait: 15
       method: GET
       headers:
         Token: ${partnersadmin_token}

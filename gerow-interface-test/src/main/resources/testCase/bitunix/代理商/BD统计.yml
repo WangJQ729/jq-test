@@ -4,23 +4,23 @@ invocationCount: 1
 beforeClass:
   name: 登录合伙人系统
   step:
-    - keyWord: 登录partnersadmin
-    - keyWord: 登录partnersadminGA验证
     - keyWord: 登录bdAdmin
 testMethod:
   - name: 新增BD
     enable: false
     invocationCount: 20
     dataProvider:
-      - email: gerow${__groovy(${methodNum} + 100)}@bitunix.io
-        nickName: gerow${__groovy(${methodNum} + 100)}
+      - email: gerow${__groovy(${methodNum})}@bitunix.io
+        nickName: gerow${__groovy(${methodNum})}
     step:
-#      - keyWord: 新增BD
+      - keyWord: 新增BD
       - keyWord: BD列表
       - keyWord: 设置GA
       - keyWord: 关闭GA
   - name: 添加合伙人
-    invocationCount: 60
+    invocationCount: 1
+    dataProvider:
+      - bd_name: gerow${__groovy(${methodNum})}
     step:
       - keyWord: 获取BD列表
 #      - keyWord: BD统计
