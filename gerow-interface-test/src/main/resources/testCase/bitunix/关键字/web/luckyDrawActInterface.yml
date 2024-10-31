@@ -1,0 +1,151 @@
+keyWord:
+  step:
+    - name: 创建抽奖类活动
+      host: ${spotAdmin_host}
+      url: /api/lucky/draw/act/manage
+      headers:
+        Token: ${spotAdminUserId}
+      method: POST
+      body: |
+        {
+            "type": "create",
+            "data": {
+                "limitRegisterTime": 0,
+                "minRegisterTime": null,
+                "limitUserAssets": 0,
+                "limitUserRegion": 0,
+                "permitUserRegionList": [],
+                "limitUserRole": 0,
+                "permitUserRoleList": null,
+                "name": "${actCode}",
+                "startTime": "${actStartTime}",
+                "endTime": "${actEndTime}",
+                "shortLink": "${actCode}",
+                "taskList": [
+                    {
+                        "timeStamp": "Wed Oct 30 2024 14:49:40 GMT+0800 (中国标准时间)",
+                        "taskType": 1,
+                        "taskId": null,
+                        "taskPrizeType": 1,
+                        "taskContent": "{\"prizeTimes\":\"2\",\"minInvitedUserRegisterNum\":\"1\",\"tiered\":[{\"prizeTimes\":1,\"minInvitedUserRegisterNum\":1,\"minFutureTradeAmount\":1,\"minDepositAmount\":1,\"minInvitedUserFirstDepositNum\":1,\"minInvitedNum\":1}]}"
+                    }
+                ],
+                "prizeConfigList": [
+                    {
+                        "prizeType": 2,
+                        "prizeContent": "{\"couponConfigId\":${couponId},\"couponAmount\":\"1\"}",
+                        "prizeProbability": 10,
+                        "prizeConfigInventory": 100
+                    },
+                    {
+                        "prizeType": 3,
+                        "prizeContent": "{}",
+                        "prizeProbability": 50,
+                        "prizeConfigInventory": 1
+                    },
+                    {
+                        "prizeType": 4,
+                        "prizeContent": "{}",
+                        "prizeProbability": 10
+                    },
+                    {
+                        "prizeType": 2,
+                        "prizeContent": "{\"couponConfigId\":${couponId},\"couponAmount\":\"1\"}",
+                        "prizeProbability": 0.01,
+                        "prizeConfigInventory": 1
+                    },
+                    {
+                        "prizeType": 3,
+                        "prizeContent": "{}",
+                        "prizeProbability": 19.99
+                    },
+                    {
+                        "prizeType": 4,
+                        "prizeContent": "{}",
+                        "prizeProbability": 10
+                    }
+                ],
+                "pageDriftingEnabled": 0,
+                "pageDriftingPic": "",
+                "themeColor": "#B9F641",
+                "webBgImgList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "https://bitunix-public.oss-ap-northeast-1.aliyuncs.com/config/kv/526491.jpg"
+                    }
+                ],
+                "h5BgImgList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "https://bitunix-public.oss-ap-northeast-1.aliyuncs.com/config/kv/225085.jpg"
+                    }
+                ],
+                "titleList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "gerow006"
+                    }
+                ],
+                "contentList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "gerow006"
+                    }
+                ],
+                "shareRecommendContentList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "🎉 【交易所合约赠金活动】 🎉 🚀 限时好礼！参与交易所合约赠金活动，轻松获取额外赠金！开启您的交易之旅，享受更多收益！不容错过的机会，立即参与！💰✨ #合约交易 #赠金活动 #交易所 #额外收益 #限时优惠"
+                    }
+                ],
+                "shareImgUrlList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "https://bitunix-public.oss-ap-northeast-1.aliyuncs.com/config/kv/85531.jpg"
+                    }
+                ],
+                "activityRuleContentList": [
+                    {
+                        "langKey": "en-US",
+                        "content": "<p>📜 活动规则：</p>\n<ol>\n<li>\n<p><strong>活动时间</strong>：本次交易所合约赠金活动将于活动开始后的一个月内举行，具体时间请以官方公告为准。</p>\n</li>\n<li>\n<p><strong>参与资格</strong>：所有注册并通过身份验证的交易所用户均可参与。</p>\n</li>\n<li>\n<p><strong>赠金计算</strong>：根据用户在活动期间的合约交易量，按照一定比例进行赠金计算。具体赠金比例和上限请参考活动页面。</p>\n</li>\n<li>\n<p><strong>赠金发放</strong>：赠金将在活动结束后的5个工作日内发放至用户的交易所账户中。</p>\n</li>\n<li>\n<p><strong>赠金使用</strong>：赠金仅可用于合约交易，不能直接提现。但用户可以使用赠金获得的利润进行提现。</p>\n</li>\n<li>\n<p><strong>违规处理</strong>：任何形式的恶意操作、刷量行为或违反交易所规定的行为都将导致取消赠金资格并可能被封号处理。</p>\n</li>\n<li>\n<p><strong>最终解释权</strong>：本活动的最终解释权归交易所所有，如有任何争议，交易所保留最终裁定权。</p>\n</li>\n<li>\n<p><strong>注意事项</strong>：参与活动前，请务必仔细阅读并理解活动规则及风险提示。合理规划交易，谨慎参与，理性投资。</p>\n</li>\n</ol>\n<p>🌟 抓住机会，加入我们的合约赠金活动，享受更多交易乐趣和收益！</p>"
+                    }
+                ]
+            }
+        }
+      extractor:
+        - json:
+            actId: $.result
+      assertion: [ json: { $.code: '0' } ]
+    - name: 抽奖类活动列表
+      untilWait: 10
+      host: ${spotAdmin_host}
+      url: /api/lucky/draw/act/list
+      variables:
+        actId: ${actCode}
+        page: 1
+        pageSize: 20
+      headers:
+        Token: ${spotAdminUserId}
+      method: GET
+      assertion:
+        - json:
+            $.result.items[0].status: 3
+    - name: 抽奖类活动报名
+      url: /welfare/lucky/draw/activity/register
+      headers:
+        Token: ${token}
+      method: POST
+      body: |
+        {"actId":${actId}}
+      assertion: [ json: { $.code: '0' } ]
+    - name: 抽奖类任务完成情况
+      untilWait: 10
+      url: /welfare/lucky/draw/activity/user/task/record
+      variables:
+        actId: ${actId}
+      headers:
+        Token: ${token}
+      method: GET
+      assertion:
+        - json:
+            $.data.userTaskRecordList.userTaskRecord.invitedUserRegisterNum[0]: 1

@@ -18,15 +18,6 @@ beforeClass:
 testMethod:
   - name: 状态变更为-${new_type_name}
     dataProvider:
-      - password: 1234567
-        name: gerowwang
-        username: gerowwang
-        result: 密码复杂度够
-      - password: 12345670000000000
-        name: gerowwang
-        username: gerowwang
-        result: 密码长度过长
-
       - new_order_state: deposited
         new_type_name: 已付定金未付尾款
       - new_order_state: paid

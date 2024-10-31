@@ -1,11 +1,11 @@
 name: 任务报名指定KOL
 story: welfare
 dataProvider:
-  - actCode: gerow_${__time()}
+  - actCode: gerow${__time()}
     actEnrollStartTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT-9H,zh_CN,)}
-    actEnrollEndTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT-7H,zh_CN,)}
+    actEnrollEndTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT72H,zh_CN,)}
     actStartTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT-9H,zh_CN,)}
-    actEndTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT-7H,zh_CN,)}
+    actEndTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss.000'Z',,PT72H,zh_CN,)}
     actStatusType: in_progress
     minBalance: 0
     balance_amount: 999.99
@@ -34,47 +34,47 @@ beforeClass:
     - keyWord: 活动信息
 testMethod:
   - name: 指定KOL
+    dataProvider:
+      - Accept-Language: en_US
+        msg: Participation is limited to users who registered with invitation code from ${partner_name}.
+      - Accept-Language: zh_CN
+        msg: 仅限于，使用 ${partner_name} 邀请码注册的用户参与
+      - Accept-Language: zh_TW
+        msg: 僅限於，使用 ${partner_name} 邀請碼註冊的用戶參與
+      - Accept-Language: tr_TR
+        msg: Katılım ${partner_name}in davet koduyla kayıt olan kullanıcılarla sınırlıdır.
+      - Accept-Language: fr_FR
+        msg: La participation est limitée aux utilisateurs qui se sont inscrits avec le code dinvitation de ${partner_name}.
+      - Accept-Language: ru_RU
+        msg: Участие ограничено пользователями, зарегистрировавшимися с кодом приглашения от ${partner_name}.
+      - Accept-Language: vi_VN
+        msg: Sự tham gia được giới hạn ở những người dùng đã đăng ký với mã mời từ ${partner_name}.
+      - Accept-Language: es_ES
+        msg: La participación está limitada a usuarios que se registraron con el código de invitación de ${partner_name}.
+      - Accept-Language: pt_PT
+        msg: A participação é limitada aos usuários que se cadastraram com o código de convite do ${partner_name}.
+      - Accept-Language: pt_BR
+        msg: A participação é limitada aos usuários que se cadastraram com o código de convite do ${partner_name}.
+      - Accept-Language: it_IT
+        msg: La partecipazione è limitata agli utenti che si sono registrati con il codice di invito di ${partner_name}.
+      - Accept-Language: de_DE
+        msg: Die Teilnahme ist auf Benutzer beschränkt, die sich mit dem Einladungscode von ${partner_name} registriert haben.
+      - Accept-Language: ja_JP
+        msg: 参加は${partner_name}からの招待コードで登録したユーザーに限定されます。
+      - Accept-Language: ko_KR
+        msg: 참여는 ${partner_name}의 초대 코드로 등록된 사용자로 제한됩니다.
+      - Accept-Language: pl_PL
+        msg: Udział jest ograniczony do użytkowników, którzy zarejestrowali się za pomocą kodu zaproszenia od ${partner_name}a.
+      - Accept-Language: id_ID
+        msg: Partisipasinya terbatas dan Anda tidak perlu mendaftar dengan kode undangan ${partner_name}.
+      - Accept-Language: th_TH
+        msg: การเข้าร่วมจำกัดเฉพาะผู้ใช้ที่ลงทะเบียนด้วยรหัสเชิญจาก ${partner_name}
+      - Accept-Language: uk_UA
+        msg: Udział jest ograniczony do użytkowników, którzy zarejestrowali się za pomocą kodu zaproszenia z ${partner_name}.
     step:
       - keyWord: 快捷注册
       - keyWord: 通过uid获取用户token
       - keyWord: 活动报名-校验报名结果
-        dataProvider:
-          - Accept-Language: en_US
-            msg: Participation is limited to users who registered with invitation code from ${partner_name}.
-          - Accept-Language: zh_CN
-            msg: 仅限于，使用 ${partner_name} 邀请码注册的用户参与
-          - Accept-Language: zh_TW
-            msg: 僅限於，使用 ${partner_name} 邀請碼註冊的用戶參與
-          - Accept-Language: tr_TR
-            msg: Katılım ${partner_name}in davet koduyla kayıt olan kullanıcılarla sınırlıdır.
-          - Accept-Language: fr_FR
-            msg: La participation est limitée aux utilisateurs qui se sont inscrits avec le code dinvitation de ${partner_name}.
-          - Accept-Language: ru_RU
-            msg: Участие ограничено пользователями, зарегистрировавшимися с кодом приглашения от ${partner_name}.
-          - Accept-Language: vi_VN
-            msg: Sự tham gia được giới hạn ở những người dùng đã đăng ký với mã mời từ ${partner_name}.
-          - Accept-Language: es_ES
-            msg: La participación está limitada a usuarios que se registraron con el código de invitación de ${partner_name}.
-          - Accept-Language: pt_PT
-            msg: A participação é limitada aos usuários que se cadastraram com o código de convite do ${partner_name}.
-          - Accept-Language: pt_BR
-            msg: A participação é limitada aos usuários que se cadastraram com o código de convite do ${partner_name}.
-          - Accept-Language: it_IT
-            msg: La partecipazione è limitata agli utenti che si sono registrati con il codice di invito di ${partner_name}.
-          - Accept-Language: de_DE
-            msg: Die Teilnahme ist auf Benutzer beschränkt, die sich mit dem Einladungscode von ${partner_name} registriert haben.
-#          - Accept-Language: ja_JP
-#            msg: 先物口座残高が ${minBalance} USDT 未満です
-          - Accept-Language: ko_KR
-            msg: 참여는 ${partner_name}의 초대 코드로 등록된 사용자로 제한됩니다.
-          - Accept-Language: pl_PL
-            msg: Udział jest ograniczony do użytkowników, którzy zarejestrowali się za pomocą kodu zaproszenia od ${partner_name}a.
-          - Accept-Language: id_ID
-            msg: Partisipasinya terbatas dan Anda tidak perlu mendaftar dengan kode undangan ${partner_name}.
-          - Accept-Language: th_TH
-            msg: การเข้าร่วมจำกัดเฉพาะผู้ใช้ที่ลงทะเบียนด้วยรหัสเชิญจาก ${partner_name}
-          - Accept-Language: uk_UA
-            msg: Udział jest ograniczony do użytkowników, którzy zarejestrowali się za pomocą kodu zaproszenia z ${partner_name}.
   - name: KOL邀请用户注册
     dataProvider:
       - side: ${__Random(1,2)}

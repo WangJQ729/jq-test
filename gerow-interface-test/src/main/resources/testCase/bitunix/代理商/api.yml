@@ -2,16 +2,30 @@ name: api
 enable: false
 story: partners
 dataProvider:
-    - apiKey: SJythAVHxcrjBZICAUaKeTDBYkwVbWtPxBvNuYreorVwYRhiKmMKSOwuZtRpPMiz
-      apiSecret: DXMloFbmUsbNOUOpHQXTUgPXZKpoAPBClbngBzCVawfqdkLEMnlOfqmEhPnATGZC
+    - apiKey: uAtboWjgrbepvQaWKPlrGMzkUWoYaeNMmubCIYfHxtLAziGrPcaRmVRyKgTwfegr
+      apiSecret: SQWetRkPAeQbuIyEvWbKqqMxaWJQgBmuYfnkpAiSjJgKAniCOMHejtKuhJJAImUP
       time: ${__time(/1000,)}
-      dataProvider:
-        - uid: 257842117
-        - uid: 294879144
+      uid: 446318111
 testMethod:
+  - name: 用户是否为代理商下级
+    step:
+      - keyWord: 查询用户是否为代理商下级
+  - name: 查询代理商下级用户充值记录
+    step:
+      - keyWord: 查询代理商下级用户充值记录
+  - name: 查询代理商社区活动
+    step:
+      - keyWord: 查询代理商社区活动
+  - name: 查询代理商下级用户交易额
+    dataProvider:
+      - startTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT-8H,zh_CN,)}
+        endTime: ${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT16H,zh_CN,)}
+        transCoinPair: BTCUSDT
+        page: 1
+        pageSize: 10
+    step:
+      - keyWord: 查询代理商下级用户交易额
   - name: 查询代理商下级所有用户
     step:
       - keyWord: 查询代理商下级所有用户
-  - name: 查询用户是否为代理商下级
-    step:
-      - keyWord: 查询用户是否为代理商下级
+

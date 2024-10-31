@@ -1,0 +1,59 @@
+### 用户登录token获取
+POST {{exchange_host}}/google_auth
+Content-Type: application/json
+
+{
+    "password": "{{password}}",
+    "userName": "{{userName}}",
+    "authType": "2",
+    "googleCode": "115391"
+}
+> {%
+    client.global.set("token", response.body.result.token);
+%}
+
+
+### 报名用户列表
+POST {{exchange_host}}/welfare/halloween/applyUserPage
+Content-Type: application/json
+token: {{token}}
+
+{
+  "uid": null,
+  "pageSize": 20,
+  "page": 1
+}
+
+### 用户获得奖券详情分页
+POST {{exchange_host}}/welfare/halloween/ticketPage
+Content-Type: application/json
+token: {{token}}
+
+{
+  "uid": null,
+  "pageSize": 20,
+  "page": 1
+}
+
+### 添加虚拟交易额
+POST {{exchange_host}}/welfare/halloween/addTransactions
+Content-Type: application/json
+token: {{token}}
+
+{
+  "transactions": "10000000"
+}
+
+### 添加虚拟奖券
+POST {{exchange_host}}/welfare/halloween/addTickets
+Content-Type: application/json
+token: {{token}}
+
+{
+  "tickets": 2000
+}
+
+### 活动总览
+GET {{exchange_host}}/welfare/halloween/getActivitySummary
+token: {{token}}
+Content-Type: application/json

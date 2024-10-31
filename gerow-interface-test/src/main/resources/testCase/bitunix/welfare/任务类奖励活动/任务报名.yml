@@ -165,7 +165,7 @@ testMethod:
           - Accept-Language: it_IT
             msg: Il saldo del conto future è inferiore a 999.99 USDT
           - Accept-Language: de_DE
-            msg: Der Saldo des Futures-Kontos beträgt weniger als 999.99 USDT
+            msg: Der Saldo des Terminkontos ist kleiner als 999.99 USDT
           - Accept-Language: ja_JP
             msg: 先物口座残高が ${minBalance} USDT 未満です
           - Accept-Language: ko_KR

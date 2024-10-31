@@ -39,9 +39,7 @@ public abstract class AbstractTestSuite implements ITestSuite {
     public synchronized void setUp() {
         this.params.putAll(ConfigManager.getProperties());
         //只运行features下的前置条件
-        beforeSuite.stream().filter(iTestMethod -> TestUtils.isRun(iTestMethod.getTestClass().getFeature(), System.getProperty("features")) &&
-                        TestUtils.isRun(System.getProperty("platform"), iTestMethod.getTestClass().getPlatform())).
-                forEach(ITestMethod::doing);
+        beforeSuite.stream().filter(iTestMethod -> TestUtils.isRun(iTestMethod.getTestClass().getStory(), System.getProperty("story")) && TestUtils.isRun(iTestMethod.getTestClass().getFeature(), System.getProperty("features")) && TestUtils.isRun(System.getProperty("platform"), iTestMethod.getTestClass().getPlatform())).forEach(ITestMethod::doing);
         executor.submit((Runnable) () -> {
             while (true) {
                 try {
@@ -57,9 +55,7 @@ public abstract class AbstractTestSuite implements ITestSuite {
     @Override
     public synchronized void tearDown() {
         //只运行features下的前置条件
-        afterSuite.stream().filter(iTestMethod -> TestUtils.isRun(iTestMethod.getTestClass().getFeature(), System.getProperty("features")) &&
-                TestUtils.isRun(System.getProperty("platform"), iTestMethod.getTestClass().getPlatform()) &&
-                TestUtils.isRun(System.getProperty("story"), iTestMethod.getTestClass().getStory())).forEach(ITestMethod::doing);
+        afterSuite.stream().filter(iTestMethod -> TestUtils.isRun(iTestMethod.getTestClass().getStory(), System.getProperty("story")) && TestUtils.isRun(iTestMethod.getTestClass().getFeature(), System.getProperty("features")) && TestUtils.isRun(System.getProperty("platform"), iTestMethod.getTestClass().getPlatform())).forEach(ITestMethod::doing);
         executor.shutdown();
     }
 

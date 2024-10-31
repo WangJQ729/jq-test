@@ -29,8 +29,8 @@ data:
     couponId: 5
     # 合约交易对、开仓数量
     symbol: ${__RandomEnum(1000SHIBUSDT|DOGEUSDT,symbol)}
-    amount_min: 888
-    amount_max: 38888
+    amount_min: 1888
+    amount_max: 8888
     # 现货币种
     spotSymbol: BTC
     # 带单主账户UID ,需要使用非合伙人体系下的uid

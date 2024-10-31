@@ -5,22 +5,58 @@ keyWord:
       url: /partner/api/v1/openapi/validateUser
       variables:
         timestamp: ${time}
+        account: ${uid}
       headers:
         apiKey: ${apiKey}
         signature: ${__digest(SHA-1,${uid}${time}${apiSecret},,,)}
         Content-Type: application/x-www-form-urlencoded;charset=UTF-8
         Accept: application/json, text/plain, */*
       method: POST
-      body: account=${uid}
       assertion: [ json: { $.code: '0' } ]
     - name: 查询代理商下级所有用户
       host: ${partners_host}
       url: /partner/api/v1/openapi/userList
       method: GET
       variables:
+        timestamp: ${time}
+      headers:
+        apiKey: ${apiKey}
+        signature: ${__digest(SHA-1,${time}${apiSecret},,,)}
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        Accept: application/json, text/plain, */*
+      assertion: [ json: { $.code: '0' } ]
+    - name: 查询代理商下级用户充值记录
+      host: ${partners_host}
+      url: /partner/api/v1/openapi/depositList
+      method: GET
+      variables:
         uid: ${uid}
         timestamp: ${time}
       headers:
         apiKey: ${apiKey}
-        signature: ${__digest(SHA-1,${time}${uid}${apiSecret},,,)}
+        signature: ${__digest(SHA-1,${uid}${time}${apiSecret},,,)}
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        Accept: application/json, text/plain, */*
+      assertion: [ json: { $.code: '0' } ]
+    - name: 查询代理商下级用户交易额
+      host: ${partners_host}
+      url: /partner/api/v1/openapi/transAmountList
+      method: GET
+      variables:
+        uid: ${uid}
+        timestamp: ${time}
+      headers:
+        apiKey: ${apiKey}
+        signature: ${__digest(SHA-1,${uid}${time}${apiSecret},,,)}
+      assertion: [ json: { $.code: '0' } ]
+
+    - name: 查询代理商社区活动
+      host: ${partners_host}
+      url: /partner/api/v1/openapi/activityList
+      method: GET
+      variables:
+        timestamp: ${time}
+      headers:
+        apiKey: ${apiKey}
+        signature: ${__digest(SHA-1,${time}${apiSecret},,,)}
       assertion: [ json: { $.code: '0' } ]

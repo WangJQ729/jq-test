@@ -16,10 +16,10 @@ beforeClass:
     - keyWord: 获取合伙人返佣比例
     - keyWord: 新建社区活动-配置奖池
     - keyWord: 社区活动列表
-
     - keyWord: 通过uid获取带单主账户token
     - keyWord: 获取子账户Uid
     - keyWord: 取消带单
+    - keyWord: 交易员头像列表
     - keyWord: 申请成为交易员
     - keyWord: 获取带单子账户token
 #    - keyWord: 代理商后台返佣发放
@@ -27,19 +27,8 @@ beforeClass:
     - keyWord: 分后台佣金发放查询
 testMethod:
   - name: 仅报名
-    dataProvider:
-      - userId: 50948
-      - userId: 50945
-      - userId: 50943
-      - userId: 50941
-      - userId: 50938
-      - userId: 50936
-      - userId: 50934
-      - userId: 50931
-      - userId: 50929
-      - userId: 50927
     step:
-      #      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+      - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 社区活动列表-报名中
       - keyWord: 通过uid获取用户token
       - keyWord: 社区活动报名
@@ -71,30 +60,4 @@ testMethod:
   - name: 数据统计
     step:
       - keyWord: 社区交易大赛交易量统计
-        bodyEditor:
-          json:
-            $.uidList:
-              - 50948
-              - 50945
-              - 50943
-              - 50941
-              - 50938
-              - 50936
-              - 50934
-              - 50931
-              - 50929
-              - 50927
       - keyWord: 社区交易大赛收益统计
-        bodyEditor:
-          json:
-            $.uidList:
-              - 50948
-              - 50945
-              - 50943
-              - 50941
-              - 50938
-              - 50936
-              - 50934
-              - 50931
-              - 50929
-              - 50927

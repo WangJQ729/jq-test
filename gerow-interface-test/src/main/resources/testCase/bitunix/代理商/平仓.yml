@@ -1,6 +1,6 @@
 name: 平仓
 story: partners
-#enable: false
+enable: false
 invocationCount: 1
 testMethod:
   - name: 代理商后台返佣发放
