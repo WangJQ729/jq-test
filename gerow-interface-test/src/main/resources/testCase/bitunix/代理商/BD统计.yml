@@ -1,14 +1,15 @@
 name: BD统计
+enable: false
 story: partners
-invocationCount: 1
+invocationCount: 10
 beforeClass:
-  name: 登录合伙人系统
+  name: 登录合伙人后台
   step:
-    - keyWord: 登录bdAdmin
+    - keyWord: 登录partnersadmin
+    - keyWord: 登录partnersadminGA验证
 testMethod:
   - name: 新增BD
-    enable: false
-    invocationCount: 20
+    invocationCount: 100
     dataProvider:
       - email: gerow${__groovy(${methodNum})}@bitunix.io
         nickName: gerow${__groovy(${methodNum})}
@@ -18,7 +19,7 @@ testMethod:
       - keyWord: 设置GA
       - keyWord: 关闭GA
   - name: 添加合伙人
-    invocationCount: 1
+    invocationCount: 100
     dataProvider:
       - bd_name: gerow${__groovy(${methodNum})}
     step:

@@ -17,16 +17,16 @@ data:
     spotAdminGoogleCode: GDKKV42BO2JHIHJZ
     partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
     Accept-Language: zh_CN
-    userId: 1000029
+    userId: 1232523
     couponId: 567
     # 合约交易对、开仓数量
-    symbol: 1000SHIBUSDT
-    amount_min: 10888
-    amount_max: 188888
+    symbol: XRPUSDT
+    amount_min: 1888
+    amount_max: 18888
     # 现货币种
-    spotSymbol: BTC
+    spotSymbol: ETH
     # 带单主账户UID ,需要使用非合伙人体系下的uid
-    traderParentUid: 1001508
+    traderParentUid: 1232555
 client:
   protocol: https
   timeOut: 30

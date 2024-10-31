@@ -36,6 +36,13 @@ keyWord:
           $.invitedCode: ${vipCode}
           $.emails:
             - ${__RandomEmail(email)}
+    - name: 快捷注册-普通邀请码-随机邮箱
+      keyWord: 快捷注册
+      bodyEditor:
+        json:
+          $.invitedCode: ${link_code}
+          $.emails:
+            - ${__RandomEmail(email)}
     - keyWord: 快捷注册
       name: 快捷注册-非默认邀请码
       bodyEditor:

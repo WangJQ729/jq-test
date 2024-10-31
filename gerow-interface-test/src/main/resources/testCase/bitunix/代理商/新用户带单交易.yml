@@ -24,6 +24,7 @@ testMethod:
       - keyWord: 通过uid获取用户token
       - keyWord: 增加合约账户资产
       - keyWord: 合约划转现货
+      - keyWord: 交易员头像列表
       - keyWord: 申请成为交易员
         headers:
           Token: ${token}

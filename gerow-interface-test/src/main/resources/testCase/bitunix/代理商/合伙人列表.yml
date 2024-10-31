@@ -1,5 +1,9 @@
 name: 合伙人列表
 story: partners
+enable: false
+dataProvider:
+#  - partner_email: gerow.wang@gmail.com
+  - partner_email: gerow1728711707801@gmail.com
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -9,8 +13,7 @@ beforeClass:
     - keyWord: 获取合伙人返佣比例
 testMethod:
   - name: 快捷注册
-    enable: false
-    invocationCount: 99
+    invocationCount: 9
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产

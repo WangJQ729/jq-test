@@ -1,0 +1,43 @@
+name: 普通邀请
+story: welfare
+enable: false
+dataProvider:
+  - userId: 10012
+    link_code: py53au
+testMethod:
+  - name: 注册邀请账户
+    enable: false
+    step:
+      #      - keyWord: 快捷注册
+      - keyWord: 通过uid获取用户token
+      #      - keyWord: 生成邀请链接
+      - keyWord: 获取默认邀请链接
+  - name: 使用邀请链接注册并开仓平仓
+    invocationCount: 50
+    #    enable: false
+    step:
+      - keyWord: 快捷注册-普通邀请码-随机邮箱
+      - keyWord: 增加合约账户资产
+      - keyWord: 通过uid获取用户token
+        extractor:
+          - json:
+              token_1: $.data
+      - keyWord: 市价开仓
+        headers:
+          Token: ${token_1}
+      - keyWord: 持有仓位信息
+        sleep: 2000
+      - keyWord: 市价平仓
+        headers:
+          Token: ${token_1}
+  - name: 普通邀请返佣发放
+    step:
+      - keyWord: 普通邀请返佣发放
+        sleep: 2000
+  - name: 查看返佣记录
+    step:
+      - keyWord: 我的邀请链接
+      - keyWord: 推荐记录
+      - keyWord: 返佣记录
+      - keyWord: 我的返佣比例
+      - keyWord: 返佣统计

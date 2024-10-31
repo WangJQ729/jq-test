@@ -44,6 +44,13 @@ keyWord:
         {"uid": ${subAccountUid}}
       iter:
         subAccountUid: ${subAccountUids}
+    - name: 交易员头像列表
+      url: /copy/trading/v1/config/sys/group/avatar
+      method: GET
+      extractor:
+        - json:
+            avatar: $.data..url[0]
+      assertion: [ json: { $.code: '0' } ]
     - name: 申请成为交易员
       url: /copy/trading/v1/trader/apply
       headers:
@@ -52,8 +59,8 @@ keyWord:
       body: |
         {
             "amount": ${__Random(888,8888)},
-            "briefInfo": "",
-            "header": "https://img.yzcdn.cn/upload_files/2016/05/20/60734a034c66361426f676914fc69e9c.png",
+            "briefInfo": "briefInfo",
+            "header": "${avatar}",
             "nickname": "GerowWang${__RandomString(8,zxcvnmlkjhgfdsaqwertyuiopQWERTYUIOPASDFGHJKLZXCVNM1234567890,)}"
         }
       extractor:

@@ -8,7 +8,7 @@ keyWord:
         {
             "startTime":"${activityStartTime}",
             "endTime":"${activityEndTime}",
-            "uidList":[]
+            "uidList":[${userId}]
         }
       assertion: [ json: { $.code: '0' } ]
     - name: 社区交易大赛收益统计

@@ -11,6 +11,7 @@ beforeClass:
     - keyWord: 通过uid获取带单主账户token
     - keyWord: 获取子账户Uid
     - keyWord: 取消带单
+    - keyWord: 交易员头像列表
     - keyWord: 申请成为交易员
     - keyWord: 获取带单子账户token
 #    - keyWord: 代理商后台返佣发放
