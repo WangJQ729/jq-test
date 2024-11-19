@@ -1,9 +1,10 @@
 name: 社区活动_报名
 story: partners
-enable: false
 dataProvider:
   - shortLink: gerow${__time()}
+#  - shortLink: gerow1731550786851
     balance_amount: 888
+#    actId: 20
 beforeClass:
   name: 创建社区活动
   step:

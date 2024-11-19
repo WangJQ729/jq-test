@@ -100,8 +100,18 @@ public class HttpUtils {
      */
     private static <T> void addResponseAttachment(ResponseEntity<T> responseEntity) {
         String resType = protocol + " " + responseEntity.getStatusCode().value();
-        Allure.addAttachment(resType, resType + "\n" + buildEntityString(responseEntity));
-        logger.debug("\n" + resType + "\n" + buildEntityString(responseEntity));
+        String entityString = buildEntityString(responseEntity);
+
+        // 添加当前格式日志到 Allure
+        Allure.addAttachment(resType, resType + "\n" + entityString);
+
+        // 添加单行 CURL 格式日志到 Allure
+        String curlResponseLog = "HTTP/1.1 " + responseEntity.getStatusCode().value() + " " + entityString;
+        Allure.addAttachment("CURL Response", curlResponseLog);
+
+        // 输出到控制台
+        logger.debug("\n" + resType + "\n" + entityString);
+        logger.debug("\n[CURL RESPONSE] " + curlResponseLog);
     }
 
     /**
@@ -113,10 +123,24 @@ public class HttpUtils {
      */
     private static void addRequestAttachment(String url, HttpMethod method, HttpEntity<?> httpEntity) {
         String reqType = method.name().toUpperCase() + " " + url + " " + protocol;
-        String request = reqType + "\n"
-                + buildEntityString(Objects.requireNonNull(httpEntity));
+        String request = reqType + "\n" + buildEntityString(Objects.requireNonNull(httpEntity));
+
+        // 添加当前格式日志到 Allure
         Allure.addAttachment(reqType, request);
-        logger.debug("\n" + request);
+
+        // 构建单行 CURL 格式请求日志
+        StringBuilder curlLog = new StringBuilder("curl -X ").append(method.name().toUpperCase()).append(" '").append(url).append("'").append(" \\\n");
+
+        // 添加 headers
+        httpEntity.getHeaders().forEach((key, value) -> curlLog.append("  -H '").append(key).append(": ").append(String.join(", ", value)).append("' \\\n"));
+
+        // 添加 body（如果存在）
+        if (httpEntity.getBody() != null) {
+            curlLog.append("  --data-raw '").append(httpEntity.getBody().toString().replace("'", "\\'")).append("'\\\n");
+        }
+        curlLog.append("  --insecure");
+        // 添加单行 CURL 格式日志到 Allure
+        Allure.addAttachment("CURL Request", curlLog.toString());
     }
 
     /**

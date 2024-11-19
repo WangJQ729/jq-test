@@ -7,6 +7,8 @@ data:
     bdadmin_host: http://bdadmin.test.searchalpha.xyz
     spotAdmin_host: http://spotwebadmin.test.searchalpha.xyz
     featuresAdmin_host: http://futureswebadmin.test.searchalpha.xyz
+    welfareWebAdmin_host: http://welfarewebadmin.test.searchalpha.xyz
+#    welfareWebAdmin_host: http://spotwebadmin.test.searchalpha.xyz
     web_host: http://www.test.searchalpha.xyz
     partnersadmin_account: admin
     partnersadmin_password: admin
@@ -15,6 +17,11 @@ data:
     bd_name: gerow
     userName: gerow.wang@bitunix.io
     password: Aa123456
+
+    welfareUserName: gerow.wang@bitunix.io
+    welfarePassword: Aa123456
+    welfareAdminGoogleCode: RMV5J4BVMVIYNKAF
+
     spotAdminGoogleCode: 2FGUB2XGU7CESM7N
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
     partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
