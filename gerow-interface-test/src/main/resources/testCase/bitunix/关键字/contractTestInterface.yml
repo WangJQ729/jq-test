@@ -145,3 +145,26 @@ keyWord:
             packing_amount: $.data[0].amount
             packing_market: $.data[0].market
             packing_side: $.data[0].side
+    - name: 用户充值
+      url: /shadow/test/userDeposit
+      body: |
+        {
+          "uid": ${userId},
+          "coinName": "USDT",
+          "networkName": "TRC20",
+          "cryptoType": "ERC20",
+          "chainNet": "TRON",
+          "transactionHash": "d829e32be84907a4dfb5bee5dcdaee6b637be287f8db52817860e7169003b92d",
+          "platformId": "20240525162946000139068000007759",
+          "status": "success",
+          "blockNum": 61994120,
+          "blockConfirmations": 3,
+          "addressFrom": "TB73gtW1hsTxxA9XUYKLSJKTSHw6Jk53eH",
+          "addressTo": "TPKhSAEy84qvpomF5wF7h5ih1WmbmupXor",
+          "tokenAddress": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+          "amount": ${__Random(10,500)},
+          "afterAmount": 741.51748933,
+          "usdtRate": 0.13351
+        }
+      method: POST
+      assertion: [ json: { $.code: '0' } ]

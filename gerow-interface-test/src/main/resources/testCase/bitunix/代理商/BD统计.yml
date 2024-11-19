@@ -1,7 +1,6 @@
 name: BD统计
-enable: false
 story: partners
-invocationCount: 10
+invocationCount: 1
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -30,6 +29,7 @@ testMethod:
       - keyWord: 获取用户信息
       - keyWord: 新增合伙人
   - name: 更改BD
+    enable: false
     step:
       - keyWord: BD统计-校验新增合伙人
       - keyWord: 登录partners-新合伙人

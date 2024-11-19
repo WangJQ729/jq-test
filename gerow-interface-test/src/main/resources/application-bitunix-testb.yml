@@ -2,13 +2,13 @@ data:
   test:
     Accept-Language: zh_CN
     platform: bitunix
-    host: api.testa.searchalpha.xyz
-    partners_host: http://partners.testa.searchalpha.xyz
-    partnersadmin_host: http://partnersadmin.testa.searchalpha.xyz
-    bdadmin_host: http://bdadmin.testa.searchalpha.xyz
-    spotAdmin_host: http://spotwebadmin.testa.searchalpha.xyz
-    featuresAdmin_host: http://futureswebadmin.testa.searchalpha.xyz
-    web_host: http://www.testa.searchalpha.xyz
+    host: api.testb.searchalpha.xyz
+    partners_host: http://partners.testb.searchalpha.xyz
+    partnersadmin_host: http://partnersadmin.testb.searchalpha.xyz
+    bdadmin_host: http://bdadmin.testb.searchalpha.xyz
+    spotAdmin_host: http://spotwebadmin.testb.searchalpha.xyz
+    featuresAdmin_host: http://futureswebadmin.testb.searchalpha.xyz
+    web_host: http://www.testb.searchalpha.xyz
     partnersadmin_account: admin
     partnersadmin_password: admin
     # BD账户
@@ -20,16 +20,9 @@ data:
     userId: 68566
     # 合约/现货后台的登录账户
     userName: gerow.wang@bitunix.io
-
-#    welfareWebAdmin_host: http://welfarewebadmin.testa.searchalpha.xyz
-    welfareWebAdmin_host: http://spotwebadmin.testa.searchalpha.xyz
-    welfareUserName: gerow.wang@bitunix.io
-    welfarePassword: Aa123456
-#    welfareAdminGoogleCode: WB7PZLBMHUVOTZM5
-    welfareAdminGoogleCode: GGMNJZXCIFVBO6F5
-
     # bd后台、现货、合约后台的密码
-    password: Aa123456
+    password: Aa123456!
+
     spotAdminGoogleCode: GGMNJZXCIFVBO6F5
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
     partnersAdminGoogleCode: ONPWZTSXZV2RVJEE

@@ -10,9 +10,9 @@ keyWord:
         { "uid": ${partner_uid},
           "titleList": [{"languageKey": "en-US","content": "${shortLink}"}],
           "enrollStartTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT-8H,zh_CN,)}",
-          "enrollEndTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT-7H-30M,zh_CN,)}",
-          "startTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT-7H-59M,zh_CN,activityStartTime)}",
-          "endTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT-7H-30M,zh_CN,activityEndTime)}",
+          "enrollEndTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT17H,zh_CN,)}",
+          "startTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT-6H,zh_CN,activityStartTime)}",
+          "endTime": "${__timeShift(yyyy-MM-dd'T'HH:mm:ss'Z',,PT24H,zh_CN,activityEndTime)}",
           "actType": [
             {"rankType":1,"tradingVolume":0,"listDisplayVolume":5},
             {"rankType":2,"tradingVolume":0,"listDisplayVolume":8}

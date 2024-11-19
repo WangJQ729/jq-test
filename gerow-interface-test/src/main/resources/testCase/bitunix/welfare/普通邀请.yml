@@ -1,8 +1,8 @@
 name: 普通邀请
 story: welfare
-enable: false
+#enable: false
 dataProvider:
-  - userId: 10012
+  - userId: 70241
     link_code: py53au
 testMethod:
   - name: 注册邀请账户
@@ -41,3 +41,8 @@ testMethod:
       - keyWord: 返佣记录
       - keyWord: 我的返佣比例
       - keyWord: 返佣统计
+  - name: 用户充值
+    dataProvider:
+      - userId: 70241
+    step:
+      - keyWord: 用户充值
