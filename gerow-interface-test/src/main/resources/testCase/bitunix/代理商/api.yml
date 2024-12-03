@@ -1,18 +1,22 @@
 name: api
-enable: false
 story: partners
 dataProvider:
-    - apiKey: uAtboWjgrbepvQaWKPlrGMzkUWoYaeNMmubCIYfHxtLAziGrPcaRmVRyKgTwfegr
-      apiSecret: SQWetRkPAeQbuIyEvWbKqqMxaWJQgBmuYfnkpAiSjJgKAniCOMHejtKuhJJAImUP
+    - apiKey: PnaVGCkGKDmDRViyQEQJyWfbojVYPkDpEDlGxakFmiyzqBnFCZBuVfqVymbanmdh
+      apiSecret: QKqJdSCYToeQSfJmHpYoIWRHeKWzAHJiPAUvrDmtnFYDUDgvOFpjQjBommzGJFJF
       time: ${__time(/1000,)}
-      uid: 446318111
+      uid: 895948167
 testMethod:
   - name: 用户是否为代理商下级
     step:
       - keyWord: 查询用户是否为代理商下级
+      - keyWord: 查询用户是否为代理商下级V2
   - name: 查询代理商下级用户充值记录
+    dataProvider:
+      - uid: 895948167
+      - uid: 824471174
     step:
       - keyWord: 查询代理商下级用户充值记录
+      - keyWord: 查询代理商下级用户充值记录V2
   - name: 查询代理商社区活动
     step:
       - keyWord: 查询代理商社区活动

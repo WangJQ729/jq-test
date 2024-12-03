@@ -14,6 +14,12 @@ data:
     bd_name: gerow
     userName: gerow.wang@bitunix.io
     password: Aa123456
+
+    welfareWebAdmin_host: https://welfarewebadmin.bitunix.one
+    welfareUserName: gerow.wang@bitunix.io
+    welfarePassword: Aa123456
+    welfareAdminGoogleCode: HZ5YR4NUKXZQ2LEU
+
     spotAdminGoogleCode: GDKKV42BO2JHIHJZ
     partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
     Accept-Language: zh_CN

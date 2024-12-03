@@ -162,7 +162,7 @@ keyWord:
           "addressFrom": "TB73gtW1hsTxxA9XUYKLSJKTSHw6Jk53eH",
           "addressTo": "TPKhSAEy84qvpomF5wF7h5ih1WmbmupXor",
           "tokenAddress": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
-          "amount": ${__Random(10,500)},
+          "amount": ${__Random(1000,5000)},
           "afterAmount": 741.51748933,
           "usdtRate": 0.13351
         }

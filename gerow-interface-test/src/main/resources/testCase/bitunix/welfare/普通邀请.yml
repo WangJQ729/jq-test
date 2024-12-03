@@ -2,8 +2,8 @@ name: 普通邀请
 story: welfare
 #enable: false
 dataProvider:
-  - userId: 70241
-    link_code: py53au
+  - userId: 222114
+    link_code: 837amy
 testMethod:
   - name: 注册邀请账户
     enable: false
@@ -13,7 +13,7 @@ testMethod:
       #      - keyWord: 生成邀请链接
       - keyWord: 获取默认邀请链接
   - name: 使用邀请链接注册并开仓平仓
-    invocationCount: 50
+    invocationCount: 1
     #    enable: false
     step:
       - keyWord: 快捷注册-普通邀请码-随机邮箱
@@ -41,8 +41,3 @@ testMethod:
       - keyWord: 返佣记录
       - keyWord: 我的返佣比例
       - keyWord: 返佣统计
-  - name: 用户充值
-    dataProvider:
-      - userId: 70241
-    step:
-      - keyWord: 用户充值

@@ -13,6 +13,19 @@ keyWord:
         Accept: application/json, text/plain, */*
       method: POST
       assertion: [ json: { $.code: '0' } ]
+    - name: 查询用户是否为代理商下级V2
+      host: ${partners_host}
+      url: /partner/api/v2/openapi/validateUser
+      variables:
+        timestamp: ${time}
+        account: ${uid}
+      headers:
+        apiKey: ${apiKey}
+        signature: ${__digest(SHA-1,${uid}${time}${apiSecret},,,)}
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        Accept: application/json, text/plain, */*
+      method: POST
+      assertion: [ json: { $.code: '0' } ]
     - name: 查询代理商下级所有用户
       host: ${partners_host}
       url: /partner/api/v1/openapi/userList
@@ -28,6 +41,19 @@ keyWord:
     - name: 查询代理商下级用户充值记录
       host: ${partners_host}
       url: /partner/api/v1/openapi/depositList
+      method: GET
+      variables:
+        uid: ${uid}
+        timestamp: ${time}
+      headers:
+        apiKey: ${apiKey}
+        signature: ${__digest(SHA-1,${uid}${time}${apiSecret},,,)}
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        Accept: application/json, text/plain, */*
+      assertion: [ json: { $.code: '0' } ]
+    - name: 查询代理商下级用户充值记录V2
+      host: ${partners_host}
+      url: /partner/api/v2/openapi/depositList
       method: GET
       variables:
         uid: ${uid}

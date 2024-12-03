@@ -1,0 +1,9 @@
+name: 用户充值
+story: welfare
+invocationCount: 1
+dataProvider:
+  - userId: 1538315
+testMethod:
+  - name: 用户充值
+    step:
+      - keyWord: 用户充值
