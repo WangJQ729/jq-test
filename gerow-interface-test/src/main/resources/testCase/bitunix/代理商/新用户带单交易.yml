@@ -60,11 +60,11 @@ testMethod:
       - keyWord: 总后台交易额-平仓
       - keyWord: 团队统计-平仓
 afterClass:
-  name: 获取taskID和模板
+  name: 测试完成取消带单
   step:
     - keyWord: 获取子账户Uid
       headers:
         Token: ${token}
-    - keyWord: 取消带单
-      headers:
-        Token: ${token}
+#    - keyWord: 取消带单
+#      headers:
+#        Token: ${token}

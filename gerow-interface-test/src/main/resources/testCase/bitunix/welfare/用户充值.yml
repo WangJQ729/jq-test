@@ -2,7 +2,86 @@ name: 用户充值
 story: welfare
 invocationCount: 1
 dataProvider:
+  - userId: 1538342
+  - userId: 1538341
+  - userId: 1538340
+  - userId: 1538339
+  - userId: 1538338
+  - userId: 1538337
+  - userId: 1538336
+  - userId: 1538335
+  - userId: 1538334
+  - userId: 1538333
+  - userId: 1538332
+  - userId: 1538331
+  - userId: 1538330
+  - userId: 1538329
+  - userId: 1538328
+  - userId: 1538327
+  - userId: 1538326
+  - userId: 1538325
+  - userId: 1538324
+  - userId: 1538323
+  - userId: 1538322
+  - userId: 1538321
+  - userId: 1538319
+  - userId: 1538320
+  - userId: 1538318
+  - userId: 1538317
+  - userId: 1538316
   - userId: 1538315
+  - userId: 1538314
+  - userId: 1538313
+  - userId: 1538312
+  - userId: 1538311
+  - userId: 1538310
+  - userId: 1538309
+  - userId: 1538308
+  - userId: 1538306
+  - userId: 1538307
+  - userId: 1538305
+  - userId: 1538304
+  - userId: 1538303
+  - userId: 1538302
+  - userId: 1538301
+  - userId: 1538300
+  - userId: 1538299
+  - userId: 1538298
+  - userId: 1538297
+  - userId: 1538296
+  - userId: 1538295
+  - userId: 1538294
+  - userId: 1538293
+  - userId: 1538292
+  - userId: 1538291
+  - userId: 1538290
+  - userId: 1538288
+  - userId: 1538289
+  - userId: 1538286
+  - userId: 1538287
+  - userId: 1538285
+  - userId: 1538284
+  - userId: 1538283
+  - userId: 1538282
+  - userId: 1538281
+  - userId: 1538280
+  - userId: 1538278
+  - userId: 1538279
+  - userId: 1538277
+  - userId: 1538276
+  - userId: 1538275
+  - userId: 1538274
+  - userId: 1538272
+  - userId: 1538273
+  - userId: 1538271
+  - userId: 1538269
+  - userId: 1538270
+  - userId: 1538268
+  - userId: 1538265
+  - userId: 1538266
+  - userId: 1538267
+  - userId: 1538264
+  - userId: 1538263
 testMethod:
   - name: 用户充值
     step:
