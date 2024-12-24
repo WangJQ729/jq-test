@@ -65,7 +65,7 @@
     3、在测试用例中可调用的参数格式为data.test.xxxx，在测试中调用格式为：${xxxx}
     
 ### example 
-       - name: 总后台平台收益
+    - name: 总后台平台收益
       host: ${partnersadmin_host}
       url: /partner/root/statistics/rebate
       method: GET

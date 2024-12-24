@@ -2,70 +2,7 @@ name: 合伙人列表
 story: partners
 #enable: false
 dataProvider:
-  - partner_email: gerow1731053573455@aol.com
-  - partner_email: gerow1731053573039@icloud.com
-  - partner_email: gerow1731053568715@live.com
-  - partner_email: gerow1731053568272@gmx.com
-  - partner_email: gerow1731053564410@gmail.com
-  - partner_email: gerow1731053563996@zoho.com
-  - partner_email: gerow1731053560631@163.com
-  - partner_email: gerow1731053560006@live.com
-  - partner_email: gerow1731053556210@163.com
-  - partner_email: gerow1731053555819@mail.com
-  - partner_email: gerow1731053551887@mail.com
-  - partner_email: gerow1731053551488@yahoo.com
-  - partner_email: gerow1731053547756@gmx.com
-  - partner_email: gerow1731053547279@aliyun.com
-  - partner_email: gerow1731053543238@aliyun.com
-  - partner_email: gerow1731053542879@hotmail.com
-  - partner_email: gerow1731053538320@mail.com
-  - partner_email: gerow1731053537673@yandex.com
-  - partner_email: gerow1731053533887@outlook.com
-  - partner_email: gerow1731053533535@bitunix.io
-  - partner_email: gerow1731053529902@outlook.com
-  - partner_email: gerow1731053529495@zoho.com
-  - partner_email: gerow1731053525769@fastmail.com
-  - partner_email: gerow1731053525177@outlook.com
-  - partner_email: gerow1731053520547@protonmail.com
-  - partner_email: gerow1731053519929@bitunix.com
-  - partner_email: gerow1731053516040@hushmail.com
-  - partner_email: gerow1731053515606@gmx.com
-  - partner_email: gerow1731053511808@gmail.com
-  - partner_email: gerow1731053511433@163.com
-  - partner_email: gerow1731053507440@fastmail.com
-  - partner_email: gerow1731053506997@aol.com
-  - partner_email: gerow1731053503281@163.com
-  - partner_email: gerow1731053502883@yandex.com
-  - partner_email: gerow1731053498091@hushmail.com
-  - partner_email: gerow1731053496623@zoho.com
-  - partner_email: gerow1731053492488@mail.com
-  - partner_email: gerow1731053492117@hotmail.com
-  - partner_email: gerow1731053488916@yahoo.com
-  - partner_email: gerow1731053488549@yahoo.com
-  - partner_email: gerow1731053484485@bitunix.io
-  - partner_email: gerow1731053484075@126.com
-  - partner_email: gerow1731053480598@fastmail.com
-  - partner_email: gerow1731053479991@yahoo.com
-  - partner_email: gerow1731053475889@aliyun.com
-  - partner_email: gerow1731053475314@gmx.com
-  - partner_email: gerow1731053471870@me.com
-  - partner_email: gerow1731053471483@gmx.com
-  - partner_email: gerow1731053467383@yahoo.com
-  - partner_email: gerow1731053467005@yandex.com
-  - partner_email: gerow1731053462906@yahoo.com
-  - partner_email: gerow1731053462563@outlook.com
-  - partner_email: gerow1731053457955@sina.com
-  - partner_email: gerow1731053457446@gmail.com
-  - partner_email: gerow1731053454161@sina.com
-  - partner_email: gerow1731053453668@me.com
-  - partner_email: gerow1731053449939@yahoo.com
-  - partner_email: gerow1731053449580@hushmail.com
-  - partner_email: gerow1731053445562@hushmail.com
-  - partner_email: gerow1731053444842@live.com
-  - partner_email: gerow1731053441088@126.com
-  - partner_email: gerow1731053440671@live.com
-  - partner_email: gerow1731053436578@fastmail.com
-  - partner_email: gerow1731053436051@protonmail.com
+  - partner_email: gerow1726303577516@sina.com
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -75,12 +12,12 @@ beforeClass:
     - keyWord: 获取合伙人返佣比例
 testMethod:
   - name: 快捷注册
-    invocationCount: 9
+    invocationCount: 10
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产
   - name: 快捷注册-升级合伙人
-    invocationCount: 2
+    invocationCount: 5
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
       - keyWord: 增加合约账户资产

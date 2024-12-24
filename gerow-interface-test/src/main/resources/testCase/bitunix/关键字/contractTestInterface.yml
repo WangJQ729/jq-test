@@ -59,7 +59,7 @@ keyWord:
       body: |
         {
             "uid": ${userId},
-            "amount": 99999.99,
+            "amount": ${amount},
             "coin": "USDT"
         }
       assertion: [ json: { $.code: '0' } ]

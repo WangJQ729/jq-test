@@ -106,12 +106,12 @@ public class HttpUtils {
         Allure.addAttachment(resType, resType + "\n" + entityString);
 
         // 添加单行 CURL 格式日志到 Allure
-        String curlResponseLog = "HTTP/1.1 " + responseEntity.getStatusCode().value() + " " + entityString;
-        Allure.addAttachment("CURL Response", curlResponseLog);
+//        String curlResponseLog = "HTTP/1.1 " + responseEntity.getStatusCode().value() + " " + entityString;
+//        Allure.addAttachment("CURL Response", curlResponseLog);
 
         // 输出到控制台
-        logger.debug("\n" + resType + "\n" + entityString);
-        logger.debug("\n[CURL RESPONSE] " + curlResponseLog);
+//        logger.debug("\n" + resType + "\n" + entityString);
+//        logger.debug("\n[CURL RESPONSE] " + curlResponseLog);
     }
 
     /**
@@ -129,18 +129,18 @@ public class HttpUtils {
         Allure.addAttachment(reqType, request);
 
         // 构建单行 CURL 格式请求日志
-        StringBuilder curlLog = new StringBuilder("curl -X ").append(method.name().toUpperCase()).append(" '").append(url).append("'").append(" \\\n");
+//        StringBuilder curlLog = new StringBuilder("curl -X ").append(method.name().toUpperCase()).append(" '").append(url).append("'").append(" \\\n");
 
         // 添加 headers
-        httpEntity.getHeaders().forEach((key, value) -> curlLog.append("  -H '").append(key).append(": ").append(String.join(", ", value)).append("' \\\n"));
+//        httpEntity.getHeaders().forEach((key, value) -> curlLog.append("  -H '").append(key).append(": ").append(String.join(", ", value)).append("' \\\n"));
 
         // 添加 body（如果存在）
-        if (httpEntity.getBody() != null) {
-            curlLog.append("  --data-raw '").append(httpEntity.getBody().toString().replace("'", "\\'")).append("'\\\n");
-        }
-        curlLog.append("  --insecure");
+//        if (httpEntity.getBody() != null) {
+//            curlLog.append("  --data-raw '").append(httpEntity.getBody().toString().replace("'", "\\'")).append("'\\\n");
+//        }
+//        curlLog.append("  --insecure");
         // 添加单行 CURL 格式日志到 Allure
-        Allure.addAttachment("CURL Request", curlLog.toString());
+//        Allure.addAttachment("CURL Request", curlLog.toString());
     }
 
     /**

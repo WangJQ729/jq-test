@@ -9,17 +9,7 @@ data:
     spotAdmin_host: http://spotwebadmin.testa.searchalpha.xyz
     featuresAdmin_host: http://futureswebadmin.testa.searchalpha.xyz
     web_host: http://www.testa.searchalpha.xyz
-    partnersadmin_account: admin
-    partnersadmin_password: admin
-    # BD账户
-    bd_email: gerow@bitunix.io
-    bd_name: gerow
-    # BD下任意一级合伙人账户
-    partner_email: gerow@126.com
-    # 用户交易使用的uid 任意一个partner_email 的直客
     userId: 68566
-    # 合约/现货后台的登录账户
-    userName: gerow.wang@bitunix.io
 
 #    welfareWebAdmin_host: http://welfarewebadmin.testa.searchalpha.xyz
     welfareWebAdmin_host: http://spotwebadmin.testa.searchalpha.xyz
@@ -29,7 +19,6 @@ data:
     welfareAdminGoogleCode: GGMNJZXCIFVBO6F5
 
     # bd后台、现货、合约后台的密码
-    password: Aa123456
     spotAdminGoogleCode: GGMNJZXCIFVBO6F5
     featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
     partnersAdminGoogleCode: ONPWZTSXZV2RVJEE

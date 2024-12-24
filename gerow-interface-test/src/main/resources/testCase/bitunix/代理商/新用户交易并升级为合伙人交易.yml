@@ -1,0 +1,78 @@
+name: 新用户交易并升级为合伙人交易
+story: partners
+invocationCount: 1
+beforeClass:
+  name: 登录合伙人后台
+  step:
+    - keyWord: 登录partners
+    - keyWord: 获取合伙人信息
+    - keyWord: 获取合伙人返佣比例
+    - keyWord: 获取合伙人邀请码
+    - keyWord: 快捷注册-合伙人邀请码-随机邮箱
+    - keyWord: 分后台获取用户信息
+    - keyWord: 增加合约账户资产
+beforeMethod:
+  name: 测试前获取初始信息
+  step:
+#    - keyWord: 代理商后台返佣发放
+#    - keyWord: 代理商后台差价佣金发放
+    - keyWord: 总后台佣金总计
+    - keyWord: 总后台平台收益
+    - keyWord: 总后台交易额
+    - keyWord: 总后台手续费
+    - keyWord: 分后台佣金发放查询
+    - keyWord: 佣金发放明细
+    - keyWord: 团队统计
+testMethod:
+  - name: 直客市价开仓平仓
+    step:
+      - keyWord: 通过uid获取用户token
+      - keyWord: 市价开仓
+      - keyWord: 持有仓位信息
+      - keyWord: U本位合约历史委托
+      - keyWord: 直客佣金查询-首单
+      - keyWord: 分后台佣金发放查询-直客开仓
+      - keyWord: 总后台佣金总计-开仓
+      #      - keyWord: 总后台平台收益-开仓
+      - keyWord: 总后台手续费-开仓
+      - keyWord: 总后台交易额-开仓
+      - keyWord: 直客佣金查询-首单
+      - keyWord: 团队统计-开仓
+      - keyWord: 市价平仓
+      - keyWord: U本位合约历史委托-平仓
+      - keyWord: 佣金发放明细
+      - keyWord: 分后台佣金发放查询-直客平仓
+      - keyWord: 直客佣金查询-平仓
+      - keyWord: 总后台佣金总计-平仓
+      #      - keyWord: 总后台平台收益-平仓
+      - keyWord: 总后台手续费-平仓
+      - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓
+  - name: 直客升级为合伙人开仓平仓
+    dataProvider:
+      - futureRatio: ${__Random(50,${totalFutureRatio})}
+        exchangeRatio: ${__Random(50,${totalExchangeRatio})}
+    step:
+      - keyWord: 升级为合伙人
+        sleep: 5000
+      - keyWord: 市价开仓
+      - keyWord: 持有仓位信息
+      - keyWord: U本位合约历史委托
+      - keyWord: 差价佣金查询
+      - keyWord: 分后台佣金发放查询-直客开仓
+      - keyWord: 总后台佣金总计-开仓
+      #      - keyWord: 总后台平台收益-开仓
+      - keyWord: 总后台手续费-开仓
+      - keyWord: 总后台交易额-开仓
+      - keyWord: 直客佣金查询-开仓
+      - keyWord: 团队统计-开仓
+      - keyWord: 市价平仓
+      - keyWord: U本位合约历史委托-平仓
+      - keyWord: 佣金发放明细
+      - keyWord: 分后台佣金发放查询-直客平仓
+      - keyWord: 直客佣金查询-平仓
+      - keyWord: 总后台佣金总计-平仓
+      #      - keyWord: 总后台平台收益-平仓
+      - keyWord: 总后台手续费-平仓
+      - keyWord: 总后台交易额-平仓
+      - keyWord: 团队统计-平仓

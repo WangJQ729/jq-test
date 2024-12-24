@@ -10,13 +10,6 @@ data:
     welfareWebAdmin_host: http://welfarewebadmin.test.searchalpha.xyz
 #    welfareWebAdmin_host: http://spotwebadmin.test.searchalpha.xyz
     web_host: http://www.test.searchalpha.xyz
-    partnersadmin_account: admin
-    partnersadmin_password: admin
-    partner_email: gerow@126.com
-    bd_email: gerow@bitunix.io
-    bd_name: gerow
-    userName: gerow.wang@bitunix.io
-    password: Aa123456
 
     welfareUserName: gerow.wang@bitunix.io
     welfarePassword: Aa123456

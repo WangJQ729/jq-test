@@ -8,7 +8,8 @@ beforeClass:
     - keyWord: 登录partnersadminGA验证
 testMethod:
   - name: 新增BD
-    invocationCount: 100
+    enable: false
+    invocationCount: 1
     dataProvider:
       - email: gerow${__groovy(${methodNum})}@bitunix.io
         nickName: gerow${__groovy(${methodNum})}
@@ -18,14 +19,18 @@ testMethod:
       - keyWord: 设置GA
       - keyWord: 关闭GA
   - name: 添加合伙人
-    invocationCount: 100
+    invocationCount: 5
     dataProvider:
-      - bd_name: gerow${__groovy(${methodNum})}
+      - bd_name: gerow
+      - bd_name: gerow77
+      - bd_name: gerow101
+      - bd_name: gerow0
+      - bd_name: gerow1
     step:
       - keyWord: 获取BD列表
-#      - keyWord: BD统计
+      #      - keyWord: BD统计
       - keyWord: 快捷注册
-#      - keyWord: BD统计-团队人数不变
+      #      - keyWord: BD统计-团队人数不变
       - keyWord: 获取用户信息
       - keyWord: 新增合伙人
   - name: 更改BD

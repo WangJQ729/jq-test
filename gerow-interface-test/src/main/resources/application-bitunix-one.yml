@@ -7,13 +7,6 @@ data:
     bdadmin_host: https://bdadmin.bitunix.one
     spotAdmin_host: https://spotwebadmin.bitunix.one
     web_host: https://www.bitunix.one
-    partnersadmin_account: admin
-    partnersadmin_password: admin
-    partner_email: gerow.wang@gmail.com
-    bd_email: gerow@bitunix.io
-    bd_name: gerow
-    userName: gerow.wang@bitunix.io
-    password: Aa123456
 
     welfareWebAdmin_host: https://welfarewebadmin.bitunix.one
     welfareUserName: gerow.wang@bitunix.io
