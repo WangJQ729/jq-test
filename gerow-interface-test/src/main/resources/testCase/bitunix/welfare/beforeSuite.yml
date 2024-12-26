@@ -7,4 +7,3 @@ beforeSuite:
     - keyWord: 运营管理后台获取登录信息
     - keyWord: 运营管理后台获取googleKey
     - keyWord: 登录运营管理后台
-    - keyWord: 获取汇率

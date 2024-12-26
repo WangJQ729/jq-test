@@ -114,9 +114,9 @@ keyWord:
       assertion:
         - json:
             $.result.items[0].totalTradeAmount: ${__groovy(${dealAmount} + ${teamTotalTradeAmount})}
-            $.result.items[0].platformRevenue: ${__groovy(${webFee} * ${rate} * (100 - ${totalExchangeRatio})/100 + ${teamPlatformRevenue})}
-            $.result.items[0].totalCommission: ${__groovy(${webFee} * ${rate} * ${totalExchangeRatio}/100 + ${teamTotalCommission})}
-            $.result.items[0].totalFee: ${__groovy(${webFee} * ${rate} + ${teamTotalFee})}
+            $.result.items[0].platformRevenue: ${__groovy(${webFee} * ${avgPrice} * (100 - ${totalExchangeRatio})/100 + ${teamPlatformRevenue})}
+            $.result.items[0].totalCommission: ${__groovy(${webFee} * ${avgPrice} * ${totalExchangeRatio}/100 + ${teamTotalCommission})}
+            $.result.items[0].totalFee: ${__groovy(${webFee} * ${avgPrice} + ${teamTotalFee})}
             $.result.items[0].deductAmount: ${__groovy(${teamDeductAmount})}
           assertionType: TWODECIMALPLACES
     - name: 团队统计-开仓

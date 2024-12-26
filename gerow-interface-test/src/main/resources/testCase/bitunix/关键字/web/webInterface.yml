@@ -32,6 +32,7 @@ keyWord:
             webFee: $.data.data[0].fee
             dealAmount: $.data.data[0].dealAmount
             orderId: $.data.data[0].orderId
+            avgPrice: $.data.data[0].avgPrice
       assertion:
         - json:
             $.code: '0'
