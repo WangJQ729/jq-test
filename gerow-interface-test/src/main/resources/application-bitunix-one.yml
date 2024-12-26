@@ -9,13 +9,6 @@ data:
     web_host: https://www.bitunix.one
 
     welfareWebAdmin_host: https://welfarewebadmin.bitunix.one
-    welfareUserName: gerow.wang@bitunix.io
-    welfarePassword: Aa123456
-    welfareAdminGoogleCode: HZ5YR4NUKXZQ2LEU
-
-    spotAdminGoogleCode: GDKKV42BO2JHIHJZ
-    partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
-    Accept-Language: zh_CN
     userId: 1232523
     couponId: 567
     # 合约交易对、开仓数量

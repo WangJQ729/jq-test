@@ -10,15 +10,8 @@ data:
     welfareWebAdmin_host: http://welfarewebadmin.test.searchalpha.xyz
 #    welfareWebAdmin_host: http://spotwebadmin.test.searchalpha.xyz
     web_host: http://www.test.searchalpha.xyz
-
-    welfareUserName: gerow.wang@bitunix.io
-    welfarePassword: Aa123456
-    welfareAdminGoogleCode: RMV5J4BVMVIYNKAF
-
-    spotAdminGoogleCode: 2FGUB2XGU7CESM7N
-    featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
-    partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
-    Accept-Language: zh_CN
+    # 带单主账户UID ,需要使用非合伙人体系下的uid
+    userId: 16281
     couponId: 1
     # 合约交易对、开仓数量
     symbol: ${__RandomEnum(BTCUSDT)}
@@ -26,8 +19,6 @@ data:
     amount_max: 10
     # 现货币种
     spotSymbol: BTC
-    # 带单主账户UID ,需要使用非合伙人体系下的uid
-    userId: 16281
 client:
   protocol: http
   timeOut: 30

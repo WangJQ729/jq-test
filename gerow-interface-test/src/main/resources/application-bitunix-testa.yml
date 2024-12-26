@@ -10,18 +10,8 @@ data:
     featuresAdmin_host: http://futureswebadmin.testa.searchalpha.xyz
     web_host: http://www.testa.searchalpha.xyz
     userId: 68566
-
-#    welfareWebAdmin_host: http://welfarewebadmin.testa.searchalpha.xyz
+    #welfareWebAdmin_host: http://welfarewebadmin.testa.searchalpha.xyz
     welfareWebAdmin_host: http://spotwebadmin.testa.searchalpha.xyz
-    welfareUserName: gerow.wang@bitunix.io
-    welfarePassword: Aa123456
-#    welfareAdminGoogleCode: WB7PZLBMHUVOTZM5
-    welfareAdminGoogleCode: GGMNJZXCIFVBO6F5
-
-    # bd后台、现货、合约后台的密码
-    spotAdminGoogleCode: GGMNJZXCIFVBO6F5
-    featuresAdminGoogleCode: ZXHYKFQ6PGTM72V7
-    partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
     # 体验金ID
     couponId: 5
     # 合约交易对、开仓数量

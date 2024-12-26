@@ -14,7 +14,7 @@ client:
     Accept-Encoding: gzip, deflate, br
 data:
   test:
-    amount: 999
+    amount: 200000
     partnersadmin_account: admin
     partnersadmin_password: admin
     partner_email: gerow@126.com
@@ -22,3 +22,9 @@ data:
     bd_name: gerow
     userName: gerow.wang@bitunix.io
     password: Aa123456
+    welfareAdminGoogleCode: GDKKV42BO2JHIHJZ
+    spotAdminGoogleCode: GDKKV42BO2JHIHJZ
+    partnersAdminGoogleCode: ONPWZTSXZV2RVJEE
+    welfareUserName: gerow.wang@bitunix.io
+    welfarePassword: Aa123456
+    Accept-Language: zh_CN

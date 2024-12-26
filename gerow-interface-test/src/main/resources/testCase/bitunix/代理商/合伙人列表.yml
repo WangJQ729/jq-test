@@ -2,7 +2,36 @@ name: 合伙人列表
 story: partners
 #enable: false
 dataProvider:
-  - partner_email: gerow1726303577516@sina.com
+  - partner_email: gerow1725333869430@zoho.com
+    dataProvider:
+      - balance_amount: 999
+      - balance_amount: 9999
+      - balance_amount: 49999
+      - balance_amount: 199999
+      - balance_amount: 999999
+      - balance_amount: 1999999
+      - balance_amount: 2999999
+      - balance_amount: 3999999
+  - partner_email: gerow1725333862289@fastmail.com
+    dataProvider:
+      - balance_amount: 999
+      - balance_amount: 9999
+      - balance_amount: 49999
+      - balance_amount: 199999
+      - balance_amount: 999999
+      - balance_amount: 1999999
+      - balance_amount: 2999999
+      - balance_amount: 3999999
+  - partner_email: gerow1725333863481@sina.com
+    dataProvider:
+      - balance_amount: 999
+      - balance_amount: 9999
+      - balance_amount: 49999
+      - balance_amount: 199999
+      - balance_amount: 999999
+      - balance_amount: 1999999
+      - balance_amount: 2999999
+      - balance_amount: 3999999
 beforeClass:
   name: 登录合伙人后台
   step:
@@ -12,15 +41,17 @@ beforeClass:
     - keyWord: 获取合伙人返佣比例
 testMethod:
   - name: 快捷注册
-    invocationCount: 10
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
-      - keyWord: 增加合约账户资产
+      - keyWord: 增加合约账户资产-指定资产
+  - name: 仅注册
+    step:
+      - keyWord: 快捷注册
+      - keyWord: 增加合约账户资产-指定资产
   - name: 快捷注册-升级合伙人
-    invocationCount: 5
     step:
       - keyWord: 快捷注册-合伙人邀请码-随机邮箱
-      - keyWord: 增加合约账户资产
+      - keyWord: 增加合约账户资产-指定资产
       - keyWord: 升级为合伙人
         dataProvider:
           - futureRatio: ${__Random(0,${totalFutureRatio})}
