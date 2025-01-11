@@ -49,7 +49,7 @@ public class ConfigManager {
      * @return 默认地址
      */
     public static String getUrl() {
-        return clientInfo.getProtocol() + "://" + config.getTest().get("host");
+        return config.getTest().get("host");
     }
 
     /**

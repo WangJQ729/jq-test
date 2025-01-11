@@ -1,14 +1,14 @@
 data:
   test:
     platform: bitunix
-    host: api.bitunix.one
-    partners_host: https://partners.bitunix.one
-    partnersadmin_host: https://partnersadmin.bitunix.one
-    bdadmin_host: https://bdadmin.bitunix.one
-    spotAdmin_host: https://spotwebadmin.bitunix.one
-    web_host: https://www.bitunix.one
+    host: api.xushidaifaban.com
+    partners_host: partners.xushidaifaban.com
+    partnersadmin_host: partnersadmin.xushidaifaban.com
+    bdadmin_host: bdadmin.xushidaifaban.com
+    spotAdmin_host: spotwebadmin.xushidaifaban.com
+    web_host: www.xushidaifaban.com
 
-    welfareWebAdmin_host: https://welfarewebadmin.bitunix.one
+    welfareWebAdmin_host: welfarewebadmin.xushidaifaban.com
     userId: 1232523
     couponId: 567
     # 合约交易对、开仓数量
@@ -19,8 +19,3 @@ data:
     spotSymbol: ETH
     # 带单主账户UID ,需要使用非合伙人体系下的uid
     traderParentUid: 1232555
-client:
-  protocol: https
-  timeOut: 30
-  headers:
-    Content-Type: "application/json;charset=UTF-8"

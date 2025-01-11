@@ -289,6 +289,7 @@ public class YmlTestStep implements ITestStep {
         if (step.getHost() != null) {
             host = replace(step.getHost());
         }
+        host = ConfigManager.getProtocol() + "://" + host;
         StringBuilder builder = new StringBuilder(host).append(replace(step.getUrl()));
         Map<String, String> variables = step.getVariables();
         String result = variables.keySet().stream().map(key -> {
@@ -299,7 +300,7 @@ public class YmlTestStep implements ITestStep {
             builder.append("?").append(result);
         }
         String url = StringUtils.remove(builder.toString(), "\n");
-        return URLDecoder.decode(url, "UTF-8");
+        return URLDecoder.decode(url, StandardCharsets.UTF_8);
     }
 
     /**

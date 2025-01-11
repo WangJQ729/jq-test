@@ -7,17 +7,18 @@ logging:
     org.mongodb.driver.cluster: OFF
 client:
   protocol: https
-  timeOut: 10
+  timeOut: 30
   headers:
     Content-Type: "application/json;charset=UTF-8"
-    Accept: '*/*'
     Accept-Encoding: gzip, deflate, br
+    Accept-Language: zh_CN
+    Accept: '*/*'
 data:
   test:
     amount: 200000
     partnersadmin_account: admin
     partnersadmin_password: admin
-    partner_email: gerow@126.com
+    partner_email: gerow.wang@bitunix.io
     bd_email: gerow@bitunix.io
     bd_name: gerow
     userName: gerow.wang@bitunix.io

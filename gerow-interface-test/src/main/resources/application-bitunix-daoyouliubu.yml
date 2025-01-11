@@ -1,0 +1,21 @@
+data:
+  test:
+    platform: bitunix
+    host: api.daoyouliubu.com
+    partners_host: partners.daoyouliubu.com
+    partnersadmin_host: partnersadmin.daoyouliubu.com
+    bdadmin_host: bdadmin.daoyouliubu.com
+    spotAdmin_host: spotwebadmin.daoyouliubu.com
+    featuresAdmin_host: futureswebadmin.daoyouliubu.com
+    welfareWebAdmin_host: welfarewebadmin.daoyouliubu.com
+#    welfareWebAdmin_host: spotwebadmin.daoyouliubu.com
+    web_host: www.daoyouliubu.com
+    # 带单主账户UID ,需要使用非合伙人体系下的uid
+    userId: 16281
+    couponId: 1
+    # 合约交易对、开仓数量
+    symbol: ${__RandomEnum(MATICUSDT)}
+    amount_min: 5
+    amount_max: 10
+    # 现货币种
+    spotSymbol: BTC
